@@ -643,9 +643,7 @@ impl PurchaseOrdersDto {
         };
         let mut orders: Vec<crate::po::PurchaseOrder> =
             budget.purchase_orders.values().cloned().collect();
-        orders.sort_by(|a, b| {
-            (a.date.clone(), a.vendor.clone()).cmp(&(b.date.clone(), b.vendor.clone()))
-        });
+        orders.sort_by(|a, b| a.date.cmp(&b.date).then_with(|| a.vendor.cmp(&b.vendor)));
 
         let sat = |a: Decimal, b: Decimal| a.checked_add(b).unwrap_or(Decimal::MAX);
         let (mut draft, mut approved, mut converted) =
@@ -717,7 +715,7 @@ pub struct ScheduleDto {
 impl ScheduleDto {
     pub fn build(budget: &Budget) -> Self {
         let mut strips: Vec<crate::scheduling::Strip> = budget.strips.values().cloned().collect();
-        strips.sort_by(|a, b| (a.day, a.scene.clone()).cmp(&(b.day, b.scene.clone())));
+        strips.sort_by(|a, b| a.day.cmp(&b.day).then_with(|| a.scene.cmp(&b.scene)));
         let dood = crate::scheduling::day_out_of_days(&strips)
             .into_iter()
             .map(|r| DoodRowDto {
@@ -791,7 +789,9 @@ impl SettlementReportDto {
         let mut receipts: Vec<crate::settlement::Receipt> =
             budget.receipts.values().cloned().collect();
         receipts.sort_by(|a, b| {
-            (a.category.clone(), a.date.clone()).cmp(&(b.category.clone(), b.date.clone()))
+            a.category
+                .cmp(&b.category)
+                .then_with(|| a.date.cmp(&b.date))
         });
 
         // Round each receipt's columns to kuruş FIRST, then accumulate the

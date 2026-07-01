@@ -123,7 +123,7 @@ proptest! {
 
         // Canonical result: apply in HLC order.
         let mut canonical_ops = ops.clone();
-        canonical_ops.sort_by(|a, b| a.hlc.cmp(&b.hlc));
+        canonical_ops.sort_by_key(|o| o.hlc);
         let mut canonical = base_doc.clone();
         for op in &canonical_ops {
             canonical.apply(op);
