@@ -1,0 +1,3151 @@
+{
+  "topsheet": {
+    "budget_name": "Dizi — Bölüm 1",
+    "base_currency": "TRY",
+    "categories": [
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0073363be29e",
+        "number": "1100",
+        "name": "SENARYO",
+        "atl_btl": "ATL",
+        "subtotal": "1320000.00",
+        "fringe_total": "270361.45",
+        "total": "1590361.45"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-00e8ac248f9e",
+        "number": "1200",
+        "name": "YAPIMCILAR",
+        "atl_btl": "ATL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-01189cc470c9",
+        "number": "1300",
+        "name": "YÖNETMENLER",
+        "atl_btl": "ATL",
+        "subtotal": "660000.00",
+        "fringe_total": "135180.72",
+        "total": "795180.72"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-01430df5e685",
+        "number": "1400",
+        "name": "OYUNCULAR",
+        "atl_btl": "ATL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-01e13a9f86e2",
+        "number": "1600",
+        "name": "SEYAHAT VE KONAKLAMA",
+        "atl_btl": "ATL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-02358fd8f8fa",
+        "number": "2000",
+        "name": "YAPIM EKİBİ",
+        "atl_btl": "BTL",
+        "subtotal": "121500.00",
+        "fringe_total": "46170.00",
+        "total": "167670.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-035d3da28413",
+        "number": "2100",
+        "name": "EKSTRA OYUNCULAR",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-03c898dcf680",
+        "number": "2200",
+        "name": "SANAT EKİBİ",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-04637c59edf2",
+        "number": "2300",
+        "name": "SET İNŞASI",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-04ba051b6d1c",
+        "number": "2400",
+        "name": "SET GİYDİRME",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-053ab49f809d",
+        "number": "2500",
+        "name": "PROPLAR",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-05b4b400fe30",
+        "number": "2600",
+        "name": "ARAÇ VE HAYVANLAR",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-05ff7d4890bb",
+        "number": "2700",
+        "name": "KOSTÜM EKİBİ",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-06f7cb87b15a",
+        "number": "2800",
+        "name": "SAÇ/MAKYAJ",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-07cef137b1f0",
+        "number": "2900",
+        "name": "SET EKİBİ",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-089b63cdb643",
+        "number": "3000",
+        "name": "IŞIK EKİBİ",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0946518a70e2",
+        "number": "3100",
+        "name": "KAMERA EKİBİ",
+        "atl_btl": "BTL",
+        "subtotal": "360000.00",
+        "fringe_total": "0.00",
+        "total": "360000.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0a10c8cb2081",
+        "number": "3200",
+        "name": "SES EKİBİ",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0a9550fd5734",
+        "number": "3300",
+        "name": "ÖZEL EFEKTLER",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0af1fc2304db",
+        "number": "3400",
+        "name": "MEKAN",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0bcafae64e83",
+        "number": "3500",
+        "name": "DRONE",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0c07fb2160b9",
+        "number": "3600",
+        "name": "ULAŞIM",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0c72fd74d2f6",
+        "number": "3700",
+        "name": "PLATO VE OFİS KİRALAMA",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0d1f8ebfa2ff",
+        "number": "3800",
+        "name": "PRODUCTION LAB & MEDIA MANAGEMENT",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0d38c5752751",
+        "number": "3900",
+        "name": "BELOW THE LINE TRAVEL & LIVING",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0da8c2b69c2a",
+        "number": "4100",
+        "name": "TESTS",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0dc0bd96750f",
+        "number": "4900",
+        "name": "GENERAL EXPENSES",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0de7e8ccf7c8",
+        "number": "5000",
+        "name": "EDITORIAL",
+        "atl_btl": null,
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0eb64f5023e4",
+        "number": "5100",
+        "name": "PICTURE FINISHING",
+        "atl_btl": null,
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0f4c41d4c58e",
+        "number": "5200",
+        "name": "POST PRODUCTION SOUND",
+        "atl_btl": null,
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0fb09391a1aa",
+        "number": "5300",
+        "name": "CLIPS & CLEARANCES",
+        "atl_btl": null,
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0fe2a7200c68",
+        "number": "5400",
+        "name": "TITLES & GRAPHICS",
+        "atl_btl": null,
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-100e71b45629",
+        "number": "6000",
+        "name": "MUSIC",
+        "atl_btl": null,
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-10368d1b3d30",
+        "number": "6100",
+        "name": "VFX",
+        "atl_btl": null,
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-10902777b641",
+        "number": "7000",
+        "name": "YÖNETİM GİDERLERİ",
+        "atl_btl": null,
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-118fd384ea46",
+        "number": "7200",
+        "name": "INSURANCE",
+        "atl_btl": null,
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-11c5bdece6a3",
+        "number": "8500",
+        "name": "PURCHASE PRICE",
+        "atl_btl": null,
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00"
+      }
+    ],
+    "atl_total": "2385542.17",
+    "btl_total": "527670.00",
+    "fringes_total": "451712.17",
+    "grand_total": "2913212.17",
+    "charges_total": "0.00",
+    "credits_total": "0.00",
+    "net_total": "2913212.17",
+    "error_count": 0
+  },
+  "tree": {
+    "budget_name": "Dizi — Bölüm 1",
+    "categories": [
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0073363be29e",
+        "number": "1100",
+        "name": "SENARYO",
+        "atl_btl": "ATL",
+        "subtotal": "1320000.00",
+        "fringe_total": "270361.45",
+        "total": "1590361.45",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0082fbe5758e",
+            "number": "1102",
+            "name": "ARAŞTIRMA",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-009a3dfaf158",
+            "number": "1103",
+            "name": "HİKAYE HAKLARI / TELİF ÜCRETLERİ / SEÇENEKLER",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-00a6ce349ec4",
+            "number": "1107",
+            "name": "SENARİST KAŞELERİ",
+            "subtotal": "1320000.00",
+            "fringe_total": "270361.45",
+            "total": "1590361.45",
+            "details": [
+              {
+                "id": "019f18f7-4c36-7ba3-a561-8825ac3777b5",
+                "description": "Senarist",
+                "name": null,
+                "amount": {
+                  "is_expr": false,
+                  "text": "1"
+                },
+                "multiplier": {
+                  "is_expr": false,
+                  "text": "1"
+                },
+                "rate": {
+                  "is_expr": false,
+                  "text": "1320000"
+                },
+                "unit": "ADET",
+                "currency": "TRY",
+                "fringes": [
+                  {
+                    "code": "TR_STOPAJ",
+                    "rate": "0.17"
+                  }
+                ],
+                "subtotal": "1320000.00",
+                "fringe_total": "270361.45",
+                "line_total": "1590361.45",
+                "error": false
+              }
+            ]
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-00b5ad2aedc2",
+            "number": "1109",
+            "name": "TERCÜME",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-00c78ca5f686",
+            "number": "1122",
+            "name": "KREATİF EKİP ASİSTAN (EKINSU TAMYÜREK)",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-00d5fa7f48c1",
+            "number": "1199",
+            "name": "FRINGE",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-00e8ac248f9e",
+        "number": "1200",
+        "name": "YAPIMCILAR",
+        "atl_btl": "ATL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-00fa4eb16478",
+            "number": "1203",
+            "name": "YAPIMCI (FİKRET – ABD ÖDEMELİ)",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-010916b20928",
+            "number": "1204",
+            "name": "YÜRÜTÜCÜ YAPIMCI (KEREM ÖZERDOĞAN)",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-01189cc470c9",
+        "number": "1300",
+        "name": "YÖNETMENLER",
+        "atl_btl": "ATL",
+        "subtotal": "660000.00",
+        "fringe_total": "135180.72",
+        "total": "795180.72",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-01232cf338da",
+            "number": "1301",
+            "name": "YÖNETMEN",
+            "subtotal": "660000.00",
+            "fringe_total": "135180.72",
+            "total": "795180.72",
+            "details": [
+              {
+                "id": "019f18f7-4c36-7ba3-a561-880c3ad27a29",
+                "description": "Yönetmen",
+                "name": null,
+                "amount": {
+                  "is_expr": false,
+                  "text": "1"
+                },
+                "multiplier": {
+                  "is_expr": false,
+                  "text": "1"
+                },
+                "rate": {
+                  "is_expr": false,
+                  "text": "660000"
+                },
+                "unit": "ADET",
+                "currency": "TRY",
+                "fringes": [
+                  {
+                    "code": "TR_STOPAJ",
+                    "rate": "0.17"
+                  }
+                ],
+                "subtotal": "660000.00",
+                "fringe_total": "135180.72",
+                "line_total": "795180.72",
+                "error": false
+              }
+            ]
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0134508c72da",
+            "number": "1320",
+            "name": "STORYBOARD SANATÇISI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-01430df5e685",
+        "number": "1400",
+        "name": "OYUNCULAR",
+        "atl_btl": "ATL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-015f7bab4b3c",
+            "number": "1401",
+            "name": "BAŞROL OYUNCULAR",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-01601f4cef6b",
+            "number": "1403",
+            "name": "YARDIMCI OYUNCULAR",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0178811c7ab4",
+            "number": "1404",
+            "name": "ÖN FGR",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-018621fbca7c",
+            "number": "1410",
+            "name": "DUBLÖR KOORDİNATÖR",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-019359752e8a",
+            "number": "1411",
+            "name": "DUBLÖRLER",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-01afdb2d62a7",
+            "number": "1420",
+            "name": "CAST DİREKTÖRÜ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-01b0a6c98deb",
+            "number": "1422",
+            "name": "CAST KOORDİNATÖRÜ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-01c61351f932",
+            "number": "1423",
+            "name": "CAST ASİSTANLARI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-01dc7c3252ff",
+            "number": "1426",
+            "name": "CASTING HARCAMALARI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-01e13a9f86e2",
+        "number": "1600",
+        "name": "SEYAHAT VE KONAKLAMA",
+        "atl_btl": "ATL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-01fa793840df",
+            "number": "1610",
+            "name": "SEYAHAT",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-020747a2b626",
+            "number": "1611",
+            "name": "KONAKLAMA",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-021593d92bce",
+            "number": "1612",
+            "name": "HARCIRAH",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-022fb5198e18",
+            "number": "1613",
+            "name": "TRANSFERLER",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-02358fd8f8fa",
+        "number": "2000",
+        "name": "YAPIM EKİBİ",
+        "atl_btl": "BTL",
+        "subtotal": "121500.00",
+        "fringe_total": "46170.00",
+        "total": "167670.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-024836a43f3e",
+            "number": "2001",
+            "name": "YAPIM AMİRİ (ALİ KILIÇ)",
+            "subtotal": "121500.00",
+            "fringe_total": "46170.00",
+            "total": "167670.00",
+            "details": [
+              {
+                "id": "019f18f7-4c36-7ba3-a561-884a0e95966f",
+                "description": "Yapım Amiri",
+                "name": null,
+                "amount": {
+                  "is_expr": true,
+                  "text": "CEKIM_GUN"
+                },
+                "multiplier": {
+                  "is_expr": false,
+                  "text": "1"
+                },
+                "rate": {
+                  "is_expr": false,
+                  "text": "1500"
+                },
+                "unit": "GUN",
+                "currency": "TRY",
+                "fringes": [
+                  {
+                    "code": "TR_KOMISYON",
+                    "rate": "0.38"
+                  }
+                ],
+                "subtotal": "67500.00",
+                "fringe_total": "25650.00",
+                "line_total": "93150.00",
+                "error": false
+              },
+              {
+                "id": "019f18f7-4c36-7ba3-a561-886436d97fb1",
+                "description": "Yönetmen Yardımcısı",
+                "name": null,
+                "amount": {
+                  "is_expr": true,
+                  "text": "CEKIM_GUN"
+                },
+                "multiplier": {
+                  "is_expr": false,
+                  "text": "1"
+                },
+                "rate": {
+                  "is_expr": false,
+                  "text": "1200"
+                },
+                "unit": "GUN",
+                "currency": "TRY",
+                "fringes": [
+                  {
+                    "code": "TR_KOMISYON",
+                    "rate": "0.38"
+                  }
+                ],
+                "subtotal": "54000.00",
+                "fringe_total": "20520.00",
+                "line_total": "74520.00",
+                "error": false
+              }
+            ]
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-02559f694682",
+            "number": "2002",
+            "name": "YAPIM SÜPERVİZÖRÜ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-026732ce8b8a",
+            "number": "2003",
+            "name": "1. YÖNETMEN YARDIMCISI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0276674a9fe4",
+            "number": "2004",
+            "name": "1. YÖNETMEN YARDIMCISI (2. EKİP)",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-028c6a753283",
+            "number": "2005",
+            "name": "2. YÖNETMEN YARDIMCISI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0291d74be9f8",
+            "number": "2006",
+            "name": "2. EK YÖNETMEN YARDIMCISI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-02a2dada2f96",
+            "number": "2007",
+            "name": "2. YÖNETMEN YARDIMCISI (2. EKİP)",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-02b8f836e62b",
+            "number": "2008",
+            "name": "YAPIM STAJYERLERİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-02c0dc936856",
+            "number": "2009",
+            "name": "SENARYO VE DEVAMLILIK SORUMLUSU",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-02d9205a81b0",
+            "number": "2010",
+            "name": "YAPIM MUHASEBE",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-02ef963251b6",
+            "number": "2011",
+            "name": "YAPIM MUHASEBE ASİSTANI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-02fbde7ed375",
+            "number": "2013",
+            "name": "YAPIM KOORDİNATÖRÜ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0306db133ac0",
+            "number": "2014",
+            "name": "YAPIM KOORDİNATÖR ASİSTANI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0312d08d3cdc",
+            "number": "2017",
+            "name": "PLATO SORUMLUSU",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0328419bf7ba",
+            "number": "2019",
+            "name": "OFİS YAPIM ASİSTANLARI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0331e06ca000",
+            "number": "2020",
+            "name": "SET YAPIM ASİSTANLARI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-034cf3bf4e98",
+            "number": "2052",
+            "name": "RUNNERLAR",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-035d3da28413",
+        "number": "2100",
+        "name": "EKSTRA OYUNCULAR",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-036f4c488daa",
+            "number": "2101",
+            "name": "OYUNCU DUBLÖRLERİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-03761c859714",
+            "number": "2103",
+            "name": "FGRLER",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0387744ac0ae",
+            "number": "2104",
+            "name": "PERFORMANS OYUNCULARI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-039fcfb81856",
+            "number": "2106",
+            "name": "DANSÇILAR/MÜZİSYENLER",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-03a9d45c14f0",
+            "number": "2110",
+            "name": "FGR CASTİNG",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-03b5524c9a8d",
+            "number": "2111",
+            "name": "FGR SORUMLUSU",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-03c898dcf680",
+        "number": "2200",
+        "name": "SANAT EKİBİ",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-03d6a3e78c9b",
+            "number": "2201",
+            "name": "YAPIM TASARIM (ZEKİ SARAYOĞLU)",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-03ec5c248f77",
+            "number": "2202",
+            "name": "SANAT YÖNETMENİ (ERAY BİNTAŞ)",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-03f3d88eeeb5",
+            "number": "2203",
+            "name": "SANAT YÖNETMENİ ASİSTANI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-040bd7a33429",
+            "number": "2204",
+            "name": "SET TASARIMCISI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0411fc2109e4",
+            "number": "2205",
+            "name": "GRAFİK SANATÇISI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-04211f20f82a",
+            "number": "2206",
+            "name": "SANAT EKİBİ KOORDİNATÖR",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-043cee36624c",
+            "number": "2207",
+            "name": "SANAT ASİSTANLARI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-044f52df016f",
+            "number": "2210",
+            "name": "SANAT EKİBİ ARAŞTIRMA SORUMLUSU",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0451484f14af",
+            "number": "2213",
+            "name": "GRAFİK SANATÇILARI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-04637c59edf2",
+        "number": "2300",
+        "name": "SET İNŞASI",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-047a180dab95",
+            "number": "2301",
+            "name": "İNŞA KOORDİNATÖRÜ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-048e435406d4",
+            "number": "2310",
+            "name": "İNŞA İŞ GÜCÜ ALIMLARI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-04989ebd7082",
+            "number": "2311",
+            "name": "İNŞA SATIN ALIMLAR",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-04a151c9b3aa",
+            "number": "2398",
+            "name": "KAYIP VE HASARLAR - tamirat",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-04ba051b6d1c",
+        "number": "2400",
+        "name": "SET GİYDİRME",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-04c5102edb45",
+            "number": "2401",
+            "name": "SET DEKORATÖRÜ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-04d789268c50",
+            "number": "2403",
+            "name": "RESSAM EKİBİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-04ea787a07f1",
+            "number": "2404",
+            "name": "SATIN ALMACI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-04f32d87b121",
+            "number": "2405",
+            "name": "SET SORUMLUSU",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-05081408cf5e",
+            "number": "2408",
+            "name": "DEKOR YAPIMLARI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-051c136eb7f2",
+            "number": "2494",
+            "name": "SATIN ALMALAR",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0525252ef94f",
+            "number": "2498",
+            "name": "KAYIP VE HASARLAR",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-053ab49f809d",
+        "number": "2500",
+        "name": "PROPLAR",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-054ca2fc0943",
+            "number": "2501",
+            "name": "PROP SORUMLUSU",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-055d7305c575",
+            "number": "2502",
+            "name": "PROP SORUMLUSU ASİSTANI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-056e938bdbb0",
+            "number": "2504",
+            "name": "PROP SATIN ALMACI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-057dac72124d",
+            "number": "2508",
+            "name": "PROP YAPIM",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-058115f0c1fa",
+            "number": "2591",
+            "name": "ATEŞLİ SİLAH PROPLARI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-059e2ffa6f07",
+            "number": "2594",
+            "name": "SATIN ALMALAR ve kiralama",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-05abc6ece6a0",
+            "number": "2598",
+            "name": "KAYIP VE HASARLAR",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-05b4b400fe30",
+        "number": "2600",
+        "name": "ARAÇ VE HAYVANLAR",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-05ccf5e7180e",
+            "number": "2601",
+            "name": "OYUNCU ARAÇ SORUMLUSU",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-05d4669faa52",
+            "number": "2602",
+            "name": "OYUNCU ARAÇ KİRALAMA",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-05e27181aa0a",
+            "number": "2623",
+            "name": "HAYVANLAR",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-05ff7d4890bb",
+        "number": "2700",
+        "name": "KOSTÜM EKİBİ",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-060ad4360136",
+            "number": "2701",
+            "name": "KOSTÜM TASARIM",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-061c5d7a8d32",
+            "number": "2702",
+            "name": "KOSTÜM TASARIM ASİSTANI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0622a6193f82",
+            "number": "2703",
+            "name": "KOSTÜM SÜPERVİZÖRÜ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0631cd09eb46",
+            "number": "2704",
+            "name": "SATIN ALMACI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-06412af9a947",
+            "number": "2705",
+            "name": "SET KOSTÜM SORUMLUSU",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-065ea5b38ed8",
+            "number": "2706",
+            "name": "SET KOSTÜM ASİSTANI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-066984644094",
+            "number": "2707",
+            "name": "SET İÇİN EK İŞ GÜCÜ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-067fbd6d4247",
+            "number": "2708",
+            "name": "DÖNÜŞTÜRME İŞLEMLERİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-068022d66994",
+            "number": "2709",
+            "name": "ÜRETİM/DİKİM",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-06901158652a",
+            "number": "2725",
+            "name": "KURU TEMİZLEME",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-06a7260384ae",
+            "number": "2785",
+            "name": "SARF MALZEMESİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-06b17f342dd8",
+            "number": "2790",
+            "name": "BOX RENTALS",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-06c3aceea063",
+            "number": "2793",
+            "name": "KİRALAMALAR",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-06df39cdbb3c",
+            "number": "2794",
+            "name": "SATINALMA",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-06e93a7c9970",
+            "number": "2798",
+            "name": "KAYIP, HASAR VE TAMİRATLAR",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-06f7cb87b15a",
+        "number": "2800",
+        "name": "SAÇ/MAKYAJ",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-070542267f17",
+            "number": "2801",
+            "name": "MAKYAJ SANATÇISI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-07144df6fcf3",
+            "number": "2802",
+            "name": "MAKYAJ SANATÇISI ASİSTANI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-072afbf7c722",
+            "number": "2803",
+            "name": "EK MAKYAJ EKİBİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-073eab003bfa",
+            "number": "2804",
+            "name": "SAÇ TASARIMCISI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-074f9dc1b685",
+            "number": "2805",
+            "name": "SAÇ TASARIM ASİSTANLARI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0752a18d3083",
+            "number": "2806",
+            "name": "EK SAÇ EKİBİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-07677d041db3",
+            "number": "2807",
+            "name": "PROTEZLER",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-07776091a6ab",
+            "number": "2808",
+            "name": "PERUK VE SAÇ SATIN ALMA",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-07855fdd6a82",
+            "number": "2809",
+            "name": "PERUK VE SAÇ KİRALAMA",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-079b3a67b9cc",
+            "number": "2810",
+            "name": "PROTEZ SATIN ALMALAR",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-07a70cb63ca0",
+            "number": "2885",
+            "name": "SARF MALZEMESİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-07ba38df1ae4",
+            "number": "2890",
+            "name": "BOX RENTALS",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-07cef137b1f0",
+        "number": "2900",
+        "name": "SET EKİBİ",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-07da836d6771",
+            "number": "2901",
+            "name": "SET AMİRİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-07e94f38a7eb",
+            "number": "2902",
+            "name": "BEST BOY",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-07fbb8ed5fdf",
+            "number": "2903",
+            "name": "SET ASİSTANLARI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-080067af5e74",
+            "number": "2904",
+            "name": "DOLLY/BOOM EKİBİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-081e014bc242",
+            "number": "2908",
+            "name": "EK SET EKİBİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0826dba3bbec",
+            "number": "2912",
+            "name": "CRANE EKİBİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-083e5eae5de9",
+            "number": "2920",
+            "name": "DOLLY KİRALAMA",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0848eaf2fc94",
+            "number": "2985",
+            "name": "SARF MALZEMESİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0855be84d576",
+            "number": "2991",
+            "name": "CRANE KİRALAMA",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-086c3f841aac",
+            "number": "2992",
+            "name": "PLATO MALZEME KİRALAMA",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0870a9a07be1",
+            "number": "2993",
+            "name": "KAMYON MALZEME KİRALAMA",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0881cf8b3933",
+            "number": "2995",
+            "name": "ÖZEL EKİPMAN KİRALAMA",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-089b63cdb643",
+        "number": "3000",
+        "name": "IŞIK EKİBİ",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-08abbb18fb85",
+            "number": "3001",
+            "name": "IŞIK ŞEFİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-08b2398c665d",
+            "number": "3002",
+            "name": "BEST BOY",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-08c43a5c27b0",
+            "number": "3003",
+            "name": "IŞIK ASİSTANLARI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-08dbb6d8a1e9",
+            "number": "3004",
+            "name": "JENERATÖR OPERATÖRÜ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-08e2e5633cae",
+            "number": "3007",
+            "name": "EK IŞIK EKİBİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-08f54952ae54",
+            "number": "3085",
+            "name": "SARF MALZEMESİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-09075e2a55ba",
+            "number": "3091",
+            "name": "JENERATÖR KİRALAMA",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0912da47bf34",
+            "number": "3092",
+            "name": "PLATO İÇİ IŞIK KİRA",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-092d416a5ebf",
+            "number": "3093",
+            "name": "KAMYON İÇİ IŞIK KİRA",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-093494d43326",
+            "number": "3098",
+            "name": "KAYI VE HASARLAR",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0946518a70e2",
+        "number": "3100",
+        "name": "KAMERA EKİBİ",
+        "atl_btl": "BTL",
+        "subtotal": "360000.00",
+        "fringe_total": "0.00",
+        "total": "360000.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-095c17b8e66e",
+            "number": "3101",
+            "name": "GÖRÜNTÜ YÖNETMENİ",
+            "subtotal": "360000.00",
+            "fringe_total": "0.00",
+            "total": "360000.00",
+            "details": [
+              {
+                "id": "019f18f7-4c36-7ba3-a561-888659920e29",
+                "description": "Kamera paketi",
+                "name": null,
+                "amount": {
+                  "is_expr": true,
+                  "text": "CEKIM_GUN"
+                },
+                "multiplier": {
+                  "is_expr": false,
+                  "text": "1"
+                },
+                "rate": {
+                  "is_expr": false,
+                  "text": "8000"
+                },
+                "unit": "GUN",
+                "currency": "TRY",
+                "fringes": [],
+                "subtotal": "360000.00",
+                "fringe_total": "0.00",
+                "line_total": "360000.00",
+                "error": false
+              }
+            ]
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0965ced5bdb5",
+            "number": "3102",
+            "name": "KAMERA OPERATÖRLERİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0976f5b468c4",
+            "number": "3103",
+            "name": "EKSTRA KAMERA OPERATÖRÜ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0985c4c92e95",
+            "number": "3104",
+            "name": "1. KAMERA ASİSTANLARI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-099c15750470",
+            "number": "3106",
+            "name": "2. KAMERA ASİSTANLARI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-09a7bfc99bf2",
+            "number": "3108",
+            "name": "CAMERA LOADER / DATAWRANGLER",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-09b5d5da68c4",
+            "number": "3109",
+            "name": "DIT",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-09c2e5ed8539",
+            "number": "3110",
+            "name": "KAMERA ARKASI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-09d26bf31349",
+            "number": "3145",
+            "name": "CAMERA UTILITY PERSON",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-09e30fa43ba5",
+            "number": "3152",
+            "name": "MONİTÖRLER",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-09f1f151e88f",
+            "number": "3185",
+            "name": "SARF MALZEMESİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0a0eac541c8f",
+            "number": "3193",
+            "name": "KAMERA KİRALAMA",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0a10c8cb2081",
+        "number": "3200",
+        "name": "SES EKİBİ",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0a28bccee4a8",
+            "number": "3201",
+            "name": "SOUND MIXER",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0a3c40b47ad9",
+            "number": "3202",
+            "name": "BOOM OPERATÖRÜ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0a42d617e595",
+            "number": "3204",
+            "name": "SOUND MIXER (2. EKİP)",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0a5a6fbf3116",
+            "number": "3208",
+            "name": "VIDEO ASSIST OPERATÖRÜ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0a690ee5c792",
+            "number": "3220",
+            "name": "VIDEO ASST EKİPMAN KİRALAMA",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0a7f6f37a51e",
+            "number": "3285",
+            "name": "SARF MALZEMESİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0a80f1d1834d",
+            "number": "3293",
+            "name": "KİRALAMA",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0a9550fd5734",
+        "number": "3300",
+        "name": "ÖZEL EFEKTLER",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0aad00634d5e",
+            "number": "3301",
+            "name": "ÖZEL EFEKT KOORDİNATÖRÜ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0abf78e39914",
+            "number": "3303",
+            "name": "ÖZEL EFEKT ASİSTANLARI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0ac033680729",
+            "number": "3305",
+            "name": "ÖZEL EFEKT MALZEME ÜRETİM",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0adfa78d4dfe",
+            "number": "3385",
+            "name": "SARF MALZEMESİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0aef78a8c46a",
+            "number": "3393",
+            "name": "KİRALAMALAR",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0af1fc2304db",
+        "number": "3400",
+        "name": "MEKAN",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0b07b33e01f7",
+            "number": "3401",
+            "name": "SCOUT MASRAFLARI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0b1ca2a5c4e6",
+            "number": "3402",
+            "name": "MEKAN SORUMLUSU (FERHAT RECEP BAŞARAN)",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0b2543fece0f",
+            "number": "3403",
+            "name": "MEKAN SORUMLUSU ASİSTANI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0b3d566a0292",
+            "number": "3407",
+            "name": "MEKAN GÜVENLİK",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0b4f6372a400",
+            "number": "3408",
+            "name": "İLK YARDIM/AMBULANS",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0b582c9108b2",
+            "number": "3410",
+            "name": "CATERING",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0b61cebb1380",
+            "number": "3412",
+            "name": "MEKAN KİRALAR/İZİNLER/PARK MASRAFLAR",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0b78a498584a",
+            "number": "3443",
+            "name": "TAKSİ VE EKİP ULAŞIM MALİYETLER",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0b806b5dcf35",
+            "number": "3485",
+            "name": "SARF MALZEMESİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0b9124becdd8",
+            "number": "3493",
+            "name": "PRODUCTION RENTALS",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0baa9aab1c37",
+            "number": "3494",
+            "name": "SATIN ALMALAR",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0bb457e8be73",
+            "number": "3498",
+            "name": "KAYIP VE HASARLAR",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0bcafae64e83",
+        "number": "3500",
+        "name": "DRONE",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0bd12ccbbf62",
+            "number": "3501",
+            "name": "AERIAL COORDINATOR",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0bee02c3b57b",
+            "number": "3531",
+            "name": "DRONE KAMERA EKİBİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0bfb53b03c32",
+            "number": "3593",
+            "name": "KİRALAMA",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0c07fb2160b9",
+        "number": "3600",
+        "name": "ULAŞIM",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0c1da84cd187",
+            "number": "3601",
+            "name": "ULAŞIM KOORDİNATÖRÜ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0c2abb8032d4",
+            "number": "3629",
+            "name": "YOL İZİNLERİ/HGS/OGS/PARK",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0c36a6b0df17",
+            "number": "3630",
+            "name": "BENZİN/MAZOT",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0c4969b74157",
+            "number": "3682",
+            "name": "ÖZEL ARAÇ KİRALAMA",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0c56ac0e0c2e",
+            "number": "3683",
+            "name": "SET ARAÇLARI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0c6408371495",
+            "number": "3685",
+            "name": "SARF MALZEMESİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0c72fd74d2f6",
+        "number": "3700",
+        "name": "PLATO VE OFİS KİRALAMA",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0c8d5fb852af",
+            "number": "3701",
+            "name": "PLATO KİRALAMA",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0c9ab67d3286",
+            "number": "3702",
+            "name": "PLATO HİZMETLERİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0cae99155203",
+            "number": "3705",
+            "name": "PLATO TEMİZLİK MASRAFLARI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0cbb26e283e4",
+            "number": "3707",
+            "name": "DEPO ALANI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0cc042fbf712",
+            "number": "3710",
+            "name": "YAZAR OFİSİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0cdefc92f5ea",
+            "number": "3711",
+            "name": "CAST OFİSİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0ce12ec704c6",
+            "number": "3715",
+            "name": "HAVALANDIRMA VE ISITMA",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0cf7d9064fd9",
+            "number": "3716",
+            "name": "OFİS HİZMETLERİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0d0a4b58e593",
+            "number": "3785",
+            "name": "SARF MALZEMESİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0d1f8ebfa2ff",
+        "number": "3800",
+        "name": "PRODUCTION LAB & MEDIA MANAGEMENT",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0d2558f638e7",
+            "number": "3800",
+            "name": "PRODUCTION LAB & MEDIA MANAGEMENT",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0d38c5752751",
+        "number": "3900",
+        "name": "BELOW THE LINE TRAVEL & LIVING",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0d482f7961d2",
+            "number": "3901",
+            "name": "Uçak Bileti",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0d540b09695f",
+            "number": "3902",
+            "name": "Otel Maliyeti",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0d64002f41fb",
+            "number": "3903",
+            "name": "Günlük Harcırah",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0d7bcaa59449",
+            "number": "3904",
+            "name": "TAXIS, CAR SERVICE & MILEAGE",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0d8a98c5946f",
+            "number": "3923",
+            "name": "CONSTRUCTION",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0d9061cd1fda",
+            "number": "3980",
+            "name": "MISCELLANEOUS",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0da8c2b69c2a",
+        "number": "4100",
+        "name": "TESTS",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0db40997c61e",
+            "number": "4101",
+            "name": "PRODUCTION STAFF",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0dc0bd96750f",
+        "number": "4900",
+        "name": "GENERAL EXPENSES",
+        "atl_btl": "BTL",
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0dd86decb1ab",
+            "number": "4950",
+            "name": "B-T-L OVERTIME",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0de7e8ccf7c8",
+        "number": "5000",
+        "name": "EDITORIAL",
+        "atl_btl": null,
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0df4c30bbe01",
+            "number": "5001",
+            "name": "PICTURE EDITOR",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0e064ac8d334",
+            "number": "5002",
+            "name": "ASSISTANT PICTURE EDITOR",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0e159fb63e9e",
+            "number": "5003",
+            "name": "EDITORIAL PA",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0e20b81666a9",
+            "number": "5004",
+            "name": "VFX EDITOR",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0e3a862f55a7",
+            "number": "5009",
+            "name": "POST SUPERVISOR",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0e47c7e6e468",
+            "number": "5010",
+            "name": "POST COORDINATOR",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0e560a2f57a0",
+            "number": "5018",
+            "name": "TRANSCRIPTION, TRANSLATION, TEMP SUBTITLES",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0e694101dda2",
+            "number": "5019",
+            "name": "POST OFFICES",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0e7bd0eaf080",
+            "number": "5022",
+            "name": "EDITING EQUIPMENT RENTALS (INCL AVIDS)",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0e847e6a4524",
+            "number": "5028",
+            "name": "MEALS & ENTERTAINMENT",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0e98845e5997",
+            "number": "5030",
+            "name": "SHIPPING & MESSENGERS",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0eadadcb3e15",
+            "number": "5043",
+            "name": "TAXIS, CAR SERVICE & MILEAGE",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0eb64f5023e4",
+        "number": "5100",
+        "name": "PICTURE FINISHING",
+        "atl_btl": null,
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0ec00f45bda3",
+            "number": "5101",
+            "name": "PICTURE CONFORM",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0ed288007749",
+            "number": "5105",
+            "name": "FINAL GRADING",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0ee8a3d05806",
+            "number": "5107",
+            "name": "PICTURE FIXES & DIGITAL OPTICALS",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0efc8febe737",
+            "number": "5109",
+            "name": "SERVICING TURNOVER & WORK MATERIALS",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0f0dedf87ef4",
+            "number": "5110",
+            "name": "IMF MASTER",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0f13933da079",
+            "number": "5120",
+            "name": "DATA MANAGEMENT (DATA INGEST, TRANSCODE)",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0f28128e4a9b",
+            "number": "5196",
+            "name": "PICTURE BACKUP & ARCHIVING (NAM, GAM & VDM)",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0f335a0dbac6",
+            "number": "5197",
+            "name": "NETFLIX CONTENT UPLOAD",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0f4c41d4c58e",
+        "number": "5200",
+        "name": "POST PRODUCTION SOUND",
+        "atl_btl": null,
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0f5ff7bbb88b",
+            "number": "5201",
+            "name": "SOUND EDITORIAL",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0f66dfc88c53",
+            "number": "5202",
+            "name": "ADR / V.O. RECORDING / LOOP GROUP FEES",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0f71090cb13e",
+            "number": "5203",
+            "name": "FOLEY",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0f802b7cefec",
+            "number": "5206",
+            "name": "PRE MIX",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0f9993fd353c",
+            "number": "5207",
+            "name": "FINAL MIX",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0fab981d9bf9",
+            "number": "5209",
+            "name": "M&E MIX",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0fb09391a1aa",
+        "number": "5300",
+        "name": "CLIPS & CLEARANCES",
+        "atl_btl": null,
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0fc8ffa21c65",
+            "number": "5302",
+            "name": "PHOTO COPYRIGHT LICENSES",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0fd2c9e0a80a",
+            "number": "5303",
+            "name": "STOCK SEARCH",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-0fe2a7200c68",
+        "number": "5400",
+        "name": "TITLES & GRAPHICS",
+        "atl_btl": null,
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-0ff209a88ed1",
+            "number": "5402",
+            "name": "MAIN & END TITLES",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-100e71b45629",
+        "number": "6000",
+        "name": "MUSIC",
+        "atl_btl": null,
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-1016bd7de292",
+            "number": "6001",
+            "name": "COMPOSER (ALL-IN  PACKAGE UNLESS NOTED)",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-1026a5f0faa9",
+            "number": "6004",
+            "name": "MUSIC RIGHTS / LICENSING",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-10368d1b3d30",
+        "number": "6100",
+        "name": "VFX",
+        "atl_btl": null,
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-104cfe394013",
+            "number": "6101",
+            "name": "VISUAL EFFECTS SUPERVISOR / PRODUCER",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-1056f45928d9",
+            "number": "6103",
+            "name": "VISUAL EFFECTS COORDINATOR",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-106ec98f3671",
+            "number": "6136",
+            "name": "OUTSIDE CONTRACT BID #1 (VENDOR NAME)",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-1070c1694d7f",
+            "number": "6149",
+            "name": "FIXES",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-10822a2dc92d",
+            "number": "6153",
+            "name": "TAXIS, CAR SERVICE & MILEAGE",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-10902777b641",
+        "number": "7000",
+        "name": "YÖNETİM GİDERLERİ",
+        "atl_btl": null,
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-10a01d1a18d2",
+            "number": "7001",
+            "name": "DENETÇİ / MUHASEBECİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-10b27f8baf5f",
+            "number": "7003",
+            "name": "PRODUCTION SERVICES COMPANY FEE #1",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-10c39f50c4e5",
+            "number": "7007",
+            "name": "YASAL GİDERLER",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-10db10704884",
+            "number": "7009",
+            "name": "FOTOKOPİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-10e98872f66c",
+            "number": "7010",
+            "name": "OTOPARK",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-10f89e2c4ff6",
+            "number": "7030",
+            "name": "TELEFON EKİPMANI, KURULUMU ve KULLANIMI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-110bed45d8dc",
+            "number": "7038",
+            "name": "BANKA MASRAFLARI",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-1117d1e579f2",
+            "number": "7040",
+            "name": "POSTA ÜCRETİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-112e340ffb34",
+            "number": "7046",
+            "name": "VERGİLER",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-113a30899eb3",
+            "number": "7050",
+            "name": "WRAP PARTY/GIFTS",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-114ceccb5cbd",
+            "number": "7051",
+            "name": "YAZAR YEMEKLERİ VE ....",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-1159b4e67a57",
+            "number": "7052",
+            "name": "PRODÜKSİYON OFİS YEMEKLERİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-1162e6151efb",
+            "number": "7094",
+            "name": "SATIN ALIMLAR / OFİS MALZEMELERİ",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-1173a4f1215f",
+            "number": "7099",
+            "name": "FRINGE",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-118fd384ea46",
+        "number": "7200",
+        "name": "INSURANCE",
+        "atl_btl": null,
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-119c66015939",
+            "number": "7201",
+            "name": "INSURANCE PACKAGE",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-11af0b7ebad6",
+            "number": "7216",
+            "name": "COVID-19 (NEW) PURCHASES &  RENTALS",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          },
+          {
+            "id": "019f18f7-4c34-77e0-9d70-11bd030bad92",
+            "number": "7217",
+            "name": "COVID-19 TESTING & TESTING PERSONNEL",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      },
+      {
+        "id": "019f18f7-4c34-77e0-9d70-11c5bdece6a3",
+        "number": "8500",
+        "name": "PURCHASE PRICE",
+        "atl_btl": null,
+        "subtotal": "0.00",
+        "fringe_total": "0.00",
+        "total": "0.00",
+        "accounts": [
+          {
+            "id": "019f18f7-4c34-77e0-9d70-11d9402677ac",
+            "number": "8500",
+            "name": "APA BOOK OPTION P.P.",
+            "subtotal": "0.00",
+            "fringe_total": "0.00",
+            "total": "0.00",
+            "details": []
+          }
+        ]
+      }
+    ]
+  },
+  "tools": {
+    "fringes": [
+      {
+        "code": "TR_ISSIZLIK_ISVEREN",
+        "name": "İşsizlik Sigortası İşveren Payı",
+        "kind": "yüzde",
+        "mode": "ek (additive)",
+        "rate": "0.02",
+        "posting_level": "Satır"
+      },
+      {
+        "code": "TR_KOMISYON",
+        "name": "Ajans / SGK Komisyonu",
+        "kind": "yüzde",
+        "mode": "ek (additive)",
+        "rate": "0",
+        "posting_level": "Satır"
+      },
+      {
+        "code": "TR_SGK_ISVEREN",
+        "name": "SGK İşveren Payı",
+        "kind": "yüzde",
+        "mode": "ek (additive)",
+        "rate": "0.205",
+        "posting_level": "Satır"
+      },
+      {
+        "code": "TR_STOPAJ",
+        "name": "Gelir Vergisi Stopajı",
+        "kind": "yüzde",
+        "mode": "brüte tamamlama (gross-up)",
+        "rate": "0.2",
+        "posting_level": "Satır"
+      }
+    ],
+    "globals": [
+      {
+        "name": "CEKIM_GUN",
+        "description": "Çekim günü",
+        "value": {
+          "is_expr": false,
+          "text": "45"
+        }
+      }
+    ],
+    "units": [
+      {
+        "code": "ADET",
+        "name": "Adet",
+        "factor": "1"
+      },
+      {
+        "code": "GUN",
+        "name": "Gün",
+        "factor": "1"
+      },
+      {
+        "code": "HAFTA",
+        "name": "Hafta",
+        "factor": "7"
+      },
+      {
+        "code": "SAAT",
+        "name": "Saat",
+        "factor": "1"
+      }
+    ]
+  }
+}

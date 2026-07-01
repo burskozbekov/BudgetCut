@@ -1,0 +1,20 @@
+[package]
+name = "budgetcut-importers"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Import into BudgetCut (§13): generic/AICP CSV now; MMB XML/Excel in Phase 2. Pure functions over budgetcut-core types, validated against source totals."
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[dependencies]
+budgetcut-core.workspace = true
+rust_decimal.workspace = true
+serde.workspace = true
+thiserror.workspace = true
+quick-xml = "0.36"
+
+[dev-dependencies]
+rust_decimal_macros.workspace = true

@@ -1,0 +1,30 @@
+# Rust
+/target
+**/target
+Cargo.lock.bak
+
+# Node / pnpm
+node_modules
+dist
+.pnpm-store
+*.tsbuildinfo
+
+# Tauri
+apps/desktop/src-tauri/target
+apps/desktop/src-tauri/gen
+
+# Local env / secrets
+.env
+.env.local
+*.local
+
+# SQLite local cache
+*.db
+*.db-wal
+*.db-shm
+
+# Editor / OS
+.DS_Store
+.idea
+.vscode/*
+!.vscode/extensions.json

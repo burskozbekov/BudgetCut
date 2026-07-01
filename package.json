@@ -1,0 +1,14 @@
+{
+  "name": "budgetcut",
+  "private": true,
+  "version": "0.1.0",
+  "description": "BudgetCut monorepo — offline-first, collaborative film & TV production budgeting.",
+  "packageManager": "pnpm@9.12.0",
+  "scripts": {
+    "desktop:dev": "pnpm --filter @budgetcut/desktop dev",
+    "desktop:build": "pnpm --filter @budgetcut/desktop build"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

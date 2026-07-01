@@ -1,0 +1,31 @@
+[package]
+name = "budgetcut-desktop"
+version = "0.1.0"
+edition = "2021"
+description = "BudgetCut desktop app (Tauri 2)"
+license = "AGPL-3.0-or-later"
+
+# Standalone workspace so the heavy Tauri deps don't slow the core cargo
+# workspace's test/lint runs.
+[workspace]
+
+[lib]
+name = "budgetcut_desktop_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+rust_decimal = "1.36"
+uuid = { version = "1", features = ["v7"] }
+budgetcut-core = { path = "../../../crates/budgetcut-core" }
+budgetcut-store = { path = "../../../crates/budgetcut-store" }
+budgetcut-export = { path = "../../../crates/budgetcut-export" }
+
+# Pin: tauri's transitive `cookie 0.18.1` doesn't compile against time 0.3.52
+# (Parsable::parse signature change). 0.3.51 is the last compatible release.
+time = "=0.3.51"

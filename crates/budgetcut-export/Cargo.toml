@@ -1,0 +1,18 @@
+[package]
+name = "budgetcut-export"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Reports & export for BudgetCut (§14): Excel (XLSX) and CSV of the topsheet and account details, generated from budgetcut-core's computed state so figures match the on-screen budget exactly."
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[dependencies]
+budgetcut-core.workspace = true
+rust_decimal.workspace = true
+rust_xlsxwriter = "0.79"
+
+[dev-dependencies]
+rust_decimal_macros.workspace = true

@@ -1,0 +1,35 @@
+# Self-host BudgetCut: `docker compose up` (§17.10 / §20.7).
+#
+# The sync server runs today with in-memory state — no database needed to try
+# it. The `db` service is included and ready for the Postgres-backed op-log
+# (the production system of record, §10); wire it via DATABASE_URL when that
+# backend lands. Keeping it here means the documented self-host topology is one
+# command away.
+services:
+  server:
+    build: .
+    image: budgetcut/server:0.1.0
+    ports:
+      - "8787:8787"
+    environment:
+      BUDGETCUT_BIND: "0.0.0.0:8787"
+      # CHANGE THIS in production (used to sign JWTs):
+      BUDGETCUT_JWT_SECRET: "${BUDGETCUT_JWT_SECRET:-change-me-in-production}"
+      # Reserved for the Postgres-backed op-log:
+      DATABASE_URL: "postgres://budgetcut:budgetcut@db:5432/budgetcut"
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: budgetcut
+      POSTGRES_PASSWORD: budgetcut
+      POSTGRES_DB: budgetcut
+    volumes:
+      - budgetcut-pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  budgetcut-pgdata:

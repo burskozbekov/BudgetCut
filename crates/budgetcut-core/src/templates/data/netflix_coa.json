@@ -1,0 +1,1955 @@
+[
+ {
+  "kind": "category",
+  "code": "1100",
+  "atl_btl": "ATL",
+  "desc_en": "SCRIPT",
+  "desc_tr": "SENARYO"
+ },
+ {
+  "kind": "detail",
+  "category": "1100",
+  "code": "1102",
+  "desc_en": "RESEARCH EXPENSES",
+  "desc_tr": "ARAŞTIRMA"
+ },
+ {
+  "kind": "detail",
+  "category": "1100",
+  "code": "1103",
+  "desc_en": "STORY RIGHTS / COPYRIGHTS / OPTION",
+  "desc_tr": "HİKAYE HAKLARI / TELİF ÜCRETLERİ / SEÇENEKLER"
+ },
+ {
+  "kind": "detail",
+  "category": "1100",
+  "code": "1107",
+  "desc_en": "STAFF WRITERS",
+  "desc_tr": "SENARİST KAŞELERİ"
+ },
+ {
+  "kind": "detail",
+  "category": "1100",
+  "code": "1109",
+  "desc_en": "SCRIPT DELIVERY / TRANSLATION",
+  "desc_tr": "TERCÜME"
+ },
+ {
+  "kind": "detail",
+  "category": "1100",
+  "code": "1122",
+  "desc_en": "ASSISTANTS TO THE WRITER",
+  "desc_tr": "KREATİF EKİP ASİSTAN (EKINSU TAMYÜREK)"
+ },
+ {
+  "kind": "detail",
+  "category": "1100",
+  "code": "1199",
+  "desc_en": "FRINGE",
+  "desc_tr": null
+ },
+ {
+  "kind": "category",
+  "code": "1200",
+  "atl_btl": "ATL",
+  "desc_en": "PRODUCER'S UNIT",
+  "desc_tr": "YAPIMCILAR"
+ },
+ {
+  "kind": "detail",
+  "category": "1200",
+  "code": "1203",
+  "desc_en": "CO-EXECUTIVE PRODUCER",
+  "desc_tr": "YAPIMCI (FİKRET – ABD ÖDEMELİ)"
+ },
+ {
+  "kind": "detail",
+  "category": "1200",
+  "code": "1204",
+  "desc_en": "LINE PRODUCER",
+  "desc_tr": "YÜRÜTÜCÜ YAPIMCI (KEREM ÖZERDOĞAN)"
+ },
+ {
+  "kind": "category",
+  "code": "1300",
+  "atl_btl": "ATL",
+  "desc_en": "DIRECTION",
+  "desc_tr": "YÖNETMENLER"
+ },
+ {
+  "kind": "detail",
+  "category": "1300",
+  "code": "1301",
+  "desc_en": "DIRECTOR",
+  "desc_tr": "YÖNETMEN"
+ },
+ {
+  "kind": "detail",
+  "category": "1300",
+  "code": "1320",
+  "desc_en": "STORYBOARD ARTIST",
+  "desc_tr": "STORYBOARD SANATÇISI"
+ },
+ {
+  "kind": "category",
+  "code": "1400",
+  "atl_btl": "ATL",
+  "desc_en": "CAST",
+  "desc_tr": "OYUNCULAR"
+ },
+ {
+  "kind": "detail",
+  "category": "1400",
+  "code": "1401",
+  "desc_en": "PRINCIPAL CAST",
+  "desc_tr": "BAŞROL OYUNCULAR"
+ },
+ {
+  "kind": "detail",
+  "category": "1400",
+  "code": "1403",
+  "desc_en": "SUPPORTING CAST",
+  "desc_tr": "YARDIMCI OYUNCULAR"
+ },
+ {
+  "kind": "detail",
+  "category": "1400",
+  "code": "1404",
+  "desc_en": "DAY PLAYERS",
+  "desc_tr": "ÖN FGR"
+ },
+ {
+  "kind": "detail",
+  "category": "1400",
+  "code": "1410",
+  "desc_en": "STUNT COORDINATOR",
+  "desc_tr": "DUBLÖR KOORDİNATÖR"
+ },
+ {
+  "kind": "detail",
+  "category": "1400",
+  "code": "1411",
+  "desc_en": "STUNTS AND STUNT ADJUSTMENTS",
+  "desc_tr": "DUBLÖRLER"
+ },
+ {
+  "kind": "detail",
+  "category": "1400",
+  "code": "1420",
+  "desc_en": "CASTING DIRECTOR",
+  "desc_tr": "CAST DİREKTÖRÜ"
+ },
+ {
+  "kind": "detail",
+  "category": "1400",
+  "code": "1422",
+  "desc_en": "CASTING COORDINATOR",
+  "desc_tr": "CAST KOORDİNATÖRÜ"
+ },
+ {
+  "kind": "detail",
+  "category": "1400",
+  "code": "1423",
+  "desc_en": "CASTING ASSISTANTS",
+  "desc_tr": "CAST ASİSTANLARI"
+ },
+ {
+  "kind": "detail",
+  "category": "1400",
+  "code": "1426",
+  "desc_en": "CASTING DIRECTOR EXPENSES",
+  "desc_tr": "CASTING HARCAMALARI"
+ },
+ {
+  "kind": "category",
+  "code": "1600",
+  "atl_btl": "ATL",
+  "desc_en": "ATL TRAVEL & LIVING",
+  "desc_tr": "SEYAHAT VE KONAKLAMA"
+ },
+ {
+  "kind": "detail",
+  "category": "1600",
+  "code": "1610",
+  "desc_en": "WRITERS TRAVEL",
+  "desc_tr": "SEYAHAT"
+ },
+ {
+  "kind": "detail",
+  "category": "1600",
+  "code": "1611",
+  "desc_en": "WRITERS HOTEL COSTS",
+  "desc_tr": "KONAKLAMA"
+ },
+ {
+  "kind": "detail",
+  "category": "1600",
+  "code": "1612",
+  "desc_en": "WRITERS PER DIEM",
+  "desc_tr": "HARCIRAH"
+ },
+ {
+  "kind": "detail",
+  "category": "1600",
+  "code": "1613",
+  "desc_en": "WRITERS CAR/TRANSFERS",
+  "desc_tr": "TRANSFERLER"
+ },
+ {
+  "kind": "category",
+  "code": "2000",
+  "atl_btl": "BTL",
+  "desc_en": "PRODUCTION STAFF",
+  "desc_tr": "YAPIM EKİBİ"
+ },
+ {
+  "kind": "detail",
+  "category": "2000",
+  "code": "2001",
+  "desc_en": "UNIT PRODUCTION MANAGER",
+  "desc_tr": "YAPIM AMİRİ (ALİ KILIÇ)"
+ },
+ {
+  "kind": "detail",
+  "category": "2000",
+  "code": "2002",
+  "desc_en": "PRODUCTION SUPERVISOR",
+  "desc_tr": "YAPIM SÜPERVİZÖRÜ"
+ },
+ {
+  "kind": "detail",
+  "category": "2000",
+  "code": "2003",
+  "desc_en": "1ST ASSISTANT DIRECTOR",
+  "desc_tr": "1. YÖNETMEN YARDIMCISI"
+ },
+ {
+  "kind": "detail",
+  "category": "2000",
+  "code": "2004",
+  "desc_en": "ADDITIONAL 1ST ASSISTANT DIRECTOR",
+  "desc_tr": "1. YÖNETMEN YARDIMCISI (2. EKİP)"
+ },
+ {
+  "kind": "detail",
+  "category": "2000",
+  "code": "2005",
+  "desc_en": "KEY 2ND ASSISTANT DIRECTOR",
+  "desc_tr": "2. YÖNETMEN YARDIMCISI"
+ },
+ {
+  "kind": "detail",
+  "category": "2000",
+  "code": "2006",
+  "desc_en": "SECOND 2ND ASSISTANT DIRECTOR",
+  "desc_tr": "2. EK YÖNETMEN YARDIMCISI"
+ },
+ {
+  "kind": "detail",
+  "category": "2000",
+  "code": "2007",
+  "desc_en": "ADDITIONAL 2ND AD",
+  "desc_tr": "2. YÖNETMEN YARDIMCISI (2. EKİP)"
+ },
+ {
+  "kind": "detail",
+  "category": "2000",
+  "code": "2008",
+  "desc_en": "DGA TRAINEE",
+  "desc_tr": "YAPIM STAJYERLERİ"
+ },
+ {
+  "kind": "detail",
+  "category": "2000",
+  "code": "2009",
+  "desc_en": "SCRIPT SUPERVISOR",
+  "desc_tr": "SENARYO VE DEVAMLILIK SORUMLUSU"
+ },
+ {
+  "kind": "detail",
+  "category": "2000",
+  "code": "2010",
+  "desc_en": "PRODUCTION ACCOUNTANT",
+  "desc_tr": "YAPIM MUHASEBE"
+ },
+ {
+  "kind": "detail",
+  "category": "2000",
+  "code": "2011",
+  "desc_en": "ASSISTANT PRODUCTION ACCOUNTANTS",
+  "desc_tr": "YAPIM MUHASEBE ASİSTANI"
+ },
+ {
+  "kind": "detail",
+  "category": "2000",
+  "code": "2013",
+  "desc_en": "PRODUCTION COORDINATOR",
+  "desc_tr": "YAPIM KOORDİNATÖRÜ"
+ },
+ {
+  "kind": "detail",
+  "category": "2000",
+  "code": "2014",
+  "desc_en": "APOC/SECRETARY",
+  "desc_tr": "YAPIM KOORDİNATÖR ASİSTANI"
+ },
+ {
+  "kind": "detail",
+  "category": "2000",
+  "code": "2017",
+  "desc_en": "STAGE MANAGER",
+  "desc_tr": "PLATO SORUMLUSU"
+ },
+ {
+  "kind": "detail",
+  "category": "2000",
+  "code": "2019",
+  "desc_en": "OFFICE PRODUCTION ASSISTANTS",
+  "desc_tr": "OFİS YAPIM ASİSTANLARI"
+ },
+ {
+  "kind": "detail",
+  "category": "2000",
+  "code": "2020",
+  "desc_en": "SET PRODUCTION ASSISTANT'S",
+  "desc_tr": "SET YAPIM ASİSTANLARI"
+ },
+ {
+  "kind": "detail",
+  "category": "2000",
+  "code": "2052",
+  "desc_en": "RUNNER/INTERN",
+  "desc_tr": "RUNNERLAR"
+ },
+ {
+  "kind": "category",
+  "code": "2100",
+  "atl_btl": "BTL",
+  "desc_en": "EXTRA TALENT",
+  "desc_tr": "EKSTRA OYUNCULAR"
+ },
+ {
+  "kind": "detail",
+  "category": "2100",
+  "code": "2101",
+  "desc_en": "STAND-INS",
+  "desc_tr": "OYUNCU DUBLÖRLERİ"
+ },
+ {
+  "kind": "detail",
+  "category": "2100",
+  "code": "2103",
+  "desc_en": "NON UNION EXTRAS",
+  "desc_tr": "FGRLER"
+ },
+ {
+  "kind": "detail",
+  "category": "2100",
+  "code": "2104",
+  "desc_en": "SPECIAL ABILITY EXTRAS",
+  "desc_tr": "PERFORMANS OYUNCULARI"
+ },
+ {
+  "kind": "detail",
+  "category": "2100",
+  "code": "2106",
+  "desc_en": "DANCERS/SIDELINE MUSICIANS",
+  "desc_tr": "DANSÇILAR/MÜZİSYENLER"
+ },
+ {
+  "kind": "detail",
+  "category": "2100",
+  "code": "2110",
+  "desc_en": "CASTING FEE (FOR EXTRAS)",
+  "desc_tr": "FGR CASTİNG"
+ },
+ {
+  "kind": "detail",
+  "category": "2100",
+  "code": "2111",
+  "desc_en": "CROWD MARSHALL",
+  "desc_tr": "FGR SORUMLUSU"
+ },
+ {
+  "kind": "category",
+  "code": "2200",
+  "atl_btl": "BTL",
+  "desc_en": "SET DESIGN",
+  "desc_tr": "SANAT EKİBİ"
+ },
+ {
+  "kind": "detail",
+  "category": "2200",
+  "code": "2201",
+  "desc_en": "PRODUCTION DESIGNER",
+  "desc_tr": "YAPIM TASARIM (ZEKİ SARAYOĞLU)"
+ },
+ {
+  "kind": "detail",
+  "category": "2200",
+  "code": "2202",
+  "desc_en": "ART DIRECTOR",
+  "desc_tr": "SANAT YÖNETMENİ (ERAY BİNTAŞ)"
+ },
+ {
+  "kind": "detail",
+  "category": "2200",
+  "code": "2203",
+  "desc_en": "ASSISTANT ART DIRECTOR",
+  "desc_tr": "SANAT YÖNETMENİ ASİSTANI"
+ },
+ {
+  "kind": "detail",
+  "category": "2200",
+  "code": "2204",
+  "desc_en": "SET DESIGNERS / DRAFTS PERSON",
+  "desc_tr": "SET TASARIMCISI"
+ },
+ {
+  "kind": "detail",
+  "category": "2200",
+  "code": "2205",
+  "desc_en": "SKETCH ARTIST / STORY BOARD ILLUSTRATOR",
+  "desc_tr": "GRAFİK SANATÇISI"
+ },
+ {
+  "kind": "detail",
+  "category": "2200",
+  "code": "2206",
+  "desc_en": "ART DEPT COORDINATOR",
+  "desc_tr": "SANAT EKİBİ KOORDİNATÖR"
+ },
+ {
+  "kind": "detail",
+  "category": "2200",
+  "code": "2207",
+  "desc_en": "ART DEPT STAFF ASSTS",
+  "desc_tr": "SANAT ASİSTANLARI"
+ },
+ {
+  "kind": "detail",
+  "category": "2200",
+  "code": "2210",
+  "desc_en": "RESEARCH COSTS",
+  "desc_tr": "SANAT EKİBİ ARAŞTIRMA SORUMLUSU"
+ },
+ {
+  "kind": "detail",
+  "category": "2200",
+  "code": "2213",
+  "desc_en": "GRAPHICS DESIGNER",
+  "desc_tr": "GRAFİK SANATÇILARI"
+ },
+ {
+  "kind": "category",
+  "code": "2300",
+  "atl_btl": "BTL",
+  "desc_en": "SET CONSTRUCTION",
+  "desc_tr": "SET İNŞASI"
+ },
+ {
+  "kind": "detail",
+  "category": "2300",
+  "code": "2301",
+  "desc_en": "CONSTRUCTION COORDINATOR",
+  "desc_tr": "İNŞA KOORDİNATÖRÜ"
+ },
+ {
+  "kind": "detail",
+  "category": "2300",
+  "code": "2310",
+  "desc_en": "CONSTRUCTION LABOR  - SETS",
+  "desc_tr": "İNŞA İŞ GÜCÜ ALIMLARI"
+ },
+ {
+  "kind": "detail",
+  "category": "2300",
+  "code": "2311",
+  "desc_en": "CONSTRUCTION MATERIALS - SETS",
+  "desc_tr": "İNŞA SATIN ALIMLAR"
+ },
+ {
+  "kind": "detail",
+  "category": "2300",
+  "code": "2398",
+  "desc_en": "LOSS & DAMAGE",
+  "desc_tr": "KAYIP VE HASARLAR - tamirat"
+ },
+ {
+  "kind": "category",
+  "code": "2400",
+  "atl_btl": "BTL",
+  "desc_en": "SET DRESSING",
+  "desc_tr": "SET GİYDİRME"
+ },
+ {
+  "kind": "detail",
+  "category": "2400",
+  "code": "2401",
+  "desc_en": "SET DECORATOR",
+  "desc_tr": "SET DEKORATÖRÜ"
+ },
+ {
+  "kind": "detail",
+  "category": "2400",
+  "code": "2403",
+  "desc_en": "SWING GANG",
+  "desc_tr": "RESSAM EKİBİ"
+ },
+ {
+  "kind": "detail",
+  "category": "2400",
+  "code": "2404",
+  "desc_en": "BUYER",
+  "desc_tr": "SATIN ALMACI"
+ },
+ {
+  "kind": "detail",
+  "category": "2400",
+  "code": "2405",
+  "desc_en": "ON SET DRESSER",
+  "desc_tr": "SET SORUMLUSU"
+ },
+ {
+  "kind": "detail",
+  "category": "2400",
+  "code": "2408",
+  "desc_en": "MANUFACTURING",
+  "desc_tr": "DEKOR YAPIMLARI"
+ },
+ {
+  "kind": "detail",
+  "category": "2400",
+  "code": "2494",
+  "desc_en": "PURCHASES",
+  "desc_tr": "SATIN ALMALAR"
+ },
+ {
+  "kind": "detail",
+  "category": "2400",
+  "code": "2498",
+  "desc_en": "LOSS & DAMAGE",
+  "desc_tr": "KAYIP VE HASARLAR"
+ },
+ {
+  "kind": "category",
+  "code": "2500",
+  "atl_btl": "BTL",
+  "desc_en": "PROPERTY",
+  "desc_tr": "PROPLAR"
+ },
+ {
+  "kind": "detail",
+  "category": "2500",
+  "code": "2501",
+  "desc_en": "PROP SUPERVISOR",
+  "desc_tr": "PROP SORUMLUSU"
+ },
+ {
+  "kind": "detail",
+  "category": "2500",
+  "code": "2502",
+  "desc_en": "ASSISTANT PROP SUPERVISOR",
+  "desc_tr": "PROP SORUMLUSU ASİSTANI"
+ },
+ {
+  "kind": "detail",
+  "category": "2500",
+  "code": "2504",
+  "desc_en": "PROPERTY BUYER",
+  "desc_tr": "PROP SATIN ALMACI"
+ },
+ {
+  "kind": "detail",
+  "category": "2500",
+  "code": "2508",
+  "desc_en": "MANUFACTURING",
+  "desc_tr": "PROP YAPIM"
+ },
+ {
+  "kind": "detail",
+  "category": "2500",
+  "code": "2591",
+  "desc_en": "ARMAMENTS",
+  "desc_tr": "ATEŞLİ SİLAH PROPLARI"
+ },
+ {
+  "kind": "detail",
+  "category": "2500",
+  "code": "2594",
+  "desc_en": "PURCHASES",
+  "desc_tr": "SATIN ALMALAR ve kiralama"
+ },
+ {
+  "kind": "detail",
+  "category": "2500",
+  "code": "2598",
+  "desc_en": "LOSS & DAMAGE",
+  "desc_tr": "KAYIP VE HASARLAR"
+ },
+ {
+  "kind": "category",
+  "code": "2600",
+  "atl_btl": "BTL",
+  "desc_en": "PICTURE VEHICLES AND ANIMALS",
+  "desc_tr": "ARAÇ VE HAYVANLAR"
+ },
+ {
+  "kind": "detail",
+  "category": "2600",
+  "code": "2601",
+  "desc_en": "PICTURE CAR COORDINATOR",
+  "desc_tr": "OYUNCU ARAÇ SORUMLUSU"
+ },
+ {
+  "kind": "detail",
+  "category": "2600",
+  "code": "2602",
+  "desc_en": "PICTURE CARS",
+  "desc_tr": "OYUNCU ARAÇ KİRALAMA"
+ },
+ {
+  "kind": "detail",
+  "category": "2600",
+  "code": "2623",
+  "desc_en": "ANIMALS",
+  "desc_tr": "HAYVANLAR"
+ },
+ {
+  "kind": "category",
+  "code": "2700",
+  "atl_btl": "BTL",
+  "desc_en": "WARDROBE",
+  "desc_tr": "KOSTÜM EKİBİ"
+ },
+ {
+  "kind": "detail",
+  "category": "2700",
+  "code": "2701",
+  "desc_en": "COSTUME DESIGNER",
+  "desc_tr": "KOSTÜM TASARIM"
+ },
+ {
+  "kind": "detail",
+  "category": "2700",
+  "code": "2702",
+  "desc_en": "ASST COSTUME DESIGNER",
+  "desc_tr": "KOSTÜM TASARIM ASİSTANI"
+ },
+ {
+  "kind": "detail",
+  "category": "2700",
+  "code": "2703",
+  "desc_en": "COSTUME SUPERVISOR",
+  "desc_tr": "KOSTÜM SÜPERVİZÖRÜ"
+ },
+ {
+  "kind": "detail",
+  "category": "2700",
+  "code": "2704",
+  "desc_en": "COSTUME BUYER",
+  "desc_tr": "SATIN ALMACI"
+ },
+ {
+  "kind": "detail",
+  "category": "2700",
+  "code": "2705",
+  "desc_en": "KEY COSTUMER",
+  "desc_tr": "SET KOSTÜM SORUMLUSU"
+ },
+ {
+  "kind": "detail",
+  "category": "2700",
+  "code": "2706",
+  "desc_en": "SET COSTUMER",
+  "desc_tr": "SET KOSTÜM ASİSTANI"
+ },
+ {
+  "kind": "detail",
+  "category": "2700",
+  "code": "2707",
+  "desc_en": "ADDL COSTUME LABOR",
+  "desc_tr": "SET İÇİN EK İŞ GÜCÜ"
+ },
+ {
+  "kind": "detail",
+  "category": "2700",
+  "code": "2708",
+  "desc_en": "ALTERATIONS",
+  "desc_tr": "DÖNÜŞTÜRME İŞLEMLERİ"
+ },
+ {
+  "kind": "detail",
+  "category": "2700",
+  "code": "2709",
+  "desc_en": "MANUFACTURING",
+  "desc_tr": "ÜRETİM/DİKİM"
+ },
+ {
+  "kind": "detail",
+  "category": "2700",
+  "code": "2725",
+  "desc_en": "CLEANING AND DYEING",
+  "desc_tr": "KURU TEMİZLEME"
+ },
+ {
+  "kind": "detail",
+  "category": "2700",
+  "code": "2785",
+  "desc_en": "EXPENDABLES",
+  "desc_tr": "SARF MALZEMESİ"
+ },
+ {
+  "kind": "detail",
+  "category": "2700",
+  "code": "2790",
+  "desc_en": "BOX RENTAL",
+  "desc_tr": "BOX RENTALS"
+ },
+ {
+  "kind": "detail",
+  "category": "2700",
+  "code": "2793",
+  "desc_en": "PRODUCTION RENTALS",
+  "desc_tr": "KİRALAMALAR"
+ },
+ {
+  "kind": "detail",
+  "category": "2700",
+  "code": "2794",
+  "desc_en": "PURCHASES",
+  "desc_tr": "SATINALMA"
+ },
+ {
+  "kind": "detail",
+  "category": "2700",
+  "code": "2798",
+  "desc_en": "LOSS & DAMAGE",
+  "desc_tr": "KAYIP, HASAR VE TAMİRATLAR"
+ },
+ {
+  "kind": "category",
+  "code": "2800",
+  "atl_btl": "BTL",
+  "desc_en": "MAKE-UP AND HAIR",
+  "desc_tr": "SAÇ/MAKYAJ"
+ },
+ {
+  "kind": "detail",
+  "category": "2800",
+  "code": "2801",
+  "desc_en": "KEY MAKEUP ARTIST",
+  "desc_tr": "MAKYAJ SANATÇISI"
+ },
+ {
+  "kind": "detail",
+  "category": "2800",
+  "code": "2802",
+  "desc_en": "ASST MAKEUP ARTIST",
+  "desc_tr": "MAKYAJ SANATÇISI ASİSTANI"
+ },
+ {
+  "kind": "detail",
+  "category": "2800",
+  "code": "2803",
+  "desc_en": "ADDITIONAL MAKEUP LABOR",
+  "desc_tr": "EK MAKYAJ EKİBİ"
+ },
+ {
+  "kind": "detail",
+  "category": "2800",
+  "code": "2804",
+  "desc_en": "KEY HAIR STYLIST",
+  "desc_tr": "SAÇ TASARIMCISI"
+ },
+ {
+  "kind": "detail",
+  "category": "2800",
+  "code": "2805",
+  "desc_en": "ASST HAIR STYLIST",
+  "desc_tr": "SAÇ TASARIM ASİSTANLARI"
+ },
+ {
+  "kind": "detail",
+  "category": "2800",
+  "code": "2806",
+  "desc_en": "ADDITIONAL HAIR LABOR",
+  "desc_tr": "EK SAÇ EKİBİ"
+ },
+ {
+  "kind": "detail",
+  "category": "2800",
+  "code": "2807",
+  "desc_en": "BODY MAKEUP/PROSTHETIC LABOR",
+  "desc_tr": "PROTEZLER"
+ },
+ {
+  "kind": "detail",
+  "category": "2800",
+  "code": "2808",
+  "desc_en": "WIG & HAIR PURCHASE",
+  "desc_tr": "PERUK VE SAÇ SATIN ALMA"
+ },
+ {
+  "kind": "detail",
+  "category": "2800",
+  "code": "2809",
+  "desc_en": "WIG & HAIR RENTAL",
+  "desc_tr": "PERUK VE SAÇ KİRALAMA"
+ },
+ {
+  "kind": "detail",
+  "category": "2800",
+  "code": "2810",
+  "desc_en": "MANUFACTURED APPLIANCES",
+  "desc_tr": "PROTEZ SATIN ALMALAR"
+ },
+ {
+  "kind": "detail",
+  "category": "2800",
+  "code": "2885",
+  "desc_en": "EXPENDABLES",
+  "desc_tr": "SARF MALZEMESİ"
+ },
+ {
+  "kind": "detail",
+  "category": "2800",
+  "code": "2890",
+  "desc_en": "BOX RENTAL",
+  "desc_tr": "BOX RENTALS"
+ },
+ {
+  "kind": "category",
+  "code": "2900",
+  "atl_btl": "BTL",
+  "desc_en": "SET OPERATIONS",
+  "desc_tr": "SET EKİBİ"
+ },
+ {
+  "kind": "detail",
+  "category": "2900",
+  "code": "2901",
+  "desc_en": "KEY GRIP",
+  "desc_tr": "SET AMİRİ"
+ },
+ {
+  "kind": "detail",
+  "category": "2900",
+  "code": "2902",
+  "desc_en": "BEST GRIP",
+  "desc_tr": "BEST BOY"
+ },
+ {
+  "kind": "detail",
+  "category": "2900",
+  "code": "2903",
+  "desc_en": "GRIPS",
+  "desc_tr": "SET ASİSTANLARI"
+ },
+ {
+  "kind": "detail",
+  "category": "2900",
+  "code": "2904",
+  "desc_en": "DOLLY/BOOM GRIP",
+  "desc_tr": "DOLLY/BOOM EKİBİ"
+ },
+ {
+  "kind": "detail",
+  "category": "2900",
+  "code": "2908",
+  "desc_en": "ADDITIONAL GRIP LABOR",
+  "desc_tr": "EK SET EKİBİ"
+ },
+ {
+  "kind": "detail",
+  "category": "2900",
+  "code": "2912",
+  "desc_en": "CRANE GRIP",
+  "desc_tr": "CRANE EKİBİ"
+ },
+ {
+  "kind": "detail",
+  "category": "2900",
+  "code": "2920",
+  "desc_en": "CAMERA DOLLIES",
+  "desc_tr": "DOLLY KİRALAMA"
+ },
+ {
+  "kind": "detail",
+  "category": "2900",
+  "code": "2985",
+  "desc_en": "EXPENDABLES",
+  "desc_tr": "SARF MALZEMESİ"
+ },
+ {
+  "kind": "detail",
+  "category": "2900",
+  "code": "2991",
+  "desc_en": "CAMERA CRANE RENTALS",
+  "desc_tr": "CRANE KİRALAMA"
+ },
+ {
+  "kind": "detail",
+  "category": "2900",
+  "code": "2992",
+  "desc_en": "STAGE PACKAGE RENTALS",
+  "desc_tr": "PLATO MALZEME KİRALAMA"
+ },
+ {
+  "kind": "detail",
+  "category": "2900",
+  "code": "2993",
+  "desc_en": "TRUCK PACKAGE RENTALS",
+  "desc_tr": "KAMYON MALZEME KİRALAMA"
+ },
+ {
+  "kind": "detail",
+  "category": "2900",
+  "code": "2995",
+  "desc_en": "SPECIAL EQUIPMENT RENTALS",
+  "desc_tr": "ÖZEL EKİPMAN KİRALAMA"
+ },
+ {
+  "kind": "category",
+  "code": "3000",
+  "atl_btl": "BTL",
+  "desc_en": "ELECTRICAL",
+  "desc_tr": "IŞIK EKİBİ"
+ },
+ {
+  "kind": "detail",
+  "category": "3000",
+  "code": "3001",
+  "desc_en": "GAFFER",
+  "desc_tr": "IŞIK ŞEFİ"
+ },
+ {
+  "kind": "detail",
+  "category": "3000",
+  "code": "3002",
+  "desc_en": "BEST ELECTRIC",
+  "desc_tr": "BEST BOY"
+ },
+ {
+  "kind": "detail",
+  "category": "3000",
+  "code": "3003",
+  "desc_en": "LAMP OPERATORS",
+  "desc_tr": "IŞIK ASİSTANLARI"
+ },
+ {
+  "kind": "detail",
+  "category": "3000",
+  "code": "3004",
+  "desc_en": "GENERATOR OPERATOR",
+  "desc_tr": "JENERATÖR OPERATÖRÜ"
+ },
+ {
+  "kind": "detail",
+  "category": "3000",
+  "code": "3007",
+  "desc_en": "ADDITIONAL LIGHTING LABOR",
+  "desc_tr": "EK IŞIK EKİBİ"
+ },
+ {
+  "kind": "detail",
+  "category": "3000",
+  "code": "3085",
+  "desc_en": "EXPENDABLES",
+  "desc_tr": "SARF MALZEMESİ"
+ },
+ {
+  "kind": "detail",
+  "category": "3000",
+  "code": "3091",
+  "desc_en": "TOW GENERATOR RENTAL",
+  "desc_tr": "JENERATÖR KİRALAMA"
+ },
+ {
+  "kind": "detail",
+  "category": "3000",
+  "code": "3092",
+  "desc_en": "STAGE PACKAGE RENTALS",
+  "desc_tr": "PLATO İÇİ IŞIK KİRA"
+ },
+ {
+  "kind": "detail",
+  "category": "3000",
+  "code": "3093",
+  "desc_en": "TRUCK PACKAGE RENTALS",
+  "desc_tr": "KAMYON İÇİ IŞIK KİRA"
+ },
+ {
+  "kind": "detail",
+  "category": "3000",
+  "code": "3098",
+  "desc_en": "LOSS & DAMAGE",
+  "desc_tr": "KAYI VE HASARLAR"
+ },
+ {
+  "kind": "category",
+  "code": "3100",
+  "atl_btl": "BTL",
+  "desc_en": "CAMERA",
+  "desc_tr": "KAMERA EKİBİ"
+ },
+ {
+  "kind": "detail",
+  "category": "3100",
+  "code": "3101",
+  "desc_en": "DIRECTOR OF PHOTOGRAPHY",
+  "desc_tr": "GÖRÜNTÜ YÖNETMENİ"
+ },
+ {
+  "kind": "detail",
+  "category": "3100",
+  "code": "3102",
+  "desc_en": "CAMERA OPERATOR",
+  "desc_tr": "KAMERA OPERATÖRLERİ"
+ },
+ {
+  "kind": "detail",
+  "category": "3100",
+  "code": "3103",
+  "desc_en": "EXTRA CAMERA OPERATOR",
+  "desc_tr": "EKSTRA KAMERA OPERATÖRÜ"
+ },
+ {
+  "kind": "detail",
+  "category": "3100",
+  "code": "3104",
+  "desc_en": "1ST ASSISTANT CAMERA",
+  "desc_tr": "1. KAMERA ASİSTANLARI"
+ },
+ {
+  "kind": "detail",
+  "category": "3100",
+  "code": "3106",
+  "desc_en": "2ND ASSISTANT CAMERA",
+  "desc_tr": "2. KAMERA ASİSTANLARI"
+ },
+ {
+  "kind": "detail",
+  "category": "3100",
+  "code": "3108",
+  "desc_en": "CAMERA LOADER / DATAWRANGLER",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "3100",
+  "code": "3109",
+  "desc_en": "DIT",
+  "desc_tr": "DIT"
+ },
+ {
+  "kind": "detail",
+  "category": "3100",
+  "code": "3110",
+  "desc_en": "STILL PHOTOGRAPHER (NOT PUBLICITY)",
+  "desc_tr": "KAMERA ARKASI"
+ },
+ {
+  "kind": "detail",
+  "category": "3100",
+  "code": "3145",
+  "desc_en": "CAMERA UTILITY PERSON",
+  "desc_tr": "CAMERA UTILITY PERSON"
+ },
+ {
+  "kind": "detail",
+  "category": "3100",
+  "code": "3152",
+  "desc_en": "VIDEO MONITORS",
+  "desc_tr": "MONİTÖRLER"
+ },
+ {
+  "kind": "detail",
+  "category": "3100",
+  "code": "3185",
+  "desc_en": "EXPENDABLES",
+  "desc_tr": "SARF MALZEMESİ"
+ },
+ {
+  "kind": "detail",
+  "category": "3100",
+  "code": "3193",
+  "desc_en": "PRODUCTION RENTALS",
+  "desc_tr": "KAMERA KİRALAMA"
+ },
+ {
+  "kind": "category",
+  "code": "3200",
+  "atl_btl": "BTL",
+  "desc_en": "PRODUCTION SOUND",
+  "desc_tr": "SES EKİBİ"
+ },
+ {
+  "kind": "detail",
+  "category": "3200",
+  "code": "3201",
+  "desc_en": "SOUND MIXER",
+  "desc_tr": "SOUND MIXER"
+ },
+ {
+  "kind": "detail",
+  "category": "3200",
+  "code": "3202",
+  "desc_en": "BOOM OPERATOR",
+  "desc_tr": "BOOM OPERATÖRÜ"
+ },
+ {
+  "kind": "detail",
+  "category": "3200",
+  "code": "3204",
+  "desc_en": "PLAYBACK OPERATOR (AUDIO)",
+  "desc_tr": "SOUND MIXER (2. EKİP)"
+ },
+ {
+  "kind": "detail",
+  "category": "3200",
+  "code": "3208",
+  "desc_en": "VIDEO ASST OPERATOR",
+  "desc_tr": "VIDEO ASSIST OPERATÖRÜ"
+ },
+ {
+  "kind": "detail",
+  "category": "3200",
+  "code": "3220",
+  "desc_en": "VIDEO ASST EQUIPMENT PACKAGE",
+  "desc_tr": "VIDEO ASST EKİPMAN KİRALAMA"
+ },
+ {
+  "kind": "detail",
+  "category": "3200",
+  "code": "3285",
+  "desc_en": "EXPENDABLES",
+  "desc_tr": "SARF MALZEMESİ"
+ },
+ {
+  "kind": "detail",
+  "category": "3200",
+  "code": "3293",
+  "desc_en": "PRODUCTION RENTALS",
+  "desc_tr": "KİRALAMA"
+ },
+ {
+  "kind": "category",
+  "code": "3300",
+  "atl_btl": "BTL",
+  "desc_en": "SPECIAL EFFECTS",
+  "desc_tr": "ÖZEL EFEKTLER"
+ },
+ {
+  "kind": "detail",
+  "category": "3300",
+  "code": "3301",
+  "desc_en": "SFX SUPERVISOR / COORDINATOR",
+  "desc_tr": "ÖZEL EFEKT KOORDİNATÖRÜ"
+ },
+ {
+  "kind": "detail",
+  "category": "3300",
+  "code": "3303",
+  "desc_en": "SFX TECHNICIANS",
+  "desc_tr": "ÖZEL EFEKT ASİSTANLARI"
+ },
+ {
+  "kind": "detail",
+  "category": "3300",
+  "code": "3305",
+  "desc_en": "MANUFACTURING",
+  "desc_tr": "ÖZEL EFEKT MALZEME ÜRETİM"
+ },
+ {
+  "kind": "detail",
+  "category": "3300",
+  "code": "3385",
+  "desc_en": "EXPENDABLES",
+  "desc_tr": "SARF MALZEMESİ"
+ },
+ {
+  "kind": "detail",
+  "category": "3300",
+  "code": "3393",
+  "desc_en": "PRODUCTION RENTALS",
+  "desc_tr": "KİRALAMALAR"
+ },
+ {
+  "kind": "category",
+  "code": "3400",
+  "atl_btl": "BTL",
+  "desc_en": "LOCATION EXPENSES",
+  "desc_tr": "MEKAN"
+ },
+ {
+  "kind": "detail",
+  "category": "3400",
+  "code": "3401",
+  "desc_en": "LOCATION SURVEY EXPENSE",
+  "desc_tr": "SCOUT MASRAFLARI"
+ },
+ {
+  "kind": "detail",
+  "category": "3400",
+  "code": "3402",
+  "desc_en": "LOCATION MANAGER",
+  "desc_tr": "MEKAN SORUMLUSU (FERHAT RECEP BAŞARAN)"
+ },
+ {
+  "kind": "detail",
+  "category": "3400",
+  "code": "3403",
+  "desc_en": "ASST LOCATION MANAGER",
+  "desc_tr": "MEKAN SORUMLUSU ASİSTANI"
+ },
+ {
+  "kind": "detail",
+  "category": "3400",
+  "code": "3407",
+  "desc_en": "SECURITY",
+  "desc_tr": "MEKAN GÜVENLİK"
+ },
+ {
+  "kind": "detail",
+  "category": "3400",
+  "code": "3408",
+  "desc_en": "FIRST AID / AMBULANCE",
+  "desc_tr": "İLK YARDIM/AMBULANS"
+ },
+ {
+  "kind": "detail",
+  "category": "3400",
+  "code": "3410",
+  "desc_en": "CATERING SERVICE",
+  "desc_tr": "CATERING"
+ },
+ {
+  "kind": "detail",
+  "category": "3400",
+  "code": "3412",
+  "desc_en": "SITE RENTALS / PERMITS / FEES / PARK",
+  "desc_tr": "MEKAN KİRALAR/İZİNLER/PARK MASRAFLAR"
+ },
+ {
+  "kind": "detail",
+  "category": "3400",
+  "code": "3443",
+  "desc_en": "TAXIS, CAR SERVICE & MILEAGE",
+  "desc_tr": "TAKSİ VE EKİP ULAŞIM MALİYETLER"
+ },
+ {
+  "kind": "detail",
+  "category": "3400",
+  "code": "3485",
+  "desc_en": "EXPENDABLES",
+  "desc_tr": "SARF MALZEMESİ"
+ },
+ {
+  "kind": "detail",
+  "category": "3400",
+  "code": "3493",
+  "desc_en": "PRODUCTION RENTALS",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "3400",
+  "code": "3494",
+  "desc_en": "PURCHASES",
+  "desc_tr": "SATIN ALMALAR"
+ },
+ {
+  "kind": "detail",
+  "category": "3400",
+  "code": "3498",
+  "desc_en": "LOSS & DAMAGE",
+  "desc_tr": "KAYIP VE HASARLAR"
+ },
+ {
+  "kind": "category",
+  "code": "3500",
+  "atl_btl": "BTL",
+  "desc_en": "AERIAL UNIT",
+  "desc_tr": "DRONE"
+ },
+ {
+  "kind": "detail",
+  "category": "3500",
+  "code": "3501",
+  "desc_en": "AERIAL COORDINATOR",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "3500",
+  "code": "3531",
+  "desc_en": "AERIAL CAMERA CREW",
+  "desc_tr": "DRONE KAMERA EKİBİ"
+ },
+ {
+  "kind": "detail",
+  "category": "3500",
+  "code": "3593",
+  "desc_en": "PRODUCTION RENTALS",
+  "desc_tr": "KİRALAMA"
+ },
+ {
+  "kind": "category",
+  "code": "3600",
+  "atl_btl": "BTL",
+  "desc_en": "TRANSPORTATION",
+  "desc_tr": "ULAŞIM"
+ },
+ {
+  "kind": "detail",
+  "category": "3600",
+  "code": "3601",
+  "desc_en": "TRANSPORTATION COORDINATOR",
+  "desc_tr": "ULAŞIM KOORDİNATÖRÜ"
+ },
+ {
+  "kind": "detail",
+  "category": "3600",
+  "code": "3629",
+  "desc_en": "ROAD PERMITS / TOLLS / CABS / PARKING",
+  "desc_tr": "YOL İZİNLERİ/HGS/OGS/PARK"
+ },
+ {
+  "kind": "detail",
+  "category": "3600",
+  "code": "3630",
+  "desc_en": "GAS AND OIL",
+  "desc_tr": "BENZİN/MAZOT"
+ },
+ {
+  "kind": "detail",
+  "category": "3600",
+  "code": "3682",
+  "desc_en": "OFF SET VEHICLES",
+  "desc_tr": "ÖZEL ARAÇ KİRALAMA"
+ },
+ {
+  "kind": "detail",
+  "category": "3600",
+  "code": "3683",
+  "desc_en": "ON SET PRODUCTION VEHICLES",
+  "desc_tr": "SET ARAÇLARI"
+ },
+ {
+  "kind": "detail",
+  "category": "3600",
+  "code": "3685",
+  "desc_en": "EXPENDABLES",
+  "desc_tr": "SARF MALZEMESİ"
+ },
+ {
+  "kind": "category",
+  "code": "3700",
+  "atl_btl": "BTL",
+  "desc_en": "STAGE & OFFICE RENTALS",
+  "desc_tr": "PLATO VE OFİS KİRALAMA"
+ },
+ {
+  "kind": "detail",
+  "category": "3700",
+  "code": "3701",
+  "desc_en": "STAGE RENTAL",
+  "desc_tr": "PLATO KİRALAMA"
+ },
+ {
+  "kind": "detail",
+  "category": "3700",
+  "code": "3702",
+  "desc_en": "STAGE UTILITIES",
+  "desc_tr": "PLATO HİZMETLERİ"
+ },
+ {
+  "kind": "detail",
+  "category": "3700",
+  "code": "3705",
+  "desc_en": "STAGE CLEANING AND TRASH DISPOSAL",
+  "desc_tr": "PLATO TEMİZLİK MASRAFLARI"
+ },
+ {
+  "kind": "detail",
+  "category": "3700",
+  "code": "3707",
+  "desc_en": "FACILITIES STORAGE",
+  "desc_tr": "DEPO ALANI"
+ },
+ {
+  "kind": "detail",
+  "category": "3700",
+  "code": "3710",
+  "desc_en": "WRITERS OFFICE SPACE",
+  "desc_tr": "YAZAR OFİSİ"
+ },
+ {
+  "kind": "detail",
+  "category": "3700",
+  "code": "3711",
+  "desc_en": "CASTING OFFICE SPACE",
+  "desc_tr": "CAST OFİSİ"
+ },
+ {
+  "kind": "detail",
+  "category": "3700",
+  "code": "3715",
+  "desc_en": "AIR CONDITIONING/HEATING",
+  "desc_tr": "HAVALANDIRMA VE ISITMA"
+ },
+ {
+  "kind": "detail",
+  "category": "3700",
+  "code": "3716",
+  "desc_en": "OFFICE SPACE UTILITIES",
+  "desc_tr": "OFİS HİZMETLERİ"
+ },
+ {
+  "kind": "detail",
+  "category": "3700",
+  "code": "3785",
+  "desc_en": "EXPENDABLES",
+  "desc_tr": "SARF MALZEMESİ"
+ },
+ {
+  "kind": "category",
+  "code": "3800",
+  "atl_btl": "BTL",
+  "desc_en": "PRODUCTION LAB & MEDIA MANAGEMENT",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "3800",
+  "code": "3800",
+  "desc_en": "PRODUCTION LAB & MEDIA MANAGEMENT",
+  "desc_tr": null
+ },
+ {
+  "kind": "category",
+  "code": "3900",
+  "atl_btl": "BTL",
+  "desc_en": "BELOW THE LINE TRAVEL & LIVING",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "3900",
+  "code": "3901",
+  "desc_en": "AIRFARES",
+  "desc_tr": "Uçak Bileti"
+ },
+ {
+  "kind": "detail",
+  "category": "3900",
+  "code": "3902",
+  "desc_en": "HOTEL COSTS",
+  "desc_tr": "Otel Maliyeti"
+ },
+ {
+  "kind": "detail",
+  "category": "3900",
+  "code": "3903",
+  "desc_en": "PER DIEM",
+  "desc_tr": "Günlük Harcırah"
+ },
+ {
+  "kind": "detail",
+  "category": "3900",
+  "code": "3904",
+  "desc_en": "TAXIS, CAR SERVICE & MILEAGE",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "3900",
+  "code": "3923",
+  "desc_en": "CONSTRUCTION",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "3900",
+  "code": "3980",
+  "desc_en": "MISCELLANEOUS",
+  "desc_tr": null
+ },
+ {
+  "kind": "category",
+  "code": "4100",
+  "atl_btl": "BTL",
+  "desc_en": "TESTS",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "4100",
+  "code": "4101",
+  "desc_en": "PRODUCTION STAFF",
+  "desc_tr": null
+ },
+ {
+  "kind": "category",
+  "code": "4900",
+  "atl_btl": "BTL",
+  "desc_en": "GENERAL EXPENSES",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "4900",
+  "code": "4950",
+  "desc_en": "B-T-L OVERTIME",
+  "desc_tr": null
+ },
+ {
+  "kind": "category",
+  "code": "5000",
+  "atl_btl": "POST",
+  "desc_en": "EDITORIAL",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "5000",
+  "code": "5001",
+  "desc_en": "PICTURE EDITOR",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "5000",
+  "code": "5002",
+  "desc_en": "ASSISTANT PICTURE EDITOR",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "5000",
+  "code": "5003",
+  "desc_en": "EDITORIAL PA",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "5000",
+  "code": "5004",
+  "desc_en": "VFX EDITOR",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "5000",
+  "code": "5009",
+  "desc_en": "POST SUPERVISOR",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "5000",
+  "code": "5010",
+  "desc_en": "POST COORDINATOR",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "5000",
+  "code": "5018",
+  "desc_en": "TRANSCRIPTION, TRANSLATION, TEMP SUBTITLES",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "5000",
+  "code": "5019",
+  "desc_en": "POST OFFICES",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "5000",
+  "code": "5022",
+  "desc_en": "EDITING EQUIPMENT RENTALS (INCL AVIDS)",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "5000",
+  "code": "5028",
+  "desc_en": "MEALS & ENTERTAINMENT",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "5000",
+  "code": "5030",
+  "desc_en": "SHIPPING & MESSENGERS",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "5000",
+  "code": "5043",
+  "desc_en": "TAXIS, CAR SERVICE & MILEAGE",
+  "desc_tr": null
+ },
+ {
+  "kind": "category",
+  "code": "5100",
+  "atl_btl": "POST",
+  "desc_en": "PICTURE FINISHING",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "5100",
+  "code": "5101",
+  "desc_en": "PICTURE CONFORM",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "5100",
+  "code": "5105",
+  "desc_en": "FINAL GRADING",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "5100",
+  "code": "5107",
+  "desc_en": "PICTURE FIXES & DIGITAL OPTICALS",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "5100",
+  "code": "5109",
+  "desc_en": "SERVICING TURNOVER & WORK MATERIALS",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "5100",
+  "code": "5110",
+  "desc_en": "IMF MASTER",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "5100",
+  "code": "5120",
+  "desc_en": "DATA MANAGEMENT (DATA INGEST, TRANSCODE)",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "5100",
+  "code": "5196",
+  "desc_en": "PICTURE BACKUP & ARCHIVING (NAM, GAM & VDM)",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "5100",
+  "code": "5197",
+  "desc_en": "NETFLIX CONTENT UPLOAD",
+  "desc_tr": null
+ },
+ {
+  "kind": "category",
+  "code": "5200",
+  "atl_btl": "POST",
+  "desc_en": "POST PRODUCTION SOUND",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "5200",
+  "code": "5201",
+  "desc_en": "SOUND EDITORIAL",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "5200",
+  "code": "5202",
+  "desc_en": "ADR / V.O. RECORDING / LOOP GROUP FEES",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "5200",
+  "code": "5203",
+  "desc_en": "FOLEY",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "5200",
+  "code": "5206",
+  "desc_en": "PRE MIX",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "5200",
+  "code": "5207",
+  "desc_en": "FINAL MIX",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "5200",
+  "code": "5209",
+  "desc_en": "M&E MIX",
+  "desc_tr": null
+ },
+ {
+  "kind": "category",
+  "code": "5300",
+  "atl_btl": "POST",
+  "desc_en": "CLIPS & CLEARANCES",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "5300",
+  "code": "5302",
+  "desc_en": "PHOTO COPYRIGHT LICENSES",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "5300",
+  "code": "5303",
+  "desc_en": "STOCK SEARCH",
+  "desc_tr": null
+ },
+ {
+  "kind": "category",
+  "code": "5400",
+  "atl_btl": "POST",
+  "desc_en": "TITLES & GRAPHICS",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "5400",
+  "code": "5402",
+  "desc_en": "MAIN & END TITLES",
+  "desc_tr": null
+ },
+ {
+  "kind": "category",
+  "code": "6000",
+  "atl_btl": "MUSIC",
+  "desc_en": "MUSIC",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "6000",
+  "code": "6001",
+  "desc_en": "COMPOSER (ALL-IN  PACKAGE UNLESS NOTED)",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "6000",
+  "code": "6004",
+  "desc_en": "MUSIC RIGHTS / LICENSING",
+  "desc_tr": null
+ },
+ {
+  "kind": "category",
+  "code": "6100",
+  "atl_btl": "VFX",
+  "desc_en": "VFX",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "6100",
+  "code": "6101",
+  "desc_en": "VISUAL EFFECTS SUPERVISOR / PRODUCER",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "6100",
+  "code": "6103",
+  "desc_en": "VISUAL EFFECTS COORDINATOR",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "6100",
+  "code": "6136",
+  "desc_en": "OUTSIDE CONTRACT BID #1 (VENDOR NAME)",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "6100",
+  "code": "6149",
+  "desc_en": "FIXES",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "6100",
+  "code": "6153",
+  "desc_en": "TAXIS, CAR SERVICE & MILEAGE",
+  "desc_tr": null
+ },
+ {
+  "kind": "category",
+  "code": "7000",
+  "atl_btl": "OTHER",
+  "desc_en": "ADMINISTRATIVE EXPENSES",
+  "desc_tr": "YÖNETİM GİDERLERİ"
+ },
+ {
+  "kind": "detail",
+  "category": "7000",
+  "code": "7001",
+  "desc_en": "AUDITOR / ACCOUNTANT",
+  "desc_tr": "DENETÇİ / MUHASEBECİ"
+ },
+ {
+  "kind": "detail",
+  "category": "7000",
+  "code": "7003",
+  "desc_en": "PRODUCTION SERVICES COMPANY FEE #1",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "7000",
+  "code": "7007",
+  "desc_en": "LEGAL EXPENSE",
+  "desc_tr": "YASAL GİDERLER"
+ },
+ {
+  "kind": "detail",
+  "category": "7000",
+  "code": "7009",
+  "desc_en": "PHOTOCOPYING",
+  "desc_tr": "FOTOKOPİ"
+ },
+ {
+  "kind": "detail",
+  "category": "7000",
+  "code": "7010",
+  "desc_en": "PARKING",
+  "desc_tr": "OTOPARK"
+ },
+ {
+  "kind": "detail",
+  "category": "7000",
+  "code": "7030",
+  "desc_en": "TELEPHONE EQUIPMENT, INSTALL & USAGE",
+  "desc_tr": "TELEFON EKİPMANI, KURULUMU ve KULLANIMI"
+ },
+ {
+  "kind": "detail",
+  "category": "7000",
+  "code": "7038",
+  "desc_en": "BANK CHARGES",
+  "desc_tr": "BANKA MASRAFLARI"
+ },
+ {
+  "kind": "detail",
+  "category": "7000",
+  "code": "7040",
+  "desc_en": "POSTAGE",
+  "desc_tr": "POSTA ÜCRETİ"
+ },
+ {
+  "kind": "detail",
+  "category": "7000",
+  "code": "7046",
+  "desc_en": "TAXES",
+  "desc_tr": "VERGİLER"
+ },
+ {
+  "kind": "detail",
+  "category": "7000",
+  "code": "7050",
+  "desc_en": "WRAP PARTY/GIFTS",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "7000",
+  "code": "7051",
+  "desc_en": "WRITERS MEALS & CRAFT",
+  "desc_tr": "YAZAR YEMEKLERİ VE ...."
+ },
+ {
+  "kind": "detail",
+  "category": "7000",
+  "code": "7052",
+  "desc_en": "PROD OFFICE MEALS & CRAFT",
+  "desc_tr": "PRODÜKSİYON OFİS YEMEKLERİ"
+ },
+ {
+  "kind": "detail",
+  "category": "7000",
+  "code": "7094",
+  "desc_en": "PURCHASES/OFFICE SUPPLIES",
+  "desc_tr": "SATIN ALIMLAR / OFİS MALZEMELERİ"
+ },
+ {
+  "kind": "detail",
+  "category": "7000",
+  "code": "7099",
+  "desc_en": "FRINGE",
+  "desc_tr": null
+ },
+ {
+  "kind": "category",
+  "code": "7200",
+  "atl_btl": "OTHER",
+  "desc_en": "INSURANCE",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "7200",
+  "code": "7201",
+  "desc_en": "INSURANCE PACKAGE",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "7200",
+  "code": "7216",
+  "desc_en": "COVID-19 (NEW) PURCHASES &  RENTALS",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "7200",
+  "code": "7217",
+  "desc_en": "COVID-19 TESTING & TESTING PERSONNEL",
+  "desc_tr": null
+ },
+ {
+  "kind": "category",
+  "code": "8500",
+  "atl_btl": "OTHER",
+  "desc_en": "PURCHASE PRICE",
+  "desc_tr": null
+ },
+ {
+  "kind": "detail",
+  "category": "8500",
+  "code": "8500",
+  "desc_en": "APA BOOK OPTION P.P.",
+  "desc_tr": null
+ }
+]

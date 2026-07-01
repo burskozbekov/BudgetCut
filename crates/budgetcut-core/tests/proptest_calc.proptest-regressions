@@ -1,0 +1,7 @@
+# Seeds for failure cases proptest has generated in the past. It is
+# automatically read and these particular cases re-run before any
+# novel cases are generated.
+#
+# It is recommended to check this file in to source control so that
+# everyone who runs the test benefits from these saved cases.
+cc 3d247a4b9ea36badae0c045e183f8523dbdb7e9e6a9b1bd3a30c6d277ae32148 # shrinks to specs = [DetailSpec { amount: 68, rate: 1637, fringe_pct: None }, DetailSpec { amount: 87, rate: 2660, fringe_pct: None }, DetailSpec { amount: 70, rate: 2732, fringe_pct: None }, DetailSpec { amount: 71, rate: 438, fringe_pct: Some(756) }, DetailSpec { amount: 1, rate: 0, fringe_pct: None }, DetailSpec { amount: 1, rate: 0, fringe_pct: None }, DetailSpec { amount: 1, rate: 1429, fringe_pct: Some(405) }]

@@ -1,0 +1,13 @@
+[package]
+name = "budgetcut-scheduling"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Production scheduling for BudgetCut (§16 Phase 2): stripboard + Day-Out-of-Days. The budget↔schedule seam — element working-day counts feed budget detail quantities. Pure, I/O-free."
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[dependencies]
+serde.workspace = true

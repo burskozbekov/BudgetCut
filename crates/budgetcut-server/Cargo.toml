@@ -1,0 +1,37 @@
+[package]
+name = "budgetcut-server"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Server-authoritative sync server for BudgetCut (Axum + WebSocket). Auth (argon2id + JWT), server-enforced RBAC, append-only op-log applied through the shared budgetcut-core reducer (§4/§8/§9/§10)."
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[[bin]]
+name = "budgetcut-server"
+path = "src/main.rs"
+
+[dependencies]
+budgetcut-core.workspace = true
+budgetcut-export = { path = "../budgetcut-export" }
+serde.workspace = true
+serde_json.workspace = true
+uuid.workspace = true
+thiserror.workspace = true
+rust_decimal.workspace = true
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "sync", "net", "signal"] }
+axum = { version = "0.7", features = ["ws", "macros"] }
+tower-http = { version = "0.5", features = ["cors"] }
+jsonwebtoken = "9"
+argon2 = { version = "0.5", features = ["std"] }
+rand_core = { version = "0.6", features = ["getrandom"] }
+futures-util = { version = "0.3", default-features = false, features = ["sink"] }
+
+[dev-dependencies]
+tower = { version = "0.5", features = ["util"] }
+http-body-util = "0.1"
+rust_decimal.workspace = true
+tokio-tungstenite = "0.24"
+futures-util = "0.3"
