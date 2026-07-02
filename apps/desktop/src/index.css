@@ -1033,6 +1033,150 @@ table .tot td {
 }
 
 /* Printable settlement "icmal" form — hidden on screen, shown only on print. */
+/* --- Ulusal Dizi Formatı (national dizi sheet) --- */
+.nat-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.nat-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.nat-summary {
+  display: flex;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+}
+.nat-summary b {
+  color: var(--text-faint);
+  font-weight: 600;
+  margin-right: 4px;
+}
+.nat-grand-chip {
+  color: var(--text);
+}
+.nat-grand-chip b {
+  color: var(--accent);
+}
+.nat-doc-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.nat-doc-head h3 {
+  margin: 0;
+  font-size: 15px;
+}
+.nat-doc-sub {
+  color: var(--text-faint);
+  font-size: 12px;
+}
+.nat-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+}
+.nat-table th {
+  text-align: right;
+  padding: 6px 8px;
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: var(--text-faint);
+  border-bottom: 1px solid var(--border-strong);
+  white-space: nowrap;
+}
+.nat-table th.nat-l,
+.nat-table td.nat-l {
+  text-align: left;
+}
+.nat-table td {
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--border);
+}
+.nat-table td.num {
+  text-align: right;
+}
+.nat-table .nat-line td {
+  color: var(--text-dim);
+}
+.nat-table .nat-line .nat-g {
+  color: var(--text);
+}
+.nat-name {
+  color: var(--text-faint);
+  margin-left: 8px;
+  font-size: 11px;
+}
+.nat-table .nat-cat td {
+  padding-top: 12px;
+  font-weight: 700;
+  color: var(--text);
+  border-bottom: none;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.nat-table .nat-sub td {
+  font-weight: 600;
+  color: var(--text);
+  border-top: 1px solid var(--border-strong);
+  border-bottom: 2px solid var(--border-strong);
+  background: var(--surface-2, rgba(255, 255, 255, 0.02));
+}
+.nat-table .nat-section td {
+  font-weight: 700;
+  color: var(--accent);
+  border-top: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+}
+.nat-table .nat-grand td {
+  font-weight: 800;
+  font-size: 13.5px;
+  color: var(--text);
+  border-top: 3px double var(--text-dim);
+  border-bottom: 3px double var(--text-dim);
+}
+.nat-table .tag {
+  font-size: 9px;
+  padding: 1px 5px;
+  border-radius: 4px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+@media print {
+  .nat-panel .no-print {
+    display: none !important;
+  }
+  body * {
+    visibility: hidden !important;
+  }
+  .nat-doc,
+  .nat-doc * {
+    visibility: visible !important;
+  }
+  .nat-doc {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    color: #000;
+    background: #fff;
+    font-size: 10px;
+  }
+  .nat-doc .nat-table th,
+  .nat-doc .nat-table td {
+    border-color: #999 !important;
+    color: #000 !important;
+  }
+}
+
 .print-doc {
   display: none;
 }

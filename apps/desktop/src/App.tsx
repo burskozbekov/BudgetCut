@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useApp } from "./store";
 import Topsheet from "./components/Topsheet";
+import NationalSheetPanel from "./components/NationalSheetPanel";
 import AccountDetails from "./components/AccountDetails";
 import SetupTools from "./components/SetupTools";
 import ReportBuilder from "./components/ReportBuilder";
@@ -45,6 +46,7 @@ export default function App() {
   );
   const heads: Record<string, { title: string; sub: string }> = {
     topsheet: { title: t("topsheet"), sub: t("topsheet_sub") },
+    national: { title: t("nat_title"), sub: t("nat_sub") },
     details: { title: t("details"), sub: t("details_sub") },
     tools: { title: t("tools"), sub: t("tools_sub") },
     report: { title: t("nav_report"), sub: t("report_sub") },
@@ -98,6 +100,7 @@ export default function App() {
       <nav className="nav">
         <div className="section">{t("nav_views")}</div>
         <NavButton id="topsheet" label={t("nav_topsheet")} />
+        <NavButton id="national" label={t("nav_national")} />
         <NavButton id="details" label={t("nav_details")} />
         <NavButton id="tools" label={t("nav_tools")} />
         <NavButton id="report" label={t("nav_report")} />
@@ -137,6 +140,8 @@ export default function App() {
           <div className="empty">…</div>
         ) : view === "topsheet" ? (
           <Topsheet />
+        ) : view === "national" ? (
+          <NationalSheetPanel />
         ) : view === "details" ? (
           <AccountDetails />
         ) : view === "tools" ? (

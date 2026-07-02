@@ -32,8 +32,8 @@ use budgetcut_core::scheduling::Strip;
 use budgetcut_core::settlement::Receipt;
 use budgetcut_core::view::{
     series_summary_for, ActualsReportDto, AmortInput, ComparisonDto, IncentiveReportDto,
-    PurchaseOrdersDto, ScheduleDto, SeriesSummaryDto, SettlementReportDto, ToolsDto, TopsheetDto,
-    TreeDto,
+    NationalSheetDto, PurchaseOrdersDto, ScheduleDto, SeriesSummaryDto, SettlementReportDto,
+    ToolsDto, TopsheetDto, TreeDto,
 };
 use budgetcut_core::{
     evaluate, AppliedFringe, ApplyResult, Budget, Detail, DetailField, Document, Formula, Fringe,
@@ -176,6 +176,7 @@ pub fn app(state: Arc<AppState>) -> Router {
         .route("/budgets", post(create_budget).get(list_budgets))
         .route("/budgets/:id/topsheet", get(get_topsheet))
         .route("/budgets/:id/tree", get(get_tree))
+        .route("/budgets/:id/national-sheet", get(get_national_sheet))
         .route("/budgets/:id/tools", get(get_tools))
         .route("/budgets/:id/members", post(add_member))
         .route("/budgets/:id/duplicate", post(duplicate_budget))
@@ -851,6 +852,22 @@ async fn get_tree(
         .ok_or(err(StatusCode::NOT_FOUND, "no such budget"))?;
     let r = evaluate(&room.doc.budget);
     Ok(Json(TreeDto::build(&room.doc.budget, &r)))
+}
+
+async fn get_national_sheet(
+    State(state): State<Arc<AppState>>,
+    AuthUser(uid): AuthUser,
+    Path(id): Path<String>,
+) -> ApiResult<NationalSheetDto> {
+    let bid = parse_budget_id(&id)?;
+    let inner = state.lock();
+    effective_membership(&inner, uid, bid).ok_or(err(StatusCode::FORBIDDEN, "not a member"))?;
+    let room = inner
+        .budgets
+        .get(&bid)
+        .ok_or(err(StatusCode::NOT_FOUND, "no such budget"))?;
+    let r = evaluate(&room.doc.budget);
+    Ok(Json(NationalSheetDto::build(&room.doc.budget, &r)))
 }
 
 async fn get_tools(

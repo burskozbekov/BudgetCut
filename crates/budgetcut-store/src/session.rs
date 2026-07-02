@@ -13,8 +13,8 @@ use budgetcut_core::{
 use rust_decimal::Decimal;
 
 use crate::dto::{
-    ActualsReportDto, PurchaseOrdersDto, ScheduleDto, SettlementReportDto, ToolsDto, TopsheetDto,
-    TreeDto,
+    ActualsReportDto, NationalSheetDto, PurchaseOrdersDto, ScheduleDto, SettlementReportDto,
+    ToolsDto, TopsheetDto, TreeDto,
 };
 use crate::error::Result;
 use crate::store::{now_ms, Store};
@@ -159,6 +159,12 @@ impl Session {
     pub fn tree(&self) -> TreeDto {
         let r = evaluate(&self.doc.budget);
         TreeDto::build(&self.doc.budget, &r)
+    }
+
+    /// Project the budget in the national dizi sheet layout (Ulusal Dizi Formatı).
+    pub fn national_sheet(&self) -> NationalSheetDto {
+        let r = evaluate(&self.doc.budget);
+        NationalSheetDto::build(&self.doc.budget, &r)
     }
 
     /// Project the Setup Tools (fringes, globals, units).

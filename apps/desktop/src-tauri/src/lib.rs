@@ -17,7 +17,7 @@ use budgetcut_core::view::{
     ScheduleDto, SeriesSummaryDto, SettlementReportDto,
 };
 use budgetcut_core::*;
-use budgetcut_store::dto::{ToolsDto, TopsheetDto, TreeDto};
+use budgetcut_store::dto::{NationalSheetDto, ToolsDto, TopsheetDto, TreeDto};
 use budgetcut_store::{Session, Store};
 use rust_decimal::Decimal;
 use tauri::Manager;
@@ -32,6 +32,11 @@ fn get_topsheet(state: tauri::State<AppState>) -> TopsheetDto {
 #[tauri::command]
 fn get_tree(state: tauri::State<AppState>) -> TreeDto {
     state.0.lock().unwrap().tree()
+}
+
+#[tauri::command]
+fn national_sheet(state: tauri::State<AppState>) -> NationalSheetDto {
+    state.0.lock().unwrap().national_sheet()
 }
 
 #[tauri::command]
@@ -554,7 +559,8 @@ pub fn run() {
             convert_po,
             remove_po,
             load_sample,
-            live_rates
+            live_rates,
+            national_sheet
         ])
         .run(tauri::generate_context!())
         .expect("error while running BudgetCut");

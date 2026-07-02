@@ -5,6 +5,7 @@ import type {
   Topsheet,
   Tree,
   Tools,
+  NationalSheet,
   SeriesSummary,
   IncentiveReport,
   Comparison,
@@ -22,6 +23,7 @@ import type {
 
 type View =
   | "topsheet"
+  | "national"
   | "details"
   | "tools"
   | "report"
@@ -93,6 +95,9 @@ interface AppState {
   loadLibraries: () => Promise<LibraryItem[]>;
   saveLibrary: (name: string) => Promise<void>;
   applyLibrary: (libId: string) => Promise<void>;
+
+  // Ulusal Dizi Formatı — the national dizi sheet layout.
+  loadNationalSheet: () => Promise<NationalSheet | null>;
 
   // Actuals / EFC. Works online (server) and offline (native bridge).
   loadActuals: () => Promise<ActualsReport | null>;
@@ -329,6 +334,12 @@ export const useApp = create<AppState>((set, get) => ({
       await api.applyLibrary(token, currentBudgetId, libId);
       await get().refresh();
     }
+  },
+
+  loadNationalSheet: async () => {
+    const { online, token, currentBudgetId } = get();
+    if (online && token && currentBudgetId) return api.nationalSheet(token, currentBudgetId);
+    return bridge.nationalSheet();
   },
 
   loadActuals: async () => {

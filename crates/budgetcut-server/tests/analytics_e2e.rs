@@ -698,4 +698,23 @@ async fn dizi_template_reproduces_bos_butce_total() {
     assert_eq!(top["btl_total"], "21634673.70");
     assert_eq!(top["error_count"], 0);
     assert_eq!(top["categories"].as_array().unwrap().len(), 22);
+
+    // The national-format sheet (Ulusal Dizi Formatı) reproduces the workbook.
+    let (st, sheet) = call(
+        &app,
+        "GET",
+        &format!("/budgets/{bid}/national-sheet"),
+        Some(&owner),
+        None,
+    )
+    .await;
+    assert_eq!(st, StatusCode::OK);
+    assert_eq!(sheet["grand_total"], "32488843.87");
+    assert_eq!(sheet["atl_total"], "10854170.17");
+    assert_eq!(sheet["btl_total"], "21634673.70");
+    let rows = sheet["rows"].as_array().unwrap();
+    assert!(rows.iter().any(|r| r["kind"] == "grand"));
+    // 22 per-category "TOPLAM /" rows + 2 section rows.
+    assert_eq!(rows.iter().filter(|r| r["kind"] == "subtotal").count(), 22);
+    assert_eq!(rows.iter().filter(|r| r["kind"] == "section").count(), 2);
 }

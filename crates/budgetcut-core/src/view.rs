@@ -257,6 +257,225 @@ impl TreeDto {
     }
 }
 
+/// One row of the **Ulusal Dizi Formatı** sheet — a faithful reproduction of
+/// the Turkish national TV-series budget layout (the `BOŞ BÜTÇE` workbook):
+/// `AÇIKLAMA | ADET | VERGİ/STOPAJ ORANI | KOM. ORANI | BİRİM TUTAR | NET TUTAR
+/// | STOPAJ | EK ÜCRET/KOMİSYON | G.TOPLAM`, with per-section `TOPLAM /` lines,
+/// the `ABOVE-THE-LINE`/`BELOW-THE-LINE` subtotals, and the `DİREKT MALİYET`
+/// grand total. Money is display-rounded from full-precision decimals, exactly
+/// like the source workbook (so the grand total reproduces it to the kuruş).
+#[derive(Debug, Clone, Serialize)]
+pub struct NationalRow {
+    /// `category` | `line` | `subtotal` | `section` | `grand`.
+    pub kind: String,
+    /// Left label (category / line description / "TOPLAM / …" / section name).
+    pub label: String,
+    /// Column C — the line's İSİM (proper name), when present.
+    pub name: Option<String>,
+    pub atl_btl: Option<String>,
+    /// ADET (quantity) — blank on header rows.
+    pub adet: String,
+    /// VERGİ / STOPAJ ORANI as a fraction string ("0.17"), when the line has one.
+    pub vergi_orani: Option<String>,
+    /// KOM. ORANI as a fraction string, when the line has one.
+    pub kom_orani: Option<String>,
+    /// BİRİM TUTAR (unit price) — blank on header rows.
+    pub birim_tutar: Option<String>,
+    pub net_tutar: String,
+    pub stopaj: String,
+    pub ek_komisyon: String,
+    pub g_toplam: String,
+}
+
+#[derive(Debug, Clone, Serialize)]
+pub struct NationalSheetDto {
+    pub budget_name: String,
+    pub rows: Vec<NationalRow>,
+    pub atl_total: String,
+    pub btl_total: String,
+    pub net_grand: String,
+    pub stopaj_grand: String,
+    pub komisyon_grand: String,
+    /// DİREKT MALİYET (net + stopaj + komisyon across every section).
+    pub grand_total: String,
+}
+
+/// Saturating add — user-driven aggregates must never panic on overflow
+/// (rust_decimal's `+` does). Matches the convention in actuals/settlement/calc.
+fn sat_add(a: Decimal, b: Decimal) -> Decimal {
+    a.checked_add(b).unwrap_or(Decimal::MAX)
+}
+
+/// Running money accumulators for a section / grand total. Every field holds
+/// already-kuruş-rounded values (round-first), so a total is the exact sum of
+/// the rounded line cells above it — the printed columns foot with no drift.
+#[derive(Default, Clone, Copy)]
+struct NatAcc {
+    adet: Decimal,
+    net: Decimal,
+    stopaj: Decimal,
+    komisyon: Decimal,
+    g: Decimal,
+}
+
+impl NatAcc {
+    fn add(&mut self, o: &NatAcc) {
+        self.adet = sat_add(self.adet, o.adet);
+        self.net = sat_add(self.net, o.net);
+        self.stopaj = sat_add(self.stopaj, o.stopaj);
+        self.komisyon = sat_add(self.komisyon, o.komisyon);
+        self.g = sat_add(self.g, o.g);
+    }
+}
+
+/// Render a quantity: integer when whole, else trimmed to 2 dp.
+fn qty(d: Decimal) -> String {
+    let n = d.normalize();
+    if n.fract().is_zero() {
+        format!("{n:.0}")
+    } else {
+        format!("{n:.2}")
+    }
+}
+
+impl NationalSheetDto {
+    pub fn build(budget: &Budget, r: &CalcResult) -> Self {
+        let mut rows: Vec<NationalRow> = Vec::new();
+        let mut atl = NatAcc::default();
+        let mut btl = NatAcc::default();
+
+        // Emit ATL sections first, then BTL — matching the workbook order.
+        for want_atl in [true, false] {
+            let mut section = NatAcc::default();
+            let mut any = false;
+            for c in budget.categories_sorted() {
+                // Share the calc engine's ATL boundary (ProductionTotal-aware) so
+                // this sheet's split can never contradict the topsheet's.
+                if crate::calc::category_is_atl(budget, c) != want_atl {
+                    continue;
+                }
+                any = true;
+                rows.push(NationalRow {
+                    kind: "category".into(),
+                    label: c.description.tr.clone(),
+                    name: None,
+                    atl_btl: Some(if want_atl { "ATL".into() } else { "BTL".into() }),
+                    adet: String::new(),
+                    vergi_orani: None,
+                    kom_orani: None,
+                    birim_tutar: None,
+                    net_tutar: String::new(),
+                    stopaj: String::new(),
+                    ek_komisyon: String::new(),
+                    g_toplam: String::new(),
+                });
+                let mut cat = NatAcc::default();
+                for a in budget.accounts_of(c.id) {
+                    for d in budget.details_of(a.id) {
+                        let dc = r.detail(d.id);
+                        if !dc.included {
+                            continue;
+                        }
+                        let split = crate::calc::detail_fringe_split(budget, d, dc.subtotal);
+                        // Round each money column to kuruş FIRST, then derive the
+                        // row total + accumulate the rounded values, so every
+                        // printed column foots to its subtotal (the same
+                        // reconciliation discipline as the actuals/settlement
+                        // reports). g_toplam is net+stopaj+komisyon by definition.
+                        let net = round_money(dc.subtotal);
+                        let stopaj = round_money(split.grossup);
+                        let komisyon = round_money(split.additive);
+                        let g = sat_add(sat_add(net, stopaj), komisyon);
+                        // adet = net / birim so the row foots; fall back to the
+                        // evaluated multiplier when there's no unit price.
+                        let adet = if dc.rate.is_zero() {
+                            dc.multiplier
+                        } else {
+                            dc.subtotal.checked_div(dc.rate).unwrap_or(dc.multiplier)
+                        };
+                        let label = if d.description.trim().is_empty() {
+                            a.description.tr.clone()
+                        } else {
+                            d.description.clone()
+                        };
+                        rows.push(NationalRow {
+                            kind: "line".into(),
+                            label,
+                            name: d.name.clone(),
+                            atl_btl: None,
+                            adet: qty(adet),
+                            vergi_orani: split.grossup_rate.map(|x| x.normalize().to_string()),
+                            kom_orani: split.additive_rate.map(|x| x.normalize().to_string()),
+                            birim_tutar: Some(money(dc.rate)),
+                            net_tutar: money(net),
+                            stopaj: money(stopaj),
+                            ek_komisyon: money(komisyon),
+                            g_toplam: money(g),
+                        });
+                        cat.adet = sat_add(cat.adet, adet);
+                        cat.net = sat_add(cat.net, net);
+                        cat.stopaj = sat_add(cat.stopaj, stopaj);
+                        cat.komisyon = sat_add(cat.komisyon, komisyon);
+                        cat.g = sat_add(cat.g, g);
+                    }
+                }
+                rows.push(subtotal_row(
+                    "subtotal",
+                    format!("TOPLAM / {}", c.description.tr),
+                    &cat,
+                ));
+                section.add(&cat);
+            }
+            if any {
+                let label = if want_atl {
+                    "ABOVE-THE-LINE TOPLAM"
+                } else {
+                    "BELOW-THE-LINE TOPLAM"
+                };
+                rows.push(subtotal_row("section", label.to_string(), &section));
+            }
+            if want_atl {
+                atl.add(&section);
+            } else {
+                btl.add(&section);
+            }
+        }
+
+        let mut grand = NatAcc::default();
+        grand.add(&atl);
+        grand.add(&btl);
+        rows.push(subtotal_row("grand", "DİREKT MALİYET".into(), &grand));
+
+        NationalSheetDto {
+            budget_name: budget.name.clone(),
+            rows,
+            atl_total: money(atl.g),
+            btl_total: money(btl.g),
+            net_grand: money(grand.net),
+            stopaj_grand: money(grand.stopaj),
+            komisyon_grand: money(grand.komisyon),
+            grand_total: money(grand.g),
+        }
+    }
+}
+
+fn subtotal_row(kind: &str, label: String, a: &NatAcc) -> NationalRow {
+    NationalRow {
+        kind: kind.into(),
+        label,
+        name: None,
+        atl_btl: None,
+        adet: qty(a.adet),
+        vergi_orani: None,
+        kom_orani: None,
+        birim_tutar: None,
+        net_tutar: money(a.net),
+        stopaj: money(a.stopaj),
+        ek_komisyon: money(a.komisyon),
+        g_toplam: money(a.g),
+    }
+}
+
 /// Setup Tools view (§5/§11): the reusable fringes, globals and units.
 #[derive(Debug, Clone, Serialize)]
 pub struct FringeToolDto {
@@ -852,5 +1071,186 @@ impl SettlementReportDto {
             refund: balance >= Decimal::ZERO,
             lines,
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::{evaluate, templates::dizi_full_template};
+
+    #[test]
+    fn national_sheet_reproduces_the_source_workbook() {
+        let b = dizi_full_template("BOŞ BÜTÇE");
+        let r = evaluate(&b);
+        let sheet = NationalSheetDto::build(&b, &r);
+
+        // DİREKT MALİYET + ATL/BTL straight from the BOŞ BÜTÇE workbook. With
+        // round-first columns the grand is within a kuruş of the full-precision
+        // ₺32,488,843.87 (they coincide here; the difference, if any, is one
+        // kuruş, the price of on-screen columns that foot).
+        assert_eq!(sheet.grand_total, "32488843.87");
+        assert_eq!(sheet.atl_total, "10854170.17");
+        assert_eq!(sheet.btl_total, "21634673.70");
+
+        // The grand row and the two section rows are present and consistent.
+        let grand = rows_of(&sheet, "grand");
+        assert_eq!(grand.len(), 1);
+        assert_eq!(grand[0].g_toplam, "32488843.87");
+        assert_eq!(rows_of(&sheet, "section").len(), 2);
+        // One "TOPLAM / …" per category (22 in the workbook).
+        assert_eq!(rows_of(&sheet, "subtotal").len(), 22);
+
+        // Every subtotal/section/grand row must self-foot EXACTLY: the printed
+        // NET + STOPAJ + KOMİSYON equals the printed G.TOPLAM to the kuruş.
+        for row in sheet
+            .rows
+            .iter()
+            .filter(|r| matches!(r.kind.as_str(), "subtotal" | "section" | "grand"))
+        {
+            let sum: Decimal = [&row.net_tutar, &row.stopaj, &row.ek_komisyon]
+                .iter()
+                .map(|s| s.parse::<Decimal>().unwrap())
+                .sum();
+            assert_eq!(
+                money(sum),
+                row.g_toplam,
+                "row '{}' does not foot",
+                row.label
+            );
+        }
+        // …and the DTO-level grand columns foot exactly too.
+        let net: Decimal = sheet.net_grand.parse().unwrap();
+        let stopaj: Decimal = sheet.stopaj_grand.parse().unwrap();
+        let kom: Decimal = sheet.komisyon_grand.parse().unwrap();
+        assert_eq!(money(net + stopaj + kom), sheet.grand_total);
+    }
+
+    #[test]
+    fn national_sheet_first_line_matches_yonetmen() {
+        let b = dizi_full_template("BOŞ BÜTÇE");
+        let r = evaluate(&b);
+        let sheet = NationalSheetDto::build(&b, &r);
+        // Row 6 of the workbook: YÖNETMEN, adet 1, %17 stopaj, 660000 → 795180.72.
+        let line = sheet
+            .rows
+            .iter()
+            .find(|r| r.kind == "line" && r.label == "YÖNETMEN")
+            .expect("YÖNETMEN line");
+        assert_eq!(line.adet, "1");
+        assert_eq!(line.vergi_orani.as_deref(), Some("0.17"));
+        assert_eq!(line.birim_tutar.as_deref(), Some("660000.00"));
+        assert_eq!(line.net_tutar, "660000.00");
+        assert_eq!(line.g_toplam, "795180.72");
+    }
+
+    fn rows_of<'a>(s: &'a NationalSheetDto, kind: &str) -> Vec<&'a NationalRow> {
+        s.rows.iter().filter(|r| r.kind == kind).collect()
+    }
+
+    // A category of gross-up lines whose per-line stopaj is a repeating decimal
+    // (100 / 0.9 − 100 = 11.111…). Under the old display-rounding the STOPAJ
+    // column would not foot (7 × 11.11 = 77.77 vs money(77.777…) = 77.78); the
+    // round-first accumulation must make it foot exactly.
+    #[test]
+    fn national_sheet_columns_foot_with_sub_kurus_lines() {
+        use crate::ids::*;
+        use crate::{
+            AppliedFringe, AtlBtl, Budget, Category, Detail, Formula, Fringe, FringeKind,
+            FringeMode, Localized, PostingLevel, Unit,
+        };
+        use rust_decimal_macros::dec;
+
+        let mut b = Budget::new("T", crate::templates::try_currency());
+        let unit = Unit {
+            id: UnitId::new(),
+            code: "ADET".into(),
+            name: Localized::bilingual("Adet", "Flat"),
+            factor: Decimal::ONE,
+        };
+        let uid = unit.id;
+        b.units.insert(uid, unit);
+        let fringe = Fringe {
+            id: FringeId::new(),
+            code: "TR_STOPAJ".into(),
+            name: Localized::bilingual("Stopaj", "Withholding"),
+            kind: FringeKind::Percent,
+            mode: FringeMode::GrossUp,
+            rate: dec!(0.10),
+            posting_level: PostingLevel::Detail,
+            cutoff: None,
+            cap: None,
+            currency: None,
+        };
+        let fid = fringe.id;
+        b.fringes.insert(fid, fringe);
+
+        let cat = Category {
+            id: CategoryId::new(),
+            number: "1000".into(),
+            description: Localized::tr("PERSONEL"),
+            position: dec!(1),
+            atl_btl: Some(AtlBtl::Atl),
+            applied_fringes: vec![],
+        };
+        let cid = cat.id;
+        b.categories.insert(cid, cat);
+        let acc = crate::Account {
+            id: AccountId::new(),
+            category: cid,
+            number: "1001".into(),
+            description: Localized::tr("PERSONEL"),
+            position: dec!(1),
+            show_subtotal: true,
+            applied_fringes: vec![],
+        };
+        let aid = acc.id;
+        b.accounts.insert(aid, acc);
+        for i in 0..7 {
+            let d = Detail {
+                id: DetailId::new(),
+                account: aid,
+                position: Decimal::from(i),
+                description: format!("Kişi {i}"),
+                name: None,
+                amount: Formula::Const(dec!(100)),
+                multiplier: Formula::Const(Decimal::ONE),
+                rate: Formula::Const(Decimal::ONE),
+                unit: uid,
+                currency: b.base_currency,
+                applied_fringes: vec![AppliedFringe::with_rate(fid, dec!(0.10))],
+                groups: vec![],
+                location: None,
+                set: None,
+                gl_code: None,
+                notes: None,
+            };
+            b.details.insert(d.id, d);
+        }
+
+        let r = evaluate(&b);
+        let sheet = NationalSheetDto::build(&b, &r);
+        let sub = sheet
+            .rows
+            .iter()
+            .find(|row| row.kind == "subtotal")
+            .expect("subtotal row");
+
+        // The subtotal foots to its own G.TOPLAM…
+        let sum: Decimal = [&sub.net_tutar, &sub.stopaj, &sub.ek_komisyon]
+            .iter()
+            .map(|s| s.parse::<Decimal>().unwrap())
+            .sum();
+        assert_eq!(money(sum), sub.g_toplam);
+        // …and the displayed line STOPAJ cells sum to the subtotal STOPAJ cell.
+        let line_stopaj: Decimal = sheet
+            .rows
+            .iter()
+            .filter(|row| row.kind == "line")
+            .map(|row| row.stopaj.parse::<Decimal>().unwrap())
+            .sum();
+        assert_eq!(money(line_stopaj), sub.stopaj);
+        // Per-line gross-up 100/0.9−100 = 11.11; 7 × 11.11 = 77.77.
+        assert_eq!(sub.stopaj, "77.77");
     }
 }

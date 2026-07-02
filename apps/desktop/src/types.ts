@@ -288,6 +288,34 @@ export interface AddPoInput {
   amount: string;
 }
 
+// --- Ulusal Dizi Formatı (national dizi sheet), mirror view::NationalSheetDto ---
+
+export interface NationalRow {
+  kind: "category" | "line" | "subtotal" | "section" | "grand";
+  label: string;
+  name: string | null;
+  atl_btl: string | null;
+  adet: string;
+  vergi_orani: string | null;
+  kom_orani: string | null;
+  birim_tutar: string | null;
+  net_tutar: string;
+  stopaj: string;
+  ek_komisyon: string;
+  g_toplam: string;
+}
+
+export interface NationalSheet {
+  budget_name: string;
+  rows: NationalRow[];
+  atl_total: string;
+  btl_total: string;
+  net_grand: string;
+  stopaj_grand: string;
+  komisyon_grand: string;
+  grand_total: string;
+}
+
 // --- Live rates (TCMB FX + İstanbul fuel), mirror importers::rates ---
 
 export interface LiveRates {

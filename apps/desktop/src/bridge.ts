@@ -7,6 +7,7 @@ import type {
   Topsheet,
   Tree,
   Tools,
+  NationalSheet,
   SeriesSummary,
   IncentiveReport,
   AmortInputRow,
@@ -43,6 +44,13 @@ export const bridge = {
 
   async getTools(): Promise<Tools> {
     return inTauri ? invoke<Tools>("get_tools") : ((demo as any).tools as Tools);
+  },
+
+  /** Ulusal Dizi Formatı — the national dizi sheet (native computes it live). */
+  async nationalSheet(): Promise<NationalSheet | null> {
+    return inTauri
+      ? invoke<NationalSheet>("national_sheet")
+      : ((demo as any).national ?? null);
   },
 
   /** Set a named global's constant value (native only). */

@@ -7,6 +7,7 @@ import type {
   Topsheet,
   Tree,
   Tools,
+  NationalSheet,
   SeriesSummary,
   IncentiveReport,
   Comparison,
@@ -70,6 +71,8 @@ export const api = {
 
   topsheet: (token: string, id: string) => req<Topsheet>(`/budgets/${id}/topsheet`, { token }),
   tree: (token: string, id: string) => req<Tree>(`/budgets/${id}/tree`, { token }),
+  nationalSheet: (token: string, id: string) =>
+    req<NationalSheet>(`/budgets/${id}/national-sheet`, { token }),
   tools: (token: string, id: string) => req<Tools>(`/budgets/${id}/tools`, { token }),
 
   setGlobal: (token: string, id: string, name: string, value: string) =>

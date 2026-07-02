@@ -69,6 +69,10 @@ pub struct CellError {
 pub struct DetailCalc {
     /// `amount × unit_factor × multiplier × rate`, converted to base.
     pub subtotal: Decimal,
+    /// Evaluated multiplier (the national sheet's *ADET* / quantity column).
+    pub multiplier: Decimal,
+    /// Evaluated per-unit rate (the national sheet's *BİRİM TUTAR* column).
+    pub rate: Decimal,
     /// Sum of all fringes applied to this line.
     pub fringe_total: Decimal,
     /// `subtotal + fringe_total` (the Turkish `G.TOPLAM`).
@@ -398,11 +402,55 @@ where
 
     DetailCalc {
         subtotal,
+        multiplier,
+        rate,
         fringe_total,
         line_total: sat_add(subtotal, fringe_total),
         included,
         error: had_error,
     }
+}
+
+/// Split a detail's fringe total into gross-up (Turkish *stopaj*) and additive
+/// (*ek ücret / komisyon*) buckets, with the first effective rate seen for each
+/// — the two right-hand columns of the national dizi sheet. Reuses the same
+/// [`effective_fringes`] + [`fringe_amount`] path as the rollup, so the split
+/// always sums back to `DetailCalc::fringe_total`.
+#[derive(Debug, Clone, Copy, Default)]
+pub struct FringeSplit {
+    pub grossup: Decimal,
+    pub additive: Decimal,
+    pub grossup_rate: Option<Decimal>,
+    pub additive_rate: Option<Decimal>,
+}
+
+#[must_use]
+pub fn detail_fringe_split(budget: &Budget, d: &Detail, subtotal: Decimal) -> FringeSplit {
+    let mut s = FringeSplit::default();
+    for af in effective_fringes(budget, d) {
+        let Some(fringe) = budget.fringes.get(&af.fringe_id) else {
+            continue;
+        };
+        let Ok(amt) = fringe_amount(fringe, &af, subtotal, budget) else {
+            continue;
+        };
+        let rate = af.rate_override.unwrap_or(fringe.rate);
+        match fringe.mode {
+            FringeMode::GrossUp => {
+                s.grossup = sat_add(s.grossup, amt);
+                if s.grossup_rate.is_none() {
+                    s.grossup_rate = Some(rate);
+                }
+            }
+            FringeMode::Additive => {
+                s.additive = sat_add(s.additive, amt);
+                if s.additive_rate.is_none() {
+                    s.additive_rate = Some(rate);
+                }
+            }
+        }
+    }
+    s
 }
 
 /// Gather every fringe that applies to a detail, from all cascade levels.
@@ -570,29 +618,32 @@ where
     }
 }
 
-/// Determine the ATL/BTL split from the category rollups.
-///
-/// The authoritative boundary is the position of the first
-/// [`ProductionTotal`]; categories before it are ATL, after it BTL. When no
-/// production total exists, fall back to each category's [`AtlBtl`] hint.
-fn split_atl_btl(budget: &Budget, categories: &HashMap<CategoryId, Rollup>) -> (Rollup, Rollup) {
+/// Whether a category is Above-The-Line. The authoritative boundary is the
+/// position of the first [`ProductionTotal`] (categories before it are ATL);
+/// with no production total, fall back to the category's [`AtlBtl`] hint. Shared
+/// by [`split_atl_btl`] and the national-sheet view so their ATL/BTL splits can
+/// never disagree for the same budget.
+#[must_use]
+pub fn category_is_atl(budget: &Budget, cat: &Category) -> bool {
     let boundary = budget
         .production_totals
         .values()
         .map(|pt| pt.position)
         .min();
+    match boundary {
+        Some(b) => cat.position < b,
+        None => matches!(cat.atl_btl, Some(AtlBtl::Atl)),
+    }
+}
 
+/// Determine the ATL/BTL split from the category rollups.
+fn split_atl_btl(budget: &Budget, categories: &HashMap<CategoryId, Rollup>) -> (Rollup, Rollup) {
     let mut atl = Rollup::default();
     let mut btl = Rollup::default();
 
     for cat in budget.categories_sorted() {
         let r = categories.get(&cat.id).copied().unwrap_or_default();
-
-        let is_atl = match boundary {
-            Some(b) => cat.position < b,
-            None => matches!(cat.atl_btl, Some(AtlBtl::Atl)),
-        };
-        if is_atl {
+        if category_is_atl(budget, cat) {
             atl.add_components(&r);
         } else {
             btl.add_components(&r);
