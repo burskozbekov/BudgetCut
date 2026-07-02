@@ -18,6 +18,7 @@ import type {
   AddStripInput,
   PurchaseOrders,
   AddPoInput,
+  LiveRates,
 } from "./types";
 import demo from "./fixtures/demo.json";
 
@@ -159,5 +160,10 @@ export const bridge = {
   /** Replace the local budget with the real BOŞ BÜTÇE sample (native only). */
   async loadSample(): Promise<void> {
     if (inTauri) await invoke("load_sample");
+  },
+
+  /** TCMB USD/EUR + İstanbul pump prices, fetched natively (native only). */
+  async liveRates(): Promise<LiveRates | null> {
+    return inTauri ? invoke<LiveRates>("live_rates") : null;
   },
 };

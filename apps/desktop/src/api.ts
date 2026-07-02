@@ -20,6 +20,7 @@ import type {
   AddStripInput,
   PurchaseOrders,
   AddPoInput,
+  LiveRates,
 } from "./types";
 
 const SERVER =
@@ -132,6 +133,9 @@ export const api = {
     req(`/budgets/${id}/purchase-orders/${po}/convert`, { method: "POST", token }),
   removePo: (token: string, id: string, po: string) =>
     req(`/budgets/${id}/purchase-orders/${po}/delete`, { method: "POST", token }),
+
+  /** Public: TCMB USD/EUR + İstanbul pump prices (server-proxied, no CORS). */
+  rates: () => req<LiveRates>("/rates"),
 
   async accountingCsv(token: string, id: string): Promise<string> {
     const res = await fetch(SERVER + `/budgets/${id}/accounting.csv`, {

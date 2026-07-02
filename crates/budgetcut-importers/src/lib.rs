@@ -7,6 +7,8 @@
 
 #![forbid(unsafe_code)]
 
+pub mod rates;
+
 use std::collections::HashMap;
 use std::str::FromStr;
 

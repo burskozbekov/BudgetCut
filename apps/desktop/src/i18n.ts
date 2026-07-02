@@ -70,6 +70,10 @@ const resources = {
       dash_title: "Bütçeler",
       dash_name: "Bütçe adı",
       dash_seed: "Netflix CoA şablonuyla",
+      rates_title: "Günün kurları (TCMB döviz satış) — tıkla: yenile",
+      rates_fuel_title: "İstanbul Kurşunsuz 95 pompa fiyatı",
+      act_tevkifat_hint:
+        "2026: KDV dahil 12.000 TL altındaki işlemlerde kısmi tevkifat uygulanmaz.",
       upd_check: "Güncelle",
       upd_checking: "Kontrol ediliyor…",
       upd_current: "Güncel",
@@ -301,6 +305,10 @@ const resources = {
       dash_title: "Budgets",
       dash_name: "Budget name",
       dash_seed: "With Netflix CoA template",
+      rates_title: "Today's rates (TCMB forex selling) — click to refresh",
+      rates_fuel_title: "İstanbul unleaded 95 pump price",
+      act_tevkifat_hint:
+        "2026: partial VAT withholding does not apply below 12,000 TL (VAT incl.).",
       upd_check: "Update",
       upd_checking: "Checking…",
       upd_current: "Up to date",

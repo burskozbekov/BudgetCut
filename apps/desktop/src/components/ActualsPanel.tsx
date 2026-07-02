@@ -128,6 +128,7 @@ export default function ActualsPanel() {
         </div>
         <button className="auth-go" disabled={busy || !account} onClick={save}>{t("act_save")}</button>
       </div>
+      <p className="an-hint">{t("act_tevkifat_hint")}</p>
 
       <h2 className="tools-h">{t("act_variance_title")}</h2>
       <table>

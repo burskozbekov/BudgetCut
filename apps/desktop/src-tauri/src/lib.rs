@@ -460,6 +460,50 @@ fn load_sample(state: tauri::State<AppState>) -> Result<(), String> {
         .map_err(|e| e.to_string())
 }
 
+/// Fetch TCMB FX + İstanbul fuel prices (blocking helper for the command).
+fn fetch_live_rates_blocking() -> budgetcut_importers::rates::LiveRates {
+    use budgetcut_importers::rates::*;
+    let get = |url: &str| -> Option<String> {
+        ureq::get(url)
+            .timeout(std::time::Duration::from_secs(8))
+            .set("User-Agent", "BudgetCut/0.1")
+            .call()
+            .ok()?
+            .into_string()
+            .ok()
+    };
+    let mut out = LiveRates::default();
+    if let Some(xml) = get("https://www.tcmb.gov.tr/kurlar/today.xml") {
+        let (date, usd, eur) = parse_tcmb_xml(&xml);
+        out.date = date;
+        out.usd = usd;
+        out.eur = eur;
+    }
+    if let Some(json) =
+        get("https://api.opet.com.tr/api/fuelprices/prices?ProvinceCode=034&IncludeAllProducts=true")
+    {
+        let (b, m) = parse_opet_json(&json);
+        out.benzin = b;
+        out.motorin = m;
+    }
+    if out.benzin.is_none() {
+        if let Some(json) = get("https://hasanadiguzel.com.tr/api/akaryakit/sehir=ISTANBUL") {
+            let (b, m) = parse_ha_json(&json);
+            out.benzin = b;
+            out.motorin = out.motorin.or(m);
+        }
+    }
+    out
+}
+
+/// Today's TCMB USD/EUR + İstanbul pump prices for the top-right panel.
+#[tauri::command]
+async fn live_rates() -> budgetcut_importers::rates::LiveRates {
+    tauri::async_runtime::spawn_blocking(fetch_live_rates_blocking)
+        .await
+        .unwrap_or_default()
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
@@ -509,7 +553,8 @@ pub fn run() {
             approve_po,
             convert_po,
             remove_po,
-            load_sample
+            load_sample,
+            live_rates
         ])
         .run(tauri::generate_context!())
         .expect("error while running BudgetCut");

@@ -214,9 +214,55 @@ pub fn app(state: Arc<AppState>) -> Router {
         .route("/budgets/:id/purchase-orders/:po/approve", post(approve_po))
         .route("/budgets/:id/purchase-orders/:po/convert", post(convert_po))
         .route("/budgets/:id/purchase-orders/:po/delete", post(delete_po))
+        .route("/rates", get(get_live_rates))
         .route("/budgets/:id/ws", get(ws_handler))
         .layer(tower_http::cors::CorsLayer::permissive())
         .with_state(state)
+}
+
+/// Fetch TCMB FX + İstanbul fuel prices (blocking; call via spawn_blocking).
+/// Public data proxied so the browser client dodges CORS; every field optional.
+fn fetch_live_rates() -> budgetcut_importers::rates::LiveRates {
+    use budgetcut_importers::rates::*;
+    let get = |url: &str| -> Option<String> {
+        ureq::get(url)
+            .timeout(std::time::Duration::from_secs(8))
+            .set("User-Agent", "BudgetCut/0.1")
+            .call()
+            .ok()?
+            .into_string()
+            .ok()
+    };
+    let mut out = LiveRates::default();
+    if let Some(xml) = get("https://www.tcmb.gov.tr/kurlar/today.xml") {
+        let (date, usd, eur) = parse_tcmb_xml(&xml);
+        out.date = date;
+        out.usd = usd;
+        out.eur = eur;
+    }
+    if let Some(json) = get(
+        "https://api.opet.com.tr/api/fuelprices/prices?ProvinceCode=034&IncludeAllProducts=true",
+    ) {
+        let (b, m) = parse_opet_json(&json);
+        out.benzin = b;
+        out.motorin = m;
+    }
+    if out.benzin.is_none() {
+        if let Some(json) = get("https://hasanadiguzel.com.tr/api/akaryakit/sehir=ISTANBUL") {
+            let (b, m) = parse_ha_json(&json);
+            out.benzin = b;
+            out.motorin = out.motorin.or(m);
+        }
+    }
+    out
+}
+
+/// Today's TCMB USD/EUR + İstanbul pump prices for the top-right panel.
+async fn get_live_rates() -> Json<budgetcut_importers::rates::LiveRates> {
+    let rates = tokio::task::spawn_blocking(fetch_live_rates)
+        .await
+        .unwrap_or_default();
+    Json(rates)
 }
 
 // ---------------------------------------------------------------------------

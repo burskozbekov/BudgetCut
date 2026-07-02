@@ -14,6 +14,7 @@ import SettlementPanel from "./components/SettlementPanel";
 import SchedulePanel from "./components/SchedulePanel";
 import POPanel from "./components/POPanel";
 import TopActions from "./components/TopActions";
+import TopRates from "./components/TopRates";
 import CommandPalette from "./components/CommandPalette";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
@@ -75,6 +76,7 @@ export default function App() {
           {topsheet?.budget_name ?? "…"}
         </div>
         <div className="meta">
+          <TopRates />
           <div className="avatars" title="Presence">
             <span className="ava you">{online && s.userId ? initials(s.userId) : "SB"}</span>
             {online

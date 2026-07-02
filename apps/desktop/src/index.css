@@ -958,6 +958,38 @@ table .tot td {
   color: var(--accent);
   text-decoration: underline;
 }
+
+/* top-right live rates (TCMB FX + İstanbul fuel) */
+.rates {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--border-strong);
+  background: transparent;
+  border-radius: 999px;
+  padding: 4px 12px;
+  color: var(--text-dim);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.rates:hover {
+  border-color: var(--accent);
+}
+.rates.busy {
+  opacity: 0.6;
+}
+.rates .r-k {
+  color: var(--accent);
+  font-weight: 700;
+  margin-right: 2px;
+}
+.rates .r-unit {
+  color: var(--text-faint);
+  font-size: 10px;
+  margin-left: 2px;
+}
 .po-badge {
   font-size: 11px;
   padding: 2px 8px;

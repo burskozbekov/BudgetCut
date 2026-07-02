@@ -287,3 +287,13 @@ export interface AddPoInput {
   description?: string;
   amount: string;
 }
+
+// --- Live rates (TCMB FX + İstanbul fuel), mirror importers::rates ---
+
+export interface LiveRates {
+  date: string | null;
+  usd: string | null;
+  eur: string | null;
+  benzin: string | null;
+  motorin: string | null;
+}

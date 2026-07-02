@@ -195,11 +195,14 @@ pub fn turkish_fringes() -> Vec<Fringe> {
         },
         Fringe {
             id: FringeId::new(),
+            // 2026: employer share is 22.75% base (raised from 20.5%). With the
+            // non-manufacturing 2-point treasury discount the effective rate is
+            // 20.75% — override per line/production as applicable.
             code: "TR_SGK_ISVEREN".into(),
             name: Localized::bilingual("SGK İşveren Payı", "Employer Social Security"),
             kind: FringeKind::Percent,
             mode: FringeMode::Additive,
-            rate: dec!(0.205),
+            rate: dec!(0.2275),
             posting_level: PostingLevel::Detail,
             cutoff: None,
             cap: None,
