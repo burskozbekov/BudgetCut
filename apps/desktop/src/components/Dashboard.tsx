@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useApp } from "../store";
+import Logo from "./Logo";
 
 export default function Dashboard() {
   const { t } = useTranslation();
@@ -20,7 +21,7 @@ export default function Dashboard() {
     <div className="dash">
       <div className="dash-head">
         <div className="brand">
-          <span className="logo" /> {t("app")}
+          <Logo /> {t("app")}
         </div>
         <button className="auth-toggle" onClick={logout}>{t("logout")}</button>
       </div>

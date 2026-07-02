@@ -20,6 +20,7 @@ import SchedulePanel from "./components/SchedulePanel";
 import POPanel from "./components/POPanel";
 import TopActions from "./components/TopActions";
 import TopRates from "./components/TopRates";
+import Logo from "./components/Logo";
 import CommandPalette from "./components/CommandPalette";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
@@ -75,7 +76,7 @@ export default function App() {
     <div className="app">
       <div className="brand">
         <div className="brand-name">
-          <span className="logo" />
+          <Logo />
           {t("app")}
         </div>
         <TopActions />

@@ -77,11 +77,17 @@ body {
   font-weight: 650;
   letter-spacing: -0.01em;
 }
-.brand .logo {
-  width: 18px;
-  height: 18px;
+/* Brand mark (film-strip logo). Shared by the sidebar, login and dashboard. */
+.logo {
+  width: 20px;
+  height: 20px;
   border-radius: 5px;
-  background: linear-gradient(135deg, var(--accent), var(--net));
+  object-fit: contain;
+  flex: none;
+}
+.logo-lg {
+  width: 26px;
+  height: 26px;
 }
 .topbar {
   grid-area: topbar;

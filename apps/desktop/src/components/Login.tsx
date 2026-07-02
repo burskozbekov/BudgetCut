@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useApp } from "../store";
 import { api } from "../api";
+import Logo from "./Logo";
 
 export default function Login() {
   const { t } = useTranslation();
@@ -22,7 +23,7 @@ export default function Login() {
     <div className="auth-wrap">
       <form className="auth-card" onSubmit={submit}>
         <div className="auth-brand">
-          <span className="logo" /> {t("app")}
+          <Logo className="logo logo-lg" /> {t("app")}
         </div>
         <div className="auth-sub">{t("auth_sub")}</div>
         <label>{t("auth_email")}</label>
