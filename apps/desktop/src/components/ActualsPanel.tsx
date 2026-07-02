@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useApp } from "../store";
+import { bridge } from "../bridge";
 import { money } from "../fmt";
+import ReceiptScanPanel from "./ReceiptScanPanel";
 import type { ActualsReport } from "../types";
 
 // Turkish VAT-withholding (tevkifat) service types — the values must match the
@@ -38,6 +40,7 @@ export default function ActualsPanel() {
   const [kdv, setKdv] = useState("20");
   const [tevkifat, setTevkifat] = useState("");
   const [busy, setBusy] = useState(false);
+  const [scanOpen, setScanOpen] = useState(false);
 
   useEffect(() => {
     loadActuals().then(setReport);
@@ -87,7 +90,20 @@ export default function ActualsPanel() {
 
   return (
     <div className="an-panel">
-      <h2 className="tools-h">{t("act_record")}</h2>
+      <div className="an-head-row">
+        <h2 className="tools-h">{t("act_record")}</h2>
+        {bridge.inTauri && (
+          <button className="ta-btn rc-open" onClick={() => setScanOpen(true)}>📷 {t("rc_open")}</button>
+        )}
+      </div>
+      {scanOpen && (
+        <ReceiptScanPanel
+          onClose={() => {
+            setScanOpen(false);
+            loadActuals().then(setReport);
+          }}
+        />
+      )}
       <div className="an-form">
         <div className="an-field">
           <label>{t("act_account")}</label>

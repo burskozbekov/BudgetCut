@@ -27,6 +27,11 @@ import type {
   NetflixCashFlow,
   NetflixTrialInput,
   NetflixTrialBalance,
+  SettingsView,
+  SegmentResult,
+  BBox,
+  AccountHint,
+  ExtractResult,
 } from "./types";
 import demo from "./fixtures/demo.json";
 
@@ -194,5 +199,27 @@ export const bridge = {
   /** TCMB USD/EUR + İstanbul pump prices, fetched natively (native only). */
   async liveRates(): Promise<LiveRates | null> {
     return inTauri ? invoke<LiveRates>("live_rates") : null;
+  },
+
+  // --- Receipt-photo → Actuals (native only; needs local file + API key) ---
+  async getSettings(): Promise<SettingsView | null> {
+    return inTauri ? invoke<SettingsView>("get_settings") : null;
+  },
+  async setSettings(apiKey: string | null, model: string | null): Promise<SettingsView | null> {
+    return inTauri
+      ? invoke<SettingsView>("set_settings", { apiKey, model })
+      : null;
+  },
+  async segmentReceipts(image: string): Promise<SegmentResult> {
+    return invoke<SegmentResult>("segment_receipts", { image });
+  },
+  async extractReceipt(image: string, bbox: BBox, accounts: AccountHint[]): Promise<ExtractResult> {
+    return invoke<ExtractResult>("extract_receipt", { image, bbox, accounts });
+  },
+  async saveReceiptAttachment(actualId: string, composite: string, crop: string): Promise<void> {
+    if (inTauri) await invoke("save_receipt_attachment", { actualId, composite, crop });
+  },
+  async removeReceiptAttachment(actualId: string): Promise<void> {
+    if (inTauri) await invoke("remove_receipt_attachment", { actualId });
   },
 };

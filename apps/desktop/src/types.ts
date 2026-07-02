@@ -288,6 +288,49 @@ export interface AddPoInput {
   amount: string;
 }
 
+// --- Receipt-photo → Actuals ("Fiş ile Otomatik Fatura Kapama"), native-only ---
+
+export interface SettingsView {
+  api_key_set: boolean;
+  model: string;
+}
+
+export interface BBox {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+}
+
+export interface SegmentResult {
+  width: number;
+  height: number;
+  boxes: BBox[];
+}
+
+export interface AccountHint {
+  number: string;
+  name: string;
+}
+
+export interface ReceiptFields {
+  tedarikci: string | null;
+  tarih: string | null;
+  tutar_net: number | null;
+  kdv_tutari: number | null;
+  toplam_tutar: number | null;
+  para_birimi: string;
+  aciklama_onerisi: string | null;
+  hesap_kodu_onerisi: string | null;
+  alan_guven_skorlari: Record<string, number>;
+  ham_ocr_metni: string;
+}
+
+export interface ExtractResult {
+  fields: ReceiptFields;
+  crop_data_url: string;
+}
+
 // --- Netflix reporting suite, mirror view::Netflix*Dto ---
 
 export interface NetflixHeaderInput {

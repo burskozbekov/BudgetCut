@@ -26,7 +26,11 @@ budgetcut-core = { path = "../../../crates/budgetcut-core" }
 budgetcut-store = { path = "../../../crates/budgetcut-store" }
 budgetcut-export = { path = "../../../crates/budgetcut-export" }
 budgetcut-importers = { path = "../../../crates/budgetcut-importers" }
-ureq = "2"
+ureq = { version = "2", features = ["json"] }
+# Receipt-photo feature: decode/crop the composite image + auto-segment receipts.
+image = { version = "0.25", default-features = false, features = ["jpeg", "png"] }
+imageproc = "0.25"
+base64 = "0.22"
 
 # Pin: tauri's transitive `cookie 0.18.1` doesn't compile against time 0.3.52
 # (Parsable::parse signature change). 0.3.51 is the last compatible release.

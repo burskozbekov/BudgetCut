@@ -4,6 +4,8 @@
 //! `budgetcut-store::Session`, persisted to a local SQLite file. The frontend
 //! invokes these commands; there is no business math here (§4/§11).
 
+mod receipts;
+
 use std::str::FromStr;
 use std::sync::Mutex;
 
@@ -40,6 +42,72 @@ fn get_tree(state: tauri::State<AppState>) -> TreeDto {
 #[tauri::command]
 fn national_sheet(state: tauri::State<AppState>) -> NationalSheetDto {
     state.0.lock().unwrap().national_sheet()
+}
+
+// ---- Receipt-photo → Actuals ("Fiş ile Otomatik Fatura Kapama") ----
+
+#[tauri::command]
+fn get_settings(app: tauri::AppHandle) -> receipts::SettingsView {
+    receipts::settings_view(&app)
+}
+
+#[tauri::command]
+fn set_settings(
+    app: tauri::AppHandle,
+    api_key: Option<String>,
+    model: Option<String>,
+) -> Result<receipts::SettingsView, String> {
+    receipts::update_settings(&app, api_key, model)
+}
+
+/// Auto-detect receipt regions in a composite photo (base64 / data URL).
+#[tauri::command]
+fn segment_receipts(image: String) -> Result<receipts::SegmentResult, String> {
+    let bytes = receipts::decode_image_b64(&image)?;
+    receipts::segment(&bytes)
+}
+
+/// Crop one receipt and extract its fields via the Anthropic vision API.
+#[tauri::command]
+async fn extract_receipt(
+    app: tauri::AppHandle,
+    image: String,
+    bbox: receipts::BBox,
+    accounts: Vec<receipts::AccountHint>,
+) -> Result<receipts::ExtractResult, String> {
+    let settings = receipts::read_settings(&app);
+    tauri::async_runtime::spawn_blocking(move || {
+        let bytes = receipts::decode_image_b64(&image)?;
+        let crop = receipts::crop_png(&bytes, bbox)?;
+        let fields = receipts::extract_blocking(
+            &settings.anthropic_api_key,
+            &settings.anthropic_model,
+            &crop,
+            &accounts,
+        )?;
+        Ok(receipts::ExtractResult {
+            fields,
+            crop_data_url: receipts::png_data_url(&crop),
+        })
+    })
+    .await
+    .map_err(|e| e.to_string())?
+}
+
+/// Bind the composite photo + a receipt's crop to an Actual as audit evidence.
+#[tauri::command]
+fn save_receipt_attachment(
+    app: tauri::AppHandle,
+    actual_id: String,
+    composite: String,
+    crop: String,
+) -> Result<(), String> {
+    receipts::save_attachment(&app, &actual_id, &composite, &crop)
+}
+
+#[tauri::command]
+fn remove_receipt_attachment(app: tauri::AppHandle, actual_id: String) -> Result<(), String> {
+    receipts::remove_attachment(&app, &actual_id)
 }
 
 #[tauri::command]
@@ -89,7 +157,8 @@ fn set_global_by_name(
         .find(|g| g.name == name)
         .map(|g| g.id)
         .ok_or_else(|| format!("global bulunamadı: {name}"))?;
-    s.set_global(gid, Formula::Const(v)).map_err(|e| e.to_string())?;
+    s.set_global(gid, Formula::Const(v))
+        .map_err(|e| e.to_string())?;
     Ok(())
 }
 
@@ -124,7 +193,12 @@ fn set_detail_field(
         "rate" => DetailField::Rate(parse_formula(&value)),
         other => return Err(format!("bilinmeyen alan: {other}")),
     };
-    state.0.lock().unwrap().set_detail_field(did, f).map_err(|e| e.to_string())?;
+    state
+        .0
+        .lock()
+        .unwrap()
+        .set_detail_field(did, f)
+        .map_err(|e| e.to_string())?;
     Ok(())
 }
 
@@ -154,13 +228,16 @@ fn set_detail_fringes(
                 .map(|f| f.id)
                 .ok_or(format!("fringe yok: {}", fr.code))?;
             v.push(match &fr.rate {
-                Some(r) => AppliedFringe::with_rate(fid, Decimal::from_str(r).unwrap_or(Decimal::ZERO)),
+                Some(r) => {
+                    AppliedFringe::with_rate(fid, Decimal::from_str(r).unwrap_or(Decimal::ZERO))
+                }
                 None => AppliedFringe::new(fid),
             });
         }
         v
     };
-    s.set_detail_field(did, DetailField::Fringes(applied)).map_err(|e| e.to_string())?;
+    s.set_detail_field(did, DetailField::Fringes(applied))
+        .map_err(|e| e.to_string())?;
     Ok(())
 }
 
@@ -210,7 +287,12 @@ fn add_line(state: tauri::State<AppState>, account: String) -> Result<String, St
 #[tauri::command]
 fn remove_line(state: tauri::State<AppState>, detail: String) -> Result<(), String> {
     let did = DetailId::from_uuid(uuid_parse(&detail)?);
-    state.0.lock().unwrap().remove_detail(did).map_err(|e| e.to_string())?;
+    state
+        .0
+        .lock()
+        .unwrap()
+        .remove_detail(did)
+        .map_err(|e| e.to_string())?;
     Ok(())
 }
 
@@ -234,9 +316,16 @@ fn series_summary(
 
 /// Incentive estimates (Turkish presets). Qualifying defaults to net total.
 #[tauri::command]
-fn incentive_report(state: tauri::State<AppState>, qualifying: Option<String>) -> IncentiveReportDto {
+fn incentive_report(
+    state: tauri::State<AppState>,
+    qualifying: Option<String>,
+) -> IncentiveReportDto {
     let s = state.0.lock().unwrap();
-    let q = match qualifying.as_deref().map(str::trim).filter(|s| !s.is_empty()) {
+    let q = match qualifying
+        .as_deref()
+        .map(str::trim)
+        .filter(|s| !s.is_empty())
+    {
         Some(v) => Decimal::from_str(v).unwrap_or_else(|_| evaluate(s.budget()).net_total),
         None => evaluate(s.budget()).net_total,
     };
@@ -289,10 +378,19 @@ fn add_actual(state: tauri::State<AppState>, arg: AddActualArg) -> Result<String
         net,
         stopaj_rate: rate(&arg.stopaj_rate),
         kdv_rate: rate(&arg.kdv_rate),
-        tevkifat_rate: arg.tevkifat_kind.as_deref().map(tevkifat_rate).unwrap_or(Decimal::ZERO),
+        tevkifat_rate: arg
+            .tevkifat_kind
+            .as_deref()
+            .map(tevkifat_rate)
+            .unwrap_or(Decimal::ZERO),
     };
     let id = a.id.to_string();
-    state.0.lock().unwrap().add_actual(a).map_err(|e| e.to_string())?;
+    state
+        .0
+        .lock()
+        .unwrap()
+        .add_actual(a)
+        .map_err(|e| e.to_string())?;
     Ok(id)
 }
 
@@ -300,7 +398,12 @@ fn add_actual(state: tauri::State<AppState>, arg: AddActualArg) -> Result<String
 #[tauri::command]
 fn remove_actual(state: tauri::State<AppState>, actual: String) -> Result<(), String> {
     let aid = uuid_parse(&actual)?;
-    state.0.lock().unwrap().remove_actual(aid).map_err(|e| e.to_string())?;
+    state
+        .0
+        .lock()
+        .unwrap()
+        .remove_actual(aid)
+        .map_err(|e| e.to_string())?;
     Ok(())
 }
 
@@ -345,7 +448,12 @@ fn add_receipt(state: tauri::State<AppState>, arg: AddReceiptArg) -> Result<Stri
         kdv_rate: Decimal::from_str(arg.kdv_rate.trim()).unwrap_or(Decimal::ZERO),
     };
     let id = r.id.to_string();
-    state.0.lock().unwrap().add_receipt(r).map_err(|e| e.to_string())?;
+    state
+        .0
+        .lock()
+        .unwrap()
+        .add_receipt(r)
+        .map_err(|e| e.to_string())?;
     Ok(id)
 }
 
@@ -353,7 +461,12 @@ fn add_receipt(state: tauri::State<AppState>, arg: AddReceiptArg) -> Result<Stri
 #[tauri::command]
 fn remove_receipt(state: tauri::State<AppState>, receipt: String) -> Result<(), String> {
     let rid = uuid_parse(&receipt)?;
-    state.0.lock().unwrap().remove_receipt(rid).map_err(|e| e.to_string())?;
+    state
+        .0
+        .lock()
+        .unwrap()
+        .remove_receipt(rid)
+        .map_err(|e| e.to_string())?;
     Ok(())
 }
 
@@ -387,7 +500,12 @@ fn add_strip(state: tauri::State<AppState>, arg: AddStripArg) -> Result<String, 
         elements: arg.elements,
     };
     let id = s.id.to_string();
-    state.0.lock().unwrap().add_strip(s).map_err(|e| e.to_string())?;
+    state
+        .0
+        .lock()
+        .unwrap()
+        .add_strip(s)
+        .map_err(|e| e.to_string())?;
     Ok(id)
 }
 
@@ -395,7 +513,12 @@ fn add_strip(state: tauri::State<AppState>, arg: AddStripArg) -> Result<String, 
 #[tauri::command]
 fn remove_strip(state: tauri::State<AppState>, strip: String) -> Result<(), String> {
     let sid = uuid_parse(&strip)?;
-    state.0.lock().unwrap().remove_strip(sid).map_err(|e| e.to_string())?;
+    state
+        .0
+        .lock()
+        .unwrap()
+        .remove_strip(sid)
+        .map_err(|e| e.to_string())?;
     Ok(())
 }
 
@@ -421,7 +544,8 @@ struct AddPoArg {
 #[tauri::command]
 fn add_po(state: tauri::State<AppState>, arg: AddPoArg) -> Result<String, String> {
     let account = AccountId::from_uuid(uuid_parse(&arg.account)?);
-    let amount = Decimal::from_str(arg.amount.trim()).map_err(|e| format!("geçersiz tutar: {e}"))?;
+    let amount =
+        Decimal::from_str(arg.amount.trim()).map_err(|e| format!("geçersiz tutar: {e}"))?;
     let po = PurchaseOrder {
         id: uuid::Uuid::now_v7(),
         account,
@@ -432,7 +556,12 @@ fn add_po(state: tauri::State<AppState>, arg: AddPoArg) -> Result<String, String
         status: POStatus::Draft,
     };
     let id = po.id.to_string();
-    state.0.lock().unwrap().put_purchase_order(po).map_err(|e| e.to_string())?;
+    state
+        .0
+        .lock()
+        .unwrap()
+        .put_purchase_order(po)
+        .map_err(|e| e.to_string())?;
     Ok(id)
 }
 
@@ -479,7 +608,12 @@ fn convert_po(state: tauri::State<AppState>, po: String) -> Result<(), String> {
 #[tauri::command]
 fn remove_po(state: tauri::State<AppState>, po: String) -> Result<(), String> {
     let pid = uuid_parse(&po)?;
-    state.0.lock().unwrap().remove_purchase_order(pid).map_err(|e| e.to_string())?;
+    state
+        .0
+        .lock()
+        .unwrap()
+        .remove_purchase_order(pid)
+        .map_err(|e| e.to_string())?;
     Ok(())
 }
 
@@ -513,9 +647,9 @@ fn fetch_live_rates_blocking() -> budgetcut_importers::rates::LiveRates {
         out.usd = usd;
         out.eur = eur;
     }
-    if let Some(json) =
-        get("https://api.opet.com.tr/api/fuelprices/prices?ProvinceCode=034&IncludeAllProducts=true")
-    {
+    if let Some(json) = get(
+        "https://api.opet.com.tr/api/fuelprices/prices?ProvinceCode=034&IncludeAllProducts=true",
+    ) {
         let (b, m) = parse_opet_json(&json);
         out.benzin = b;
         out.motorin = m;
@@ -593,7 +727,13 @@ pub fn run() {
             netflix_budget,
             netflix_cost_report,
             netflix_cash_flow,
-            netflix_trial_balance
+            netflix_trial_balance,
+            get_settings,
+            set_settings,
+            segment_receipts,
+            extract_receipt,
+            save_receipt_attachment,
+            remove_receipt_attachment
         ])
         .run(tauri::generate_context!())
         .expect("error while running BudgetCut");
