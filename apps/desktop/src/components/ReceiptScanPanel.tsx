@@ -69,6 +69,7 @@ export default function ReceiptScanPanel({ onClose }: { onClose: () => void }) {
   const [step, setStep] = useState<"pick" | "boxes" | "review">("pick");
   const [settings, setSettings] = useState<SettingsView | null>(null);
   const [keyInput, setKeyInput] = useState("");
+  const [showKey, setShowKey] = useState(false);
   const [composite, setComposite] = useState<string>(""); // data URL
   const [dims, setDims] = useState<{ w: number; h: number }>({ w: 1, h: 1 });
   const [boxes, setBoxes] = useState<BBox[]>([]);
@@ -88,8 +89,20 @@ export default function ReceiptScanPanel({ onClose }: { onClose: () => void }) {
     if (s) {
       setSettings(s);
       setKeyInput("");
+      setShowKey(false);
     }
   };
+
+  const changeModel = async (model: string) => {
+    const s = await bridge.setSettings(null, model);
+    if (s) setSettings(s);
+  };
+
+  const MODELS = [
+    { id: "claude-sonnet-5", label: `Sonnet 5 — ${t("rc_model_balanced")}` },
+    { id: "claude-opus-4-8", label: `Opus 4.8 — ${t("rc_model_best")}` },
+    { id: "claude-haiku-4-5-20251001", label: `Haiku 4.5 — ${t("rc_model_fast")}` },
+  ];
 
   const onFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -303,17 +316,35 @@ export default function ReceiptScanPanel({ onClose }: { onClose: () => void }) {
           <button className="del" onClick={onClose}>×</button>
         </div>
 
-        {/* API key gate */}
-        {settings && !settings.api_key_set && (
+        {/* Model + API key settings */}
+        {settings && (
           <div className="rc-keybar">
-            <span>{t("rc_need_key")}</span>
-            <input
-              type="password"
-              placeholder="sk-ant-…"
-              value={keyInput}
-              onChange={(e) => setKeyInput(e.target.value)}
-            />
-            <button className="ta-btn" disabled={!keyInput.trim()} onClick={saveKey}>{t("rc_save_key")}</button>
+            <label>{t("rc_model")}</label>
+            <select value={settings.model} onChange={(e) => changeModel(e.target.value)}>
+              {MODELS.every((m) => m.id !== settings.model) && (
+                <option value={settings.model}>{settings.model}</option>
+              )}
+              {MODELS.map((m) => (
+                <option key={m.id} value={m.id}>{m.label}</option>
+              ))}
+            </select>
+            {settings.api_key_set && !showKey ? (
+              <>
+                <span className="rc-key-ok">✓ {t("rc_key_ok")}</span>
+                <button className="ta-link" onClick={() => setShowKey(true)}>{t("rc_change_key")}</button>
+              </>
+            ) : (
+              <>
+                {!settings.api_key_set && <span>{t("rc_need_key")}</span>}
+                <input
+                  type="password"
+                  placeholder="sk-ant-…"
+                  value={keyInput}
+                  onChange={(e) => setKeyInput(e.target.value)}
+                />
+                <button className="ta-btn" disabled={!keyInput.trim()} onClick={saveKey}>{t("rc_save_key")}</button>
+              </>
+            )}
           </div>
         )}
 

@@ -1231,6 +1231,13 @@ table .tot td {
   flex: 1;
   min-width: 200px;
 }
+.rc-keybar select {
+  min-width: 220px;
+}
+.rc-key-ok {
+  color: var(--net, #46a758);
+  font-size: 12px;
+}
 .rc-error {
   background: rgba(229, 72, 77, 0.12);
   border: 1px solid var(--danger, #e5484d);
