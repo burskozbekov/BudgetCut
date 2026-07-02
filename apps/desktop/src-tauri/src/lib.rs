@@ -17,7 +17,10 @@ use budgetcut_core::view::{
     ScheduleDto, SeriesSummaryDto, SettlementReportDto,
 };
 use budgetcut_core::*;
-use budgetcut_store::dto::{NationalSheetDto, ToolsDto, TopsheetDto, TreeDto};
+use budgetcut_store::dto::{
+    NationalSheetDto, NetflixBudgetDto, NetflixCashFlowDto, NetflixCashInput, NetflixCostReportDto,
+    NetflixHeaderInput, NetflixTrialBalanceDto, NetflixTrialInput, ToolsDto, TopsheetDto, TreeDto,
+};
 use budgetcut_store::{Session, Store};
 use rust_decimal::Decimal;
 use tauri::Manager;
@@ -37,6 +40,32 @@ fn get_tree(state: tauri::State<AppState>) -> TreeDto {
 #[tauri::command]
 fn national_sheet(state: tauri::State<AppState>) -> NationalSheetDto {
     state.0.lock().unwrap().national_sheet()
+}
+
+#[tauri::command]
+fn netflix_budget(state: tauri::State<AppState>, header: NetflixHeaderInput) -> NetflixBudgetDto {
+    state.0.lock().unwrap().netflix_budget(&header)
+}
+
+#[tauri::command]
+fn netflix_cost_report(
+    state: tauri::State<AppState>,
+    header: NetflixHeaderInput,
+) -> NetflixCostReportDto {
+    state.0.lock().unwrap().netflix_cost_report(&header)
+}
+
+#[tauri::command]
+fn netflix_cash_flow(state: tauri::State<AppState>, input: NetflixCashInput) -> NetflixCashFlowDto {
+    state.0.lock().unwrap().netflix_cash_flow(&input)
+}
+
+#[tauri::command]
+fn netflix_trial_balance(
+    state: tauri::State<AppState>,
+    input: NetflixTrialInput,
+) -> NetflixTrialBalanceDto {
+    state.0.lock().unwrap().netflix_trial_balance(&input)
 }
 
 #[tauri::command]
@@ -560,7 +589,11 @@ pub fn run() {
             remove_po,
             load_sample,
             live_rates,
-            national_sheet
+            national_sheet,
+            netflix_budget,
+            netflix_cost_report,
+            netflix_cash_flow,
+            netflix_trial_balance
         ])
         .run(tauri::generate_context!())
         .expect("error while running BudgetCut");

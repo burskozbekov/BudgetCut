@@ -288,6 +288,143 @@ export interface AddPoInput {
   amount: string;
 }
 
+// --- Netflix reporting suite, mirror view::Netflix*Dto ---
+
+export interface NetflixHeaderInput {
+  budget_version?: string;
+  episodes?: number | null;
+  min_per_episode?: string;
+  exec_producers?: string;
+  director?: string;
+  prepared_by?: string;
+  budget_date?: string;
+  shoot_weeks?: string;
+  post_weeks?: string;
+  fx_note?: string;
+  signed_agreement?: string;
+  period_no?: string;
+  period_start?: string;
+  period_end?: string;
+}
+
+export interface NetflixTopsheetRow {
+  number: string;
+  name: string;
+  subtotal: string;
+  fringe_total: string;
+  total: string;
+}
+export interface NetflixSection {
+  group_key: string;
+  atl_btl: string;
+  rows: NetflixTopsheetRow[];
+  subtotal: string;
+  fringe_total: string;
+  total: string;
+}
+export interface NetflixBudget {
+  budget_name: string;
+  base_currency: string;
+  budget_version: string;
+  episodes: number | null;
+  min_per_episode: string;
+  cost_per_episode: string;
+  exec_producers: string;
+  director: string;
+  prepared_by: string;
+  budget_date: string;
+  shoot_weeks: string;
+  post_weeks: string;
+  fx_note: string;
+  sections: NetflixSection[];
+  atl_total: string;
+  btl_total: string;
+  ab_total: string;
+  grand_total: string;
+  error_count: number;
+}
+
+export interface NetflixCostRow {
+  number: string;
+  name: string;
+  group_key: string;
+  actuals_period: string;
+  actuals_to_date: string;
+  commitments: string;
+  total_costs: string;
+  etc: string;
+  efc: string;
+  budget: string;
+  variance: string;
+  over: boolean;
+}
+export interface NetflixCostReport {
+  budget_name: string;
+  base_currency: string;
+  period_no: string;
+  period_start: string;
+  period_end: string;
+  episodes: number | null;
+  total_production: string;
+  cost_per_episode: string;
+  signed_agreement: string;
+  group_rows: NetflixCostRow[];
+  account_rows: NetflixCostRow[];
+  grand: NetflixCostRow;
+}
+
+export interface NetflixCashInput {
+  project_start?: string;
+  weeks?: number | null;
+  level?: string;
+}
+export interface NetflixWeek {
+  index: number;
+  ending_date: string;
+}
+export interface NetflixCashRow {
+  number: string;
+  name: string;
+  payments_ytd: string;
+  weekly: string[];
+}
+export interface NetflixCashFlow {
+  budget_name: string;
+  base_currency: string;
+  level: string;
+  project_start: string;
+  weeks: NetflixWeek[];
+  rows: NetflixCashRow[];
+  week_totals: string[];
+  ytd_total: string;
+  undated: string;
+}
+
+export interface NetflixTrialInput {
+  bank_balance?: string;
+  show_name?: string;
+  season?: string;
+  date?: string;
+  period_ending?: string;
+}
+export interface TrialBalanceRow {
+  kind: string;
+  name: string;
+  amount: string;
+  note: string;
+  computed: boolean;
+}
+export interface NetflixTrialBalance {
+  budget_name: string;
+  show_name: string;
+  season: string;
+  date: string;
+  period_ending: string;
+  base_currency: string;
+  rows: TrialBalanceRow[];
+  total: string;
+}
+
 // --- Ulusal Dizi Formatı (national dizi sheet), mirror view::NationalSheetDto ---
 
 export interface NationalRow {

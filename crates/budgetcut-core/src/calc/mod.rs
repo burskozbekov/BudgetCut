@@ -636,6 +636,133 @@ pub fn category_is_atl(budget: &Budget, cat: &Category) -> bool {
     }
 }
 
+/// The Netflix cost-report / topsheet reporting bucket for an account or
+/// category, derived purely from its **code**. A display/rollup grouping only —
+/// it does not touch the stored `atl_btl` classification or the ProductionTotal
+/// boundary (those stay authoritative for the real ATL/BTL split).
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum NetflixGroup {
+    Atl,
+    BtlProduction,
+    Post,
+    Music,
+    Vfx,
+    Other,
+    MiscIncentives,
+}
+
+impl NetflixGroup {
+    /// Stable key used in DTOs and mapped to a localized label in the UI.
+    #[must_use]
+    pub fn key(&self) -> &'static str {
+        match self {
+            NetflixGroup::Atl => "ATL",
+            NetflixGroup::BtlProduction => "BTL",
+            NetflixGroup::Post => "POST",
+            NetflixGroup::Music => "MUSIC",
+            NetflixGroup::Vfx => "VFX",
+            NetflixGroup::Other => "OTHER",
+            NetflixGroup::MiscIncentives => "MISC",
+        }
+    }
+}
+
+/// Map a Netflix CoA code (category or account number, e.g. `"1100"`, `"6100"`)
+/// to its reporting group. Total and panic-free: leading non-digits/garbage and
+/// unknown bands fall through to [`NetflixGroup::Other`] so no line is dropped.
+/// The two 6xxx bands are checked before the generic ranges so MUSIC (6000) and
+/// VFX (6100) are never conflated.
+#[must_use]
+pub fn nflx_group(number: &str) -> NetflixGroup {
+    let digits: String = number
+        .trim()
+        .chars()
+        .take_while(|c| c.is_ascii_digit())
+        .collect();
+    let Ok(n) = digits.parse::<u32>() else {
+        return NetflixGroup::Other;
+    };
+    match n {
+        1000..=1999 => NetflixGroup::Atl,
+        2000..=4999 => NetflixGroup::BtlProduction,
+        5000..=5999 => NetflixGroup::Post,
+        6000..=6099 => NetflixGroup::Music,
+        6100..=6199 => NetflixGroup::Vfx,
+        7900 | 8100 | 8000..=8199 => NetflixGroup::MiscIncentives,
+        7000..=7999 => NetflixGroup::Other,
+        6200..=6999 => NetflixGroup::Other,
+        _ => NetflixGroup::Other,
+    }
+}
+
+/// Days since the civil epoch (1970-01-01) for a `YYYY-MM-DD`, `DD.MM.YYYY` or
+/// `DD/MM/YYYY` date string. `None` for blank/garbage — callers route undated
+/// rows to the "to-date"/spillover bucket rather than dropping them. Hand-rolled
+/// (core carries no `chrono` dependency) via Howard Hinnant's `days_from_civil`.
+#[must_use]
+pub fn parse_iso_days(s: &str) -> Option<i64> {
+    let t = s.trim();
+    if t.is_empty() {
+        return None;
+    }
+    let (y, m, d) = match t.split_once('-') {
+        // YYYY-MM-DD — only when the first field is a 4-digit year, so a
+        // dash-separated day-first date ("08-03-2021") is rejected as None
+        // rather than silently misparsed.
+        Some((y, rest)) if y.len() == 4 => {
+            let (mo, da) = rest.split_once('-')?;
+            (
+                y.parse::<i64>().ok()?,
+                mo.parse::<u32>().ok()?,
+                da.trim().get(..2).unwrap_or(da).parse::<u32>().ok()?,
+            )
+        }
+        Some(_) => return None,
+        // DD.MM.YYYY or DD/MM/YYYY
+        None => {
+            let sep = if t.contains('.') {
+                '.'
+            } else if t.contains('/') {
+                '/'
+            } else {
+                return None;
+            };
+            let mut it = t.split(sep);
+            let da = it.next()?.parse::<u32>().ok()?;
+            let mo = it.next()?.parse::<u32>().ok()?;
+            let y = it.next()?.trim().parse::<i64>().ok()?;
+            (y, mo, da)
+        }
+    };
+    if !(1..=12).contains(&m) || !(1..=31).contains(&d) {
+        return None;
+    }
+    let y = if m <= 2 { y - 1 } else { y };
+    let era = if y >= 0 { y } else { y - 399 } / 400;
+    let yoe = y - era * 400;
+    let mp = ((m + 9) % 12) as i64;
+    let doy = (153 * mp + 2) / 5 + d as i64 - 1;
+    let doe = yoe * 365 + yoe / 4 - yoe / 100 + doy;
+    Some(era * 146097 + doe - 719468)
+}
+
+/// Inverse of [`parse_iso_days`]: render a civil-epoch day count back to a
+/// `YYYY-MM-DD` string (used for cash-flow week-ending column labels).
+#[must_use]
+pub fn iso_from_days(days: i64) -> String {
+    let z = days + 719468;
+    let era = if z >= 0 { z } else { z - 146096 } / 146097;
+    let doe = z - era * 146097;
+    let yoe = (doe - doe / 1460 + doe / 36524 - doe / 146096) / 365;
+    let y = yoe + era * 400;
+    let doy = doe - (365 * yoe + yoe / 4 - yoe / 100);
+    let mp = (5 * doy + 2) / 153;
+    let d = doy - (153 * mp + 2) / 5 + 1;
+    let m = if mp < 10 { mp + 3 } else { mp - 9 };
+    let y = if m <= 2 { y + 1 } else { y };
+    format!("{y:04}-{m:02}-{d:02}")
+}
+
 /// Determine the ATL/BTL split from the category rollups.
 fn split_atl_btl(budget: &Budget, categories: &HashMap<CategoryId, Rollup>) -> (Rollup, Rollup) {
     let mut atl = Rollup::default();
@@ -825,5 +952,44 @@ mod tests {
         let res = evaluate(&b);
         assert_eq!(res.categories[&cid].subtotal, dec!(0));
         assert_eq!(res.total.subtotal, dec!(0));
+    }
+
+    #[test]
+    fn nflx_group_maps_code_bands_incl_6xxx_specials() {
+        use NetflixGroup::*;
+        assert_eq!(nflx_group("1100"), Atl);
+        assert_eq!(nflx_group("1999"), Atl);
+        assert_eq!(nflx_group("2000"), BtlProduction);
+        assert_eq!(nflx_group("4999"), BtlProduction);
+        assert_eq!(nflx_group("5000"), Post);
+        assert_eq!(nflx_group("5999"), Post);
+        assert_eq!(nflx_group("6000"), Music); // MUSIC before the 6xxx band
+        assert_eq!(nflx_group("6099"), Music);
+        assert_eq!(nflx_group("6100"), Vfx); // VFX, not conflated with MUSIC
+        assert_eq!(nflx_group("6199"), Vfx);
+        assert_eq!(nflx_group("6200"), Other);
+        assert_eq!(nflx_group("7000"), Other);
+        assert_eq!(nflx_group("7900"), MiscIncentives);
+        assert_eq!(nflx_group("8100"), MiscIncentives);
+        // Total & panic-free on junk.
+        assert_eq!(nflx_group(""), Other);
+        assert_eq!(nflx_group("abc"), Other);
+        assert_eq!(nflx_group("1100-ATL"), Atl);
+    }
+
+    #[test]
+    fn iso_date_parses_all_formats_and_roundtrips() {
+        let a = parse_iso_days("2021-03-08").unwrap();
+        assert_eq!(parse_iso_days("08.03.2021"), Some(a));
+        assert_eq!(parse_iso_days("08/03/2021"), Some(a));
+        // A week later is +7 days.
+        assert_eq!(parse_iso_days("2021-03-15"), Some(a + 7));
+        assert_eq!(parse_iso_days(""), None);
+        assert_eq!(parse_iso_days("not a date"), None);
+        assert_eq!(parse_iso_days("2021-13-01"), None); // bad month
+                                                        // Dash-separated day-first is ambiguous → rejected (not misparsed).
+        assert_eq!(parse_iso_days("08-03-2021"), None);
+        assert_eq!(iso_from_days(a), "2021-03-08");
+        assert_eq!(iso_from_days(0), "1970-01-01"); // civil epoch
     }
 }

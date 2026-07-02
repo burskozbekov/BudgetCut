@@ -22,7 +22,24 @@ import type {
   PurchaseOrders,
   AddPoInput,
   LiveRates,
+  NetflixHeaderInput,
+  NetflixBudget,
+  NetflixCostReport,
+  NetflixCashInput,
+  NetflixCashFlow,
+  NetflixTrialInput,
+  NetflixTrialBalance,
 } from "./types";
+
+// Build a query string from a params object, skipping empty/undefined values.
+function qs(obj: object): string {
+  const p = new URLSearchParams();
+  for (const [k, v] of Object.entries(obj)) {
+    if (v !== undefined && v !== null && v !== "") p.set(k, String(v));
+  }
+  const s = p.toString();
+  return s ? `?${s}` : "";
+}
 
 const SERVER =
   (import.meta as any).env?.VITE_SERVER_URL ?? "http://127.0.0.1:8787";
@@ -73,6 +90,15 @@ export const api = {
   tree: (token: string, id: string) => req<Tree>(`/budgets/${id}/tree`, { token }),
   nationalSheet: (token: string, id: string) =>
     req<NationalSheet>(`/budgets/${id}/national-sheet`, { token }),
+
+  netflixBudget: (token: string, id: string, h: NetflixHeaderInput) =>
+    req<NetflixBudget>(`/budgets/${id}/netflix/budget${qs(h)}`, { token }),
+  netflixCostReport: (token: string, id: string, h: NetflixHeaderInput) =>
+    req<NetflixCostReport>(`/budgets/${id}/netflix/cost-report${qs(h)}`, { token }),
+  netflixCashFlow: (token: string, id: string, i: NetflixCashInput) =>
+    req<NetflixCashFlow>(`/budgets/${id}/netflix/cash-flow${qs(i)}`, { token }),
+  netflixTrialBalance: (token: string, id: string, i: NetflixTrialInput) =>
+    req<NetflixTrialBalance>(`/budgets/${id}/netflix/trial-balance${qs(i)}`, { token }),
   tools: (token: string, id: string) => req<Tools>(`/budgets/${id}/tools`, { token }),
 
   setGlobal: (token: string, id: string, name: string, value: string) =>

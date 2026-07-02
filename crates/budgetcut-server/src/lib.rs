@@ -32,8 +32,9 @@ use budgetcut_core::scheduling::Strip;
 use budgetcut_core::settlement::Receipt;
 use budgetcut_core::view::{
     series_summary_for, ActualsReportDto, AmortInput, ComparisonDto, IncentiveReportDto,
-    NationalSheetDto, PurchaseOrdersDto, ScheduleDto, SeriesSummaryDto, SettlementReportDto,
-    ToolsDto, TopsheetDto, TreeDto,
+    NationalSheetDto, NetflixBudgetDto, NetflixCashFlowDto, NetflixCashInput, NetflixCostReportDto,
+    NetflixHeaderInput, NetflixTrialBalanceDto, NetflixTrialInput, PurchaseOrdersDto, ScheduleDto,
+    SeriesSummaryDto, SettlementReportDto, ToolsDto, TopsheetDto, TreeDto,
 };
 use budgetcut_core::{
     evaluate, AppliedFringe, ApplyResult, Budget, Detail, DetailField, Document, Formula, Fringe,
@@ -177,6 +178,10 @@ pub fn app(state: Arc<AppState>) -> Router {
         .route("/budgets/:id/topsheet", get(get_topsheet))
         .route("/budgets/:id/tree", get(get_tree))
         .route("/budgets/:id/national-sheet", get(get_national_sheet))
+        .route("/budgets/:id/netflix/budget", get(get_netflix_budget))
+        .route("/budgets/:id/netflix/cost-report", get(get_netflix_cost))
+        .route("/budgets/:id/netflix/cash-flow", get(get_netflix_cash))
+        .route("/budgets/:id/netflix/trial-balance", get(get_netflix_trial))
         .route("/budgets/:id/tools", get(get_tools))
         .route("/budgets/:id/members", post(add_member))
         .route("/budgets/:id/duplicate", post(duplicate_budget))
@@ -868,6 +873,75 @@ async fn get_national_sheet(
         .ok_or(err(StatusCode::NOT_FOUND, "no such budget"))?;
     let r = evaluate(&room.doc.budget);
     Ok(Json(NationalSheetDto::build(&room.doc.budget, &r)))
+}
+
+async fn get_netflix_budget(
+    State(state): State<Arc<AppState>>,
+    AuthUser(uid): AuthUser,
+    Path(id): Path<String>,
+    Query(h): Query<NetflixHeaderInput>,
+) -> ApiResult<NetflixBudgetDto> {
+    let bid = parse_budget_id(&id)?;
+    let inner = state.lock();
+    effective_membership(&inner, uid, bid).ok_or(err(StatusCode::FORBIDDEN, "not a member"))?;
+    let room = inner
+        .budgets
+        .get(&bid)
+        .ok_or(err(StatusCode::NOT_FOUND, "no such budget"))?;
+    let r = evaluate(&room.doc.budget);
+    Ok(Json(NetflixBudgetDto::build(&room.doc.budget, &r, &h)))
+}
+
+async fn get_netflix_cost(
+    State(state): State<Arc<AppState>>,
+    AuthUser(uid): AuthUser,
+    Path(id): Path<String>,
+    Query(h): Query<NetflixHeaderInput>,
+) -> ApiResult<NetflixCostReportDto> {
+    let bid = parse_budget_id(&id)?;
+    let inner = state.lock();
+    effective_membership(&inner, uid, bid).ok_or(err(StatusCode::FORBIDDEN, "not a member"))?;
+    let room = inner
+        .budgets
+        .get(&bid)
+        .ok_or(err(StatusCode::NOT_FOUND, "no such budget"))?;
+    let r = evaluate(&room.doc.budget);
+    Ok(Json(NetflixCostReportDto::build(&room.doc.budget, &r, &h)))
+}
+
+async fn get_netflix_cash(
+    State(state): State<Arc<AppState>>,
+    AuthUser(uid): AuthUser,
+    Path(id): Path<String>,
+    Query(input): Query<NetflixCashInput>,
+) -> ApiResult<NetflixCashFlowDto> {
+    let bid = parse_budget_id(&id)?;
+    let inner = state.lock();
+    effective_membership(&inner, uid, bid).ok_or(err(StatusCode::FORBIDDEN, "not a member"))?;
+    let room = inner
+        .budgets
+        .get(&bid)
+        .ok_or(err(StatusCode::NOT_FOUND, "no such budget"))?;
+    Ok(Json(NetflixCashFlowDto::build(&room.doc.budget, &input)))
+}
+
+async fn get_netflix_trial(
+    State(state): State<Arc<AppState>>,
+    AuthUser(uid): AuthUser,
+    Path(id): Path<String>,
+    Query(input): Query<NetflixTrialInput>,
+) -> ApiResult<NetflixTrialBalanceDto> {
+    let bid = parse_budget_id(&id)?;
+    let inner = state.lock();
+    effective_membership(&inner, uid, bid).ok_or(err(StatusCode::FORBIDDEN, "not a member"))?;
+    let room = inner
+        .budgets
+        .get(&bid)
+        .ok_or(err(StatusCode::NOT_FOUND, "no such budget"))?;
+    Ok(Json(NetflixTrialBalanceDto::build(
+        &room.doc.budget,
+        &input,
+    )))
 }
 
 async fn get_tools(

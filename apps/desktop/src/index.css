@@ -1177,6 +1177,209 @@ table .tot td {
   }
 }
 
+/* --- Netflix reporting suite --- */
+.nav-parent {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  padding: 7px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+}
+.nav-parent:hover {
+  background: var(--surface-2, rgba(255, 255, 255, 0.04));
+}
+.nav-parent.active {
+  color: var(--accent);
+}
+.nav-parent .caret {
+  font-size: 9px;
+  transition: transform 0.12s;
+  color: var(--text-faint);
+}
+.nav-parent .caret.open {
+  transform: rotate(90deg);
+}
+.nav-sub {
+  display: flex;
+  flex-direction: column;
+  margin: 2px 0 4px 12px;
+  border-left: 1px solid var(--border);
+  padding-left: 6px;
+}
+.nav-sub button {
+  font-size: 12.5px;
+}
+
+.nflx-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.nflx-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.nflx-controls input[type="number"] {
+  width: 84px;
+}
+.nflx-controls .seg {
+  display: inline-flex;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.nflx-controls .seg button {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  padding: 5px 12px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.nflx-controls .seg button.on {
+  background: var(--accent);
+  color: #fff;
+}
+.nflx-chip,
+.nflx-summary-bar span {
+  color: var(--text-dim);
+}
+.nflx-summary-bar {
+  display: flex;
+  gap: 20px;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+.nflx-h {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--text-faint);
+  margin: 14px 0 4px;
+  text-transform: uppercase;
+}
+.nflx-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+}
+.nflx-table th {
+  text-align: right;
+  padding: 6px 8px;
+  font-size: 10.5px;
+  letter-spacing: 0.03em;
+  color: var(--text-faint);
+  border-bottom: 1px solid var(--border-strong);
+  white-space: nowrap;
+}
+.nflx-table th.nflx-l,
+.nflx-table td.nflx-l {
+  text-align: left;
+}
+.nflx-table td {
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-dim);
+}
+.nflx-table td.num {
+  text-align: right;
+}
+.nflx-section-head td {
+  padding-top: 12px;
+  font-weight: 700;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  border-bottom: none;
+}
+.nflx-subtotal td {
+  font-weight: 600;
+  color: var(--text);
+  border-top: 1px solid var(--border-strong);
+  border-bottom: 2px solid var(--border-strong);
+  background: var(--surface-2, rgba(255, 255, 255, 0.02));
+}
+.nflx-ladder td {
+  font-weight: 600;
+  color: var(--text-dim);
+}
+.nflx-grand td {
+  font-weight: 800;
+  color: var(--text);
+  border-top: 3px double var(--text-dim);
+}
+.nflx-table .diff.neg {
+  color: var(--danger, #e5484d);
+}
+.nflx-table .tag {
+  font-size: 9px;
+  padding: 1px 5px;
+  border-radius: 4px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.nflx-table .tag.manual {
+  background: var(--surface-2, rgba(255, 255, 255, 0.08));
+  color: var(--text-faint);
+}
+/* wide cash-flow matrix: horizontal scroll + sticky first columns */
+.nflx-scroll {
+  overflow-x: auto;
+  max-width: 100%;
+}
+.nflx-cash th,
+.nflx-cash td {
+  min-width: 78px;
+}
+.nflx-cash .wk {
+  font-weight: 700;
+}
+.nflx-cash .wk-date {
+  font-size: 9px;
+  color: var(--text-faint);
+}
+.nflx-cash .nflx-sticky {
+  position: sticky;
+  left: 0;
+  background: var(--bg, #14161a);
+  min-width: 220px;
+  z-index: 1;
+}
+.nflx-cash .nflx-ytd {
+  position: sticky;
+  left: 220px;
+  background: var(--bg, #14161a);
+  z-index: 1;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* inline print target: visible on screen, isolated for print */
+@media print {
+  .print-doc-inline {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  body:has(.print-doc-inline) > #root .nav,
+  body:has(.print-doc-inline) .no-print {
+    display: none !important;
+  }
+}
+
 .print-doc {
   display: none;
 }

@@ -6,6 +6,13 @@ import type {
   Tree,
   Tools,
   NationalSheet,
+  NetflixHeaderInput,
+  NetflixBudget,
+  NetflixCostReport,
+  NetflixCashInput,
+  NetflixCashFlow,
+  NetflixTrialInput,
+  NetflixTrialBalance,
   SeriesSummary,
   IncentiveReport,
   Comparison,
@@ -24,6 +31,10 @@ import type {
 type View =
   | "topsheet"
   | "national"
+  | "nflx_budget"
+  | "nflx_cost"
+  | "nflx_cash"
+  | "nflx_trial"
   | "details"
   | "tools"
   | "report"
@@ -98,6 +109,12 @@ interface AppState {
 
   // Ulusal Dizi Formatı — the national dizi sheet layout.
   loadNationalSheet: () => Promise<NationalSheet | null>;
+
+  // Netflix reporting suite. Works online (server) and offline (native).
+  loadNetflixBudget: (h: NetflixHeaderInput) => Promise<NetflixBudget | null>;
+  loadNetflixCost: (h: NetflixHeaderInput) => Promise<NetflixCostReport | null>;
+  loadNetflixCash: (i: NetflixCashInput) => Promise<NetflixCashFlow | null>;
+  loadNetflixTrial: (i: NetflixTrialInput) => Promise<NetflixTrialBalance | null>;
 
   // Actuals / EFC. Works online (server) and offline (native bridge).
   loadActuals: () => Promise<ActualsReport | null>;
@@ -340,6 +357,27 @@ export const useApp = create<AppState>((set, get) => ({
     const { online, token, currentBudgetId } = get();
     if (online && token && currentBudgetId) return api.nationalSheet(token, currentBudgetId);
     return bridge.nationalSheet();
+  },
+
+  loadNetflixBudget: async (h) => {
+    const { online, token, currentBudgetId } = get();
+    if (online && token && currentBudgetId) return api.netflixBudget(token, currentBudgetId, h);
+    return bridge.netflixBudget(h);
+  },
+  loadNetflixCost: async (h) => {
+    const { online, token, currentBudgetId } = get();
+    if (online && token && currentBudgetId) return api.netflixCostReport(token, currentBudgetId, h);
+    return bridge.netflixCostReport(h);
+  },
+  loadNetflixCash: async (i) => {
+    const { online, token, currentBudgetId } = get();
+    if (online && token && currentBudgetId) return api.netflixCashFlow(token, currentBudgetId, i);
+    return bridge.netflixCashFlow(i);
+  },
+  loadNetflixTrial: async (i) => {
+    const { online, token, currentBudgetId } = get();
+    if (online && token && currentBudgetId) return api.netflixTrialBalance(token, currentBudgetId, i);
+    return bridge.netflixTrialBalance(i);
   },
 
   loadActuals: async () => {

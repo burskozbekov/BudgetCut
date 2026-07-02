@@ -718,3 +718,121 @@ async fn dizi_template_reproduces_bos_butce_total() {
     assert_eq!(rows.iter().filter(|r| r["kind"] == "subtotal").count(), 22);
     assert_eq!(rows.iter().filter(|r| r["kind"] == "section").count(), 2);
 }
+
+#[tokio::test]
+async fn netflix_reports_end_to_end() {
+    let app = budgetcut_server::app(budgetcut_server::AppState::new());
+    let owner = register(&app, "nflx@x.io").await;
+    let a = create_seeded(&app, &owner, "Pera").await;
+    add_director(&app, &owner, &a).await; // account 1301 → 660000 line + 17% stopaj
+
+    // Locate account 1301's id.
+    let (_, tree) = call(
+        &app,
+        "GET",
+        &format!("/budgets/{a}/tree"),
+        Some(&owner),
+        None,
+    )
+    .await;
+    let mut acc_id = String::new();
+    for c in tree["categories"].as_array().unwrap() {
+        for ac in c["accounts"].as_array().unwrap() {
+            if ac["number"] == "1301" {
+                acc_id = ac["id"].as_str().unwrap().to_string();
+            }
+        }
+    }
+    assert!(!acc_id.is_empty());
+
+    // A March actual (net 100000 @ 17% stopaj → brut 120481.93) + an Approved PO.
+    call(
+        &app,
+        "POST",
+        &format!("/budgets/{a}/actuals"),
+        Some(&owner),
+        Some(json!({"account": acc_id, "date":"2021-03-10", "net":"100000", "stopaj_rate":"0.17", "kdv_rate":"0.2"})),
+    )
+    .await;
+    let (_, po) = call(
+        &app,
+        "POST",
+        &format!("/budgets/{a}/purchase-orders"),
+        Some(&owner),
+        Some(json!({"account": acc_id, "date":"2021-03-05", "vendor":"Acme", "amount":"50000"})),
+    )
+    .await;
+    let po_id = po["id"].as_str().unwrap();
+    call(
+        &app,
+        "POST",
+        &format!("/budgets/{a}/purchase-orders/{po_id}/approve"),
+        Some(&owner),
+        None,
+    )
+    .await;
+
+    // 1) Budget topsheet — ATL section present, ladder foots to grand.
+    let (st, bud) = call(
+        &app,
+        "GET",
+        &format!("/budgets/{a}/netflix/budget?episodes=8"),
+        Some(&owner),
+        None,
+    )
+    .await;
+    assert_eq!(st, StatusCode::OK);
+    assert!(!bud["sections"].as_array().unwrap().is_empty());
+    assert_eq!(bud["ab_total"], bud["grand_total"]);
+
+    // 2) Cost report — brut to-date + Approved-only commitment.
+    let (st, cost) = call(
+        &app,
+        "GET",
+        &format!("/budgets/{a}/netflix/cost-report?period_start=2021-03-01&period_end=2021-03-31&episodes=8"),
+        Some(&owner),
+        None,
+    )
+    .await;
+    assert_eq!(st, StatusCode::OK);
+    let atl = cost["group_rows"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|g| g["group_key"] == "ATL")
+        .expect("ATL group");
+    assert_eq!(atl["actuals_to_date"], "120481.93"); // 100000 / 0.83
+    assert_eq!(atl["actuals_period"], "120481.93"); // the actual is in March
+    assert_eq!(atl["commitments"], "50000.00");
+    assert_eq!(atl["total_costs"], "170481.93");
+
+    // 3) Cash flow — positive YTD, week columns present.
+    let (st, cash) = call(
+        &app,
+        "GET",
+        &format!("/budgets/{a}/netflix/cash-flow?level=detail"),
+        Some(&owner),
+        None,
+    )
+    .await;
+    assert_eq!(st, StatusCode::OK);
+    assert!(!cash["weeks"].as_array().unwrap().is_empty());
+    assert_ne!(cash["ytd_total"], "0.00");
+
+    // 4) Trial balance — bank param + open Approved PO by vendor.
+    let (st, tb) = call(
+        &app,
+        "GET",
+        &format!("/budgets/{a}/netflix/trial-balance?bank_balance=100000"),
+        Some(&owner),
+        None,
+    )
+    .await;
+    assert_eq!(st, StatusCode::OK);
+    assert_eq!(tb["total"], "150000.00"); // 100000 bank + 50000 open PO
+    assert!(tb["rows"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .any(|r| r["kind"] == "Deposit" && r["amount"] == "50000.00"));
+}

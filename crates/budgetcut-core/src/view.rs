@@ -4,10 +4,10 @@
 //! mobile — renders without doing business math (§4/§11). I/O-free, so this
 //! lives in the core crate and is shared by the store and the sync server.
 
-use crate::calc::CalcResult;
+use crate::calc::{nflx_group, parse_iso_days, CalcResult, NetflixGroup};
 use crate::{round_money, AtlBtl, Budget, Formula};
 use rust_decimal::Decimal;
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 /// A money value rounded to kuruş and rendered with exactly 2 decimal places.
 fn money(d: Decimal) -> String {
@@ -473,6 +473,673 @@ fn subtotal_row(kind: &str, label: String, a: &NatAcc) -> NationalRow {
         stopaj: money(a.stopaj),
         ek_komisyon: money(a.komisyon),
         g_toplam: money(a.g),
+    }
+}
+
+// =========================================================================
+// Netflix reporting suite — faithful projections of three real Netflix-project
+// formats (locked budget PDF, cost report, weekly cash-out cash flow) plus a
+// trial-balance cash position. All computed from the existing model
+// (Budget + calc + actuals + purchase_orders + receipts); external-only values
+// (period window, project start, bank balance, header metadata) arrive as
+// request params, never stored. Money is round-first + saturating so every
+// column foots, consistent with the actuals/settlement/national-sheet reports.
+// =========================================================================
+
+/// Optional header/period metadata for the Netflix budget + cost report. Echoed
+/// into the view for display; none of it is stored on the Budget.
+#[derive(Debug, Clone, Default, Deserialize)]
+pub struct NetflixHeaderInput {
+    #[serde(default)]
+    pub budget_version: String,
+    #[serde(default)]
+    pub episodes: Option<u32>,
+    #[serde(default)]
+    pub min_per_episode: String,
+    #[serde(default)]
+    pub exec_producers: String,
+    #[serde(default)]
+    pub director: String,
+    #[serde(default)]
+    pub prepared_by: String,
+    #[serde(default)]
+    pub budget_date: String,
+    #[serde(default)]
+    pub shoot_weeks: String,
+    #[serde(default)]
+    pub post_weeks: String,
+    #[serde(default)]
+    pub fx_note: String,
+    #[serde(default)]
+    pub signed_agreement: String,
+    #[serde(default)]
+    pub period_no: String,
+    #[serde(default)]
+    pub period_start: String,
+    #[serde(default)]
+    pub period_end: String,
+}
+
+/// Fixed presentation order of the Netflix reporting groups.
+const NFLX_ORDER: [NetflixGroup; 7] = [
+    NetflixGroup::Atl,
+    NetflixGroup::BtlProduction,
+    NetflixGroup::Post,
+    NetflixGroup::Music,
+    NetflixGroup::Vfx,
+    NetflixGroup::Other,
+    NetflixGroup::MiscIncentives,
+];
+
+// ---- 1) Netflix Budget (topsheet grouped by Netflix section) ----
+
+#[derive(Debug, Clone, Serialize)]
+pub struct NetflixTopsheetRow {
+    pub number: String,
+    pub name: String,
+    pub subtotal: String,
+    pub fringe_total: String,
+    pub total: String,
+}
+
+#[derive(Debug, Clone, Serialize)]
+pub struct NetflixSection {
+    pub group_key: String,
+    pub atl_btl: String,
+    pub rows: Vec<NetflixTopsheetRow>,
+    pub subtotal: String,
+    pub fringe_total: String,
+    pub total: String,
+}
+
+#[derive(Debug, Clone, Serialize)]
+pub struct NetflixBudgetDto {
+    pub budget_name: String,
+    pub base_currency: String,
+    pub budget_version: String,
+    pub episodes: Option<u32>,
+    pub min_per_episode: String,
+    pub cost_per_episode: String,
+    pub exec_producers: String,
+    pub director: String,
+    pub prepared_by: String,
+    pub budget_date: String,
+    pub shoot_weeks: String,
+    pub post_weeks: String,
+    pub fx_note: String,
+    pub sections: Vec<NetflixSection>,
+    pub atl_total: String,
+    pub btl_total: String,
+    pub ab_total: String,
+    pub grand_total: String,
+    pub error_count: usize,
+}
+
+impl NetflixBudgetDto {
+    pub fn build(budget: &Budget, r: &CalcResult, h: &NetflixHeaderInput) -> Self {
+        let base_currency = budget
+            .currencies
+            .get(&budget.base_currency)
+            .map(|c| c.code.clone())
+            .unwrap_or_default();
+        let cats = budget.categories_sorted();
+        let mut sections = Vec::new();
+        for group in NFLX_ORDER {
+            let mut rows = Vec::new();
+            let (mut sub, mut fr, mut tot) = (Decimal::ZERO, Decimal::ZERO, Decimal::ZERO);
+            for c in cats.iter().filter(|c| nflx_group(&c.number) == group) {
+                let roll = r.categories.get(&c.id).copied().unwrap_or_default();
+                let (s, f, t) = (
+                    round_money(roll.subtotal),
+                    round_money(roll.fringe_total),
+                    round_money(roll.total),
+                );
+                sub = sat_add(sub, s);
+                fr = sat_add(fr, f);
+                tot = sat_add(tot, t);
+                rows.push(NetflixTopsheetRow {
+                    number: c.number.clone(),
+                    name: c.description.tr.clone(),
+                    subtotal: money(s),
+                    fringe_total: money(f),
+                    total: money(t),
+                });
+            }
+            if !rows.is_empty() {
+                // ATL section is the only ATL group; everything else is BTL for
+                // the "Total ATL / Total BTL" ladder shown under the sections.
+                let atl_btl = if group == NetflixGroup::Atl {
+                    "ATL"
+                } else {
+                    "BTL"
+                };
+                sections.push(NetflixSection {
+                    group_key: group.key().to_string(),
+                    atl_btl: atl_btl.to_string(),
+                    rows,
+                    subtotal: money(sub),
+                    fringe_total: money(fr),
+                    total: money(tot),
+                });
+            }
+        }
+        let cost_per_episode = match h.episodes {
+            Some(e) if e > 0 => money(r.grand_total / Decimal::from(e)),
+            _ => String::new(),
+        };
+        NetflixBudgetDto {
+            budget_name: budget.name.clone(),
+            base_currency,
+            budget_version: h.budget_version.clone(),
+            episodes: h.episodes,
+            min_per_episode: h.min_per_episode.clone(),
+            cost_per_episode,
+            exec_producers: h.exec_producers.clone(),
+            director: h.director.clone(),
+            prepared_by: h.prepared_by.clone(),
+            budget_date: h.budget_date.clone(),
+            shoot_weeks: h.shoot_weeks.clone(),
+            post_weeks: h.post_weeks.clone(),
+            fx_note: h.fx_note.clone(),
+            sections,
+            atl_total: money(r.atl.total),
+            btl_total: money(r.btl.total),
+            ab_total: money(r.atl.total + r.btl.total),
+            grand_total: money(r.grand_total),
+            error_count: r.errors.len(),
+        }
+    }
+}
+
+// ---- 2) Netflix Cost Report (Actuals/Commitments/ETC/EFC vs Budget) ----
+
+#[derive(Debug, Clone, Serialize)]
+pub struct NetflixCostRow {
+    pub number: String,
+    pub name: String,
+    pub group_key: String,
+    pub actuals_period: String,
+    pub actuals_to_date: String,
+    pub commitments: String,
+    pub total_costs: String,
+    pub etc: String,
+    pub efc: String,
+    pub budget: String,
+    pub variance: String,
+    pub over: bool,
+}
+
+#[derive(Debug, Clone, Serialize)]
+pub struct NetflixCostReportDto {
+    pub budget_name: String,
+    pub base_currency: String,
+    pub period_no: String,
+    pub period_start: String,
+    pub period_end: String,
+    pub episodes: Option<u32>,
+    pub total_production: String,
+    pub cost_per_episode: String,
+    pub signed_agreement: String,
+    pub group_rows: Vec<NetflixCostRow>,
+    pub account_rows: Vec<NetflixCostRow>,
+    pub grand: NetflixCostRow,
+}
+
+/// One account's cost-report figures, all pre-rounded to kuruş.
+#[derive(Default, Clone, Copy)]
+struct CostAcc {
+    period: Decimal,
+    to_date: Decimal,
+    commitments: Decimal,
+    total: Decimal,
+    etc: Decimal,
+    efc: Decimal,
+    budget: Decimal,
+    variance: Decimal,
+}
+
+impl CostAcc {
+    fn add(&mut self, o: &CostAcc) {
+        self.period = sat_add(self.period, o.period);
+        self.to_date = sat_add(self.to_date, o.to_date);
+        self.commitments = sat_add(self.commitments, o.commitments);
+        self.total = sat_add(self.total, o.total);
+        self.etc = sat_add(self.etc, o.etc);
+        self.efc = sat_add(self.efc, o.efc);
+        self.budget = sat_add(self.budget, o.budget);
+        self.variance = sat_add(self.variance, o.variance);
+    }
+    fn row(&self, number: String, name: String, group_key: String) -> NetflixCostRow {
+        NetflixCostRow {
+            number,
+            name,
+            group_key,
+            actuals_period: money(self.period),
+            actuals_to_date: money(self.to_date),
+            commitments: money(self.commitments),
+            total_costs: money(self.total),
+            etc: money(self.etc),
+            efc: money(self.efc),
+            budget: money(self.budget),
+            variance: money(self.variance),
+            over: self.variance < Decimal::ZERO,
+        }
+    }
+}
+
+impl NetflixCostReportDto {
+    pub fn build(budget: &Budget, r: &CalcResult, h: &NetflixHeaderInput) -> Self {
+        use crate::ids::AccountId;
+        use std::collections::HashMap;
+
+        let ps = parse_iso_days(&h.period_start);
+        let pe = parse_iso_days(&h.period_end);
+        let has_window = ps.is_some() || pe.is_some();
+        let in_window = |d: Option<i64>| -> bool {
+            has_window
+                && match d {
+                    Some(x) => {
+                        ps.map(|s| x >= s).unwrap_or(true) && pe.map(|e| x <= e).unwrap_or(true)
+                    }
+                    None => false,
+                }
+        };
+
+        // Actuals per account: to-date (all) + this-period (in window). Cost basis
+        // = Actual::cost() (brut), matching the existing variance report.
+        let mut td: HashMap<AccountId, Decimal> = HashMap::new();
+        let mut tp: HashMap<AccountId, Decimal> = HashMap::new();
+        for a in budget.actuals.values() {
+            let c = round_money(a.cost());
+            let e = td.entry(a.account).or_default();
+            *e = sat_add(*e, c);
+            if in_window(parse_iso_days(&a.date)) {
+                let e = tp.entry(a.account).or_default();
+                *e = sat_add(*e, c);
+            }
+        }
+        // Commitments = Approved POs only (Converted ones already became actuals).
+        let mut cm: HashMap<AccountId, Decimal> = HashMap::new();
+        for p in budget.purchase_orders.values() {
+            if matches!(p.status, crate::po::POStatus::Approved) {
+                let e = cm.entry(p.account).or_default();
+                *e = sat_add(*e, round_money(p.amount));
+            }
+        }
+
+        // Every account with a budget or any actual/commitment.
+        let mut ids: Vec<AccountId> = budget.accounts.keys().copied().collect();
+        for id in td.keys().chain(cm.keys()) {
+            if !budget.accounts.contains_key(id) {
+                ids.push(*id);
+            }
+        }
+        ids.sort();
+        ids.dedup();
+
+        let acct = |id: &AccountId| {
+            budget
+                .accounts
+                .get(id)
+                .map(|a| (a.number.clone(), a.description.tr.clone()))
+                .unwrap_or_default()
+        };
+
+        let mut account_rows = Vec::new();
+        let mut groups: HashMap<&'static str, CostAcc> = HashMap::new();
+        let mut grand = CostAcc::default();
+        let mut rows_ids: Vec<(String, String, AccountId)> = ids
+            .iter()
+            .map(|id| {
+                let (n, name) = acct(id);
+                (n, name, *id)
+            })
+            .collect();
+        rows_ids.sort_by(|a, b| a.0.cmp(&b.0));
+
+        for (number, name, id) in rows_ids {
+            let budget_amt = round_money(r.accounts.get(&id).map(|x| x.total).unwrap_or_default());
+            let to_date = td.get(&id).copied().unwrap_or_default();
+            let period = tp.get(&id).copied().unwrap_or_default();
+            let commitments = cm.get(&id).copied().unwrap_or_default();
+            let total = sat_add(to_date, commitments);
+            // ETC floors at 0 (overspent accounts show 0); EFC = max(budget,total).
+            let etc = (budget_amt - total).max(Decimal::ZERO);
+            let efc = sat_add(total, etc);
+            let variance = budget_amt - efc;
+            if budget_amt.is_zero() && to_date.is_zero() && commitments.is_zero() {
+                continue;
+            }
+            let group = nflx_group(&number);
+            let ca = CostAcc {
+                period,
+                to_date,
+                commitments,
+                total,
+                etc,
+                efc,
+                budget: budget_amt,
+                variance,
+            };
+            groups.entry(group.key()).or_default().add(&ca);
+            grand.add(&ca);
+            account_rows.push(ca.row(number, name, group.key().to_string()));
+        }
+
+        let group_rows = NFLX_ORDER
+            .iter()
+            .filter_map(|g| {
+                groups
+                    .get(g.key())
+                    .map(|ca| ca.row(g.key().to_string(), String::new(), g.key().to_string()))
+            })
+            .collect();
+
+        let base_currency = budget
+            .currencies
+            .get(&budget.base_currency)
+            .map(|c| c.code.clone())
+            .unwrap_or_default();
+        let cost_per_episode = match h.episodes {
+            Some(e) if e > 0 => money(r.grand_total / Decimal::from(e)),
+            _ => String::new(),
+        };
+        NetflixCostReportDto {
+            budget_name: budget.name.clone(),
+            base_currency,
+            period_no: h.period_no.clone(),
+            period_start: h.period_start.clone(),
+            period_end: h.period_end.clone(),
+            episodes: h.episodes,
+            total_production: money(r.grand_total),
+            cost_per_episode,
+            signed_agreement: h.signed_agreement.clone(),
+            group_rows,
+            account_rows,
+            grand: grand.row(String::new(), String::new(), String::new()),
+        }
+    }
+}
+
+// ---- 3) Netflix Cash Flow (weekly time-phased cash-out matrix) ----
+
+#[derive(Debug, Clone, Default, Deserialize)]
+pub struct NetflixCashInput {
+    #[serde(default)]
+    pub project_start: String,
+    #[serde(default)]
+    pub weeks: Option<u32>,
+    /// "header" (by category) or "detail" (by account); defaults to detail.
+    #[serde(default)]
+    pub level: String,
+}
+
+#[derive(Debug, Clone, Serialize)]
+pub struct NetflixWeek {
+    pub index: u32,
+    pub ending_date: String,
+}
+
+#[derive(Debug, Clone, Serialize)]
+pub struct NetflixCashRow {
+    pub number: String,
+    pub name: String,
+    pub payments_ytd: String,
+    pub weekly: Vec<String>,
+}
+
+#[derive(Debug, Clone, Serialize)]
+pub struct NetflixCashFlowDto {
+    pub budget_name: String,
+    pub base_currency: String,
+    pub level: String,
+    pub project_start: String,
+    pub weeks: Vec<NetflixWeek>,
+    pub rows: Vec<NetflixCashRow>,
+    pub week_totals: Vec<String>,
+    pub ytd_total: String,
+    /// Cash from undated/unparseable actuals — counted in YTD, shown separately.
+    pub undated: String,
+}
+
+impl NetflixCashFlowDto {
+    pub fn build(budget: &Budget, input: &NetflixCashInput) -> Self {
+        use crate::ids::AccountId;
+        use std::collections::HashMap;
+
+        let by_category = input.level == "header";
+        // Cash basis = payable (VAT-included cash out), matching the source's
+        // "vat included cash" header. Round each payment to kuruş first.
+        let dates: Vec<i64> = budget
+            .actuals
+            .values()
+            .filter_map(|a| parse_iso_days(&a.date))
+            .collect();
+        let start = parse_iso_days(&input.project_start)
+            .or_else(|| dates.iter().copied().min())
+            .unwrap_or(0);
+        let max_day = dates.iter().copied().max().unwrap_or(start);
+        let needed = (((max_day - start).max(0)) / 7 + 1) as u32;
+        let weeks = input.weeks.unwrap_or(needed).clamp(1, 104);
+
+        // key -> (number, name)
+        let mut labels: HashMap<String, (String, String)> = HashMap::new();
+        let mut weekly: HashMap<String, Vec<Decimal>> = HashMap::new();
+        let mut ytd: HashMap<String, Decimal> = HashMap::new();
+        let mut undated = Decimal::ZERO;
+
+        let key_for = |acc_id: &AccountId| -> Option<(String, String, String)> {
+            let acc = budget.accounts.get(acc_id)?;
+            if by_category {
+                let cat = budget.categories.get(&acc.category)?;
+                Some((
+                    cat.number.clone(),
+                    cat.number.clone(),
+                    cat.description.tr.clone(),
+                ))
+            } else {
+                Some((
+                    acc.number.clone(),
+                    acc.number.clone(),
+                    acc.description.tr.clone(),
+                ))
+            }
+        };
+
+        for a in budget.actuals.values() {
+            let Some((key, number, name)) = key_for(&a.account) else {
+                continue;
+            };
+            let pay = round_money(a.breakdown().payable);
+            labels.entry(key.clone()).or_insert((number, name));
+            let row = weekly
+                .entry(key.clone())
+                .or_insert_with(|| vec![Decimal::ZERO; weeks as usize]);
+            match parse_iso_days(&a.date) {
+                Some(d) => {
+                    let idx = (((d - start).max(0)) / 7).clamp(0, weeks as i64 - 1) as usize;
+                    row[idx] = sat_add(row[idx], pay);
+                }
+                None => undated = sat_add(undated, pay),
+            }
+            let y = ytd.entry(key).or_default();
+            *y = sat_add(*y, pay);
+        }
+
+        let mut keys: Vec<String> = labels.keys().cloned().collect();
+        keys.sort();
+        let mut week_totals = vec![Decimal::ZERO; weeks as usize];
+        let mut ytd_total = Decimal::ZERO;
+        let rows: Vec<NetflixCashRow> = keys
+            .iter()
+            .map(|k| {
+                let (number, name) = labels.get(k).cloned().unwrap_or_default();
+                let cells = weekly.get(k).cloned().unwrap_or_default();
+                for (i, v) in cells.iter().enumerate() {
+                    week_totals[i] = sat_add(week_totals[i], *v);
+                }
+                let y = ytd.get(k).copied().unwrap_or_default();
+                ytd_total = sat_add(ytd_total, y);
+                NetflixCashRow {
+                    number,
+                    name,
+                    payments_ytd: money(y),
+                    weekly: cells.iter().map(|v| money(*v)).collect(),
+                }
+            })
+            .collect();
+        ytd_total = sat_add(ytd_total, undated);
+
+        let week_headers = (0..weeks)
+            .map(|i| NetflixWeek {
+                index: i + 1,
+                ending_date: crate::calc::iso_from_days(start + 7 * (i as i64 + 1)),
+            })
+            .collect();
+
+        let base_currency = budget
+            .currencies
+            .get(&budget.base_currency)
+            .map(|c| c.code.clone())
+            .unwrap_or_default();
+        NetflixCashFlowDto {
+            budget_name: budget.name.clone(),
+            base_currency,
+            level: if by_category { "header" } else { "detail" }.to_string(),
+            project_start: crate::calc::iso_from_days(start),
+            weeks: week_headers,
+            rows,
+            week_totals: week_totals.iter().map(|v| money(*v)).collect(),
+            ytd_total: money(ytd_total),
+            undated: money(undated),
+        }
+    }
+}
+
+// ---- 4) Netflix Trial Balance (cash position snapshot) ----
+
+#[derive(Debug, Clone, Default, Deserialize)]
+pub struct NetflixTrialInput {
+    #[serde(default)]
+    pub bank_balance: String,
+    #[serde(default)]
+    pub show_name: String,
+    #[serde(default)]
+    pub season: String,
+    #[serde(default)]
+    pub date: String,
+    #[serde(default)]
+    pub period_ending: String,
+}
+
+#[derive(Debug, Clone, Serialize)]
+pub struct TrialBalanceRow {
+    pub kind: String,
+    pub name: String,
+    pub amount: String,
+    pub note: String,
+    /// false = external/manual (bank balance); true = derived from the model.
+    pub computed: bool,
+}
+
+#[derive(Debug, Clone, Serialize)]
+pub struct NetflixTrialBalanceDto {
+    pub budget_name: String,
+    pub show_name: String,
+    pub season: String,
+    pub date: String,
+    pub period_ending: String,
+    pub base_currency: String,
+    pub rows: Vec<TrialBalanceRow>,
+    pub total: String,
+}
+
+impl NetflixTrialBalanceDto {
+    pub fn build(budget: &Budget, input: &NetflixTrialInput) -> Self {
+        use std::collections::BTreeMap;
+        use std::str::FromStr;
+
+        let mut rows = Vec::new();
+        let mut total = Decimal::ZERO;
+
+        // (1) Bank balance — external, manual param.
+        let bank = Decimal::from_str(input.bank_balance.trim()).unwrap_or(Decimal::ZERO);
+        let bank = round_money(bank);
+        total = sat_add(total, bank);
+        rows.push(TrialBalanceRow {
+            kind: "Bank".into(),
+            name: "Banka Hesap Bakiyesi".into(),
+            amount: money(bank),
+            note: "Bankadaki nakit (manuel)".into(),
+            computed: false,
+        });
+
+        // (2) Unsettled petty cash — receipts grouped by expense category.
+        let mut petty: BTreeMap<String, Decimal> = BTreeMap::new();
+        for rc in budget.receipts.values() {
+            let e = petty.entry(rc.category.clone()).or_default();
+            *e = sat_add(*e, round_money(rc.gross));
+        }
+        for (cat, amt) in petty {
+            if amt.is_zero() {
+                continue;
+            }
+            total = sat_add(total, amt);
+            rows.push(TrialBalanceRow {
+                kind: "Advance".into(),
+                name: cat,
+                amount: money(amt),
+                note: "Kapatılmamış harcama/fiş".into(),
+                computed: true,
+            });
+        }
+
+        // (3) Open commitments by vendor — Approved POs (invoices not yet in).
+        let mut deposits: BTreeMap<String, Decimal> = BTreeMap::new();
+        for p in budget.purchase_orders.values() {
+            if matches!(p.status, crate::po::POStatus::Approved) {
+                let vendor = if p.vendor.trim().is_empty() {
+                    "—".to_string()
+                } else {
+                    p.vendor.clone()
+                };
+                let e = deposits.entry(vendor).or_default();
+                *e = sat_add(*e, round_money(p.amount));
+            }
+        }
+        for (vendor, amt) in deposits {
+            if amt.is_zero() {
+                continue;
+            }
+            total = sat_add(total, amt);
+            rows.push(TrialBalanceRow {
+                kind: "Deposit".into(),
+                name: vendor,
+                amount: money(amt),
+                note: "Açık sipariş / alınmamış fatura".into(),
+                computed: true,
+            });
+        }
+
+        let base_currency = budget
+            .currencies
+            .get(&budget.base_currency)
+            .map(|c| c.code.clone())
+            .unwrap_or_default();
+        NetflixTrialBalanceDto {
+            budget_name: budget.name.clone(),
+            show_name: if input.show_name.trim().is_empty() {
+                budget.name.clone()
+            } else {
+                input.show_name.clone()
+            },
+            season: input.season.clone(),
+            date: input.date.clone(),
+            period_ending: input.period_ending.clone(),
+            base_currency,
+            rows,
+            total: money(total),
+        }
     }
 }
 
@@ -1252,5 +1919,213 @@ mod tests {
         assert_eq!(money(line_stopaj), sub.stopaj);
         // Per-line gross-up 100/0.9−100 = 11.11; 7 × 11.11 = 77.77.
         assert_eq!(sub.stopaj, "77.77");
+    }
+
+    // ---- Netflix reporting suite ----
+
+    // A minimal Netflix-coded budget: one ATL account (1101) with a 100,000
+    // budget line, plus two actuals (one in period), one Approved PO, one
+    // Converted PO (must be ignored), and one receipt.
+    fn netflix_test_budget() -> Budget {
+        use crate::actuals::Actual;
+        use crate::ids::*;
+        use crate::po::{POStatus, PurchaseOrder};
+        use crate::settlement::Receipt;
+        use crate::{Account, Budget, Category, Detail, Formula, Localized, Unit};
+        use rust_decimal_macros::dec;
+
+        let mut b = Budget::new("PERA", crate::templates::try_currency());
+        let unit = Unit {
+            id: UnitId::new(),
+            code: "ADET".into(),
+            name: Localized::bilingual("Adet", "Flat"),
+            factor: Decimal::ONE,
+        };
+        let uid = unit.id;
+        b.units.insert(uid, unit);
+        let cat = Category {
+            id: CategoryId::new(),
+            number: "1100".into(),
+            description: Localized::tr("SCRIPT"),
+            position: dec!(1),
+            atl_btl: Some(AtlBtl::Atl),
+            applied_fringes: vec![],
+        };
+        let cid = cat.id;
+        b.categories.insert(cid, cat);
+        let acc = Account {
+            id: AccountId::new(),
+            category: cid,
+            number: "1101".into(),
+            description: Localized::tr("SCRIPT FEE"),
+            position: dec!(1),
+            show_subtotal: true,
+            applied_fringes: vec![],
+        };
+        let aid = acc.id;
+        b.accounts.insert(aid, acc);
+        let det = Detail {
+            id: DetailId::new(),
+            account: aid,
+            position: dec!(1),
+            description: "Yazar".into(),
+            name: None,
+            amount: Formula::Const(dec!(100000)),
+            multiplier: Formula::Const(Decimal::ONE),
+            rate: Formula::Const(Decimal::ONE),
+            unit: uid,
+            currency: b.base_currency,
+            applied_fringes: vec![],
+            groups: vec![],
+            location: None,
+            set: None,
+            gl_code: None,
+            notes: None,
+        };
+        b.details.insert(det.id, det);
+        // Two actuals: 30,000 in-period + 20,000 earlier (net; no fringes → cost=net).
+        for (date, net) in [("2021-03-10", dec!(30000)), ("2021-02-01", dec!(20000))] {
+            b.actuals.insert(
+                uuid::Uuid::now_v7(),
+                Actual {
+                    id: uuid::Uuid::now_v7(),
+                    account: aid,
+                    date: date.into(),
+                    vendor: "V".into(),
+                    description: "".into(),
+                    net,
+                    stopaj_rate: Decimal::ZERO,
+                    kdv_rate: Decimal::ZERO,
+                    tevkifat_rate: Decimal::ZERO,
+                },
+            );
+        }
+        // One Approved PO (a commitment) + one Converted PO (must be ignored).
+        for (amount, status) in [
+            (dec!(10000), POStatus::Approved),
+            (dec!(5000), POStatus::Converted),
+        ] {
+            b.purchase_orders.insert(
+                uuid::Uuid::now_v7(),
+                PurchaseOrder {
+                    id: uuid::Uuid::now_v7(),
+                    account: aid,
+                    date: "2021-03-01".into(),
+                    vendor: "Acme".into(),
+                    description: "".into(),
+                    amount,
+                    status,
+                },
+            );
+        }
+        b.receipts.insert(
+            uuid::Uuid::now_v7(),
+            Receipt {
+                id: uuid::Uuid::now_v7(),
+                date: "2021-03-05".into(),
+                vendor: "Market".into(),
+                receipt_no: "1".into(),
+                category: "YEMEK".into(),
+                description: "".into(),
+                gross: dec!(1100),
+                kdv_rate: dec!(0.10),
+            },
+        );
+        b
+    }
+
+    #[test]
+    fn netflix_budget_ladder_foots_to_grand() {
+        let b = netflix_test_budget();
+        let r = evaluate(&b);
+        let h = NetflixHeaderInput {
+            episodes: Some(8),
+            ..Default::default()
+        };
+        let dto = NetflixBudgetDto::build(&b, &r, &h);
+        assert_eq!(dto.sections.len(), 1);
+        assert_eq!(dto.sections[0].group_key, "ATL");
+        assert_eq!(dto.ab_total, dto.grand_total);
+        assert_eq!(dto.grand_total, "100000.00");
+        assert_eq!(dto.cost_per_episode, "12500.00");
+    }
+
+    #[test]
+    fn netflix_cost_report_columns_foot_and_ignore_converted_po() {
+        let b = netflix_test_budget();
+        let r = evaluate(&b);
+        let h = NetflixHeaderInput {
+            period_start: "2021-03-01".into(),
+            period_end: "2021-03-31".into(),
+            ..Default::default()
+        };
+        let dto = NetflixCostReportDto::build(&b, &r, &h);
+        let row = dto
+            .account_rows
+            .iter()
+            .find(|r| r.number == "1101")
+            .unwrap();
+        // Budget 100k; actuals-to-date 50k (30k+20k); commitments 10k (Converted
+        // 5k ignored); total 60k; ETC 40k; EFC 100k; variance 0; period = 30k.
+        assert_eq!(row.budget, "100000.00");
+        assert_eq!(row.actuals_to_date, "50000.00");
+        assert_eq!(row.actuals_period, "30000.00");
+        assert_eq!(row.commitments, "10000.00");
+        assert_eq!(row.total_costs, "60000.00");
+        assert_eq!(row.etc, "40000.00");
+        assert_eq!(row.efc, "100000.00");
+        assert_eq!(row.variance, "0.00");
+        assert_eq!(dto.grand.total_costs, "60000.00");
+        assert_eq!(dto.group_rows.len(), 1);
+        assert_eq!(dto.group_rows[0].group_key, "ATL");
+        assert_eq!(dto.group_rows[0].efc, "100000.00");
+    }
+
+    #[test]
+    fn netflix_cash_flow_ytd_equals_row_and_week_sums() {
+        let b = netflix_test_budget();
+        let input = NetflixCashInput {
+            project_start: "2021-02-01".into(),
+            weeks: None,
+            level: "detail".into(),
+        };
+        let dto = NetflixCashFlowDto::build(&b, &input);
+        let row = dto.rows.iter().find(|r| r.number == "1101").unwrap();
+        assert_eq!(row.payments_ytd, "50000.00");
+        let wsum: Decimal = row
+            .weekly
+            .iter()
+            .map(|s| s.parse::<Decimal>().unwrap())
+            .sum();
+        assert_eq!(money(wsum), row.payments_ytd);
+        let wt: Decimal = dto
+            .week_totals
+            .iter()
+            .map(|s| s.parse::<Decimal>().unwrap())
+            .sum();
+        assert_eq!(money(wt), dto.ytd_total);
+        assert_eq!(dto.undated, "0.00");
+    }
+
+    #[test]
+    fn netflix_trial_balance_totals_all_positions() {
+        let b = netflix_test_budget();
+        let input = NetflixTrialInput {
+            bank_balance: "250000".into(),
+            ..Default::default()
+        };
+        let dto = NetflixTrialBalanceDto::build(&b, &input);
+        assert!(dto.rows.iter().any(|r| r.kind == "Bank" && !r.computed));
+        assert!(dto
+            .rows
+            .iter()
+            .any(|r| r.kind == "Deposit" && r.amount == "10000.00"));
+        let sum: Decimal = dto
+            .rows
+            .iter()
+            .map(|r| r.amount.parse::<Decimal>().unwrap())
+            .sum();
+        assert_eq!(money(sum), dto.total);
+        assert_eq!(dto.total, "261100.00");
     }
 }

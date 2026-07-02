@@ -20,6 +20,13 @@ import type {
   PurchaseOrders,
   AddPoInput,
   LiveRates,
+  NetflixHeaderInput,
+  NetflixBudget,
+  NetflixCostReport,
+  NetflixCashInput,
+  NetflixCashFlow,
+  NetflixTrialInput,
+  NetflixTrialBalance,
 } from "./types";
 import demo from "./fixtures/demo.json";
 
@@ -51,6 +58,20 @@ export const bridge = {
     return inTauri
       ? invoke<NationalSheet>("national_sheet")
       : ((demo as any).national ?? null);
+  },
+
+  /** Netflix reporting suite (native computes each live from the local budget). */
+  async netflixBudget(header: NetflixHeaderInput): Promise<NetflixBudget | null> {
+    return inTauri ? invoke<NetflixBudget>("netflix_budget", { header }) : null;
+  },
+  async netflixCostReport(header: NetflixHeaderInput): Promise<NetflixCostReport | null> {
+    return inTauri ? invoke<NetflixCostReport>("netflix_cost_report", { header }) : null;
+  },
+  async netflixCashFlow(input: NetflixCashInput): Promise<NetflixCashFlow | null> {
+    return inTauri ? invoke<NetflixCashFlow>("netflix_cash_flow", { input }) : null;
+  },
+  async netflixTrialBalance(input: NetflixTrialInput): Promise<NetflixTrialBalance | null> {
+    return inTauri ? invoke<NetflixTrialBalance>("netflix_trial_balance", { input }) : null;
   },
 
   /** Set a named global's constant value (native only). */

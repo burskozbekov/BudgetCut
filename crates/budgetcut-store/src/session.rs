@@ -13,8 +13,9 @@ use budgetcut_core::{
 use rust_decimal::Decimal;
 
 use crate::dto::{
-    ActualsReportDto, NationalSheetDto, PurchaseOrdersDto, ScheduleDto, SettlementReportDto,
-    ToolsDto, TopsheetDto, TreeDto,
+    ActualsReportDto, NationalSheetDto, NetflixBudgetDto, NetflixCashFlowDto, NetflixCashInput,
+    NetflixCostReportDto, NetflixHeaderInput, NetflixTrialBalanceDto, NetflixTrialInput,
+    PurchaseOrdersDto, ScheduleDto, SettlementReportDto, ToolsDto, TopsheetDto, TreeDto,
 };
 use crate::error::Result;
 use crate::store::{now_ms, Store};
@@ -165,6 +166,28 @@ impl Session {
     pub fn national_sheet(&self) -> NationalSheetDto {
         let r = evaluate(&self.doc.budget);
         NationalSheetDto::build(&self.doc.budget, &r)
+    }
+
+    /// Netflix budget topsheet (sections grouped by Netflix CoA band).
+    pub fn netflix_budget(&self, header: &NetflixHeaderInput) -> NetflixBudgetDto {
+        let r = evaluate(&self.doc.budget);
+        NetflixBudgetDto::build(&self.doc.budget, &r, header)
+    }
+
+    /// Netflix cost report (actuals / commitments / ETC / EFC vs budget).
+    pub fn netflix_cost_report(&self, header: &NetflixHeaderInput) -> NetflixCostReportDto {
+        let r = evaluate(&self.doc.budget);
+        NetflixCostReportDto::build(&self.doc.budget, &r, header)
+    }
+
+    /// Netflix weekly cash-flow (cash-out) matrix.
+    pub fn netflix_cash_flow(&self, input: &NetflixCashInput) -> NetflixCashFlowDto {
+        NetflixCashFlowDto::build(&self.doc.budget, input)
+    }
+
+    /// Netflix trial balance (cash position snapshot).
+    pub fn netflix_trial_balance(&self, input: &NetflixTrialInput) -> NetflixTrialBalanceDto {
+        NetflixTrialBalanceDto::build(&self.doc.budget, input)
     }
 
     /// Project the Setup Tools (fringes, globals, units).

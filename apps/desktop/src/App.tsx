@@ -1,8 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useApp } from "./store";
 import Topsheet from "./components/Topsheet";
 import NationalSheetPanel from "./components/NationalSheetPanel";
+import NetflixBudget from "./components/NetflixBudget";
+import NetflixCostReport from "./components/NetflixCostReport";
+import NetflixCashFlow from "./components/NetflixCashFlow";
+import NetflixTrialBalance from "./components/NetflixTrialBalance";
 import AccountDetails from "./components/AccountDetails";
 import SetupTools from "./components/SetupTools";
 import ReportBuilder from "./components/ReportBuilder";
@@ -29,6 +33,9 @@ export default function App() {
   const { t } = useTranslation();
   const s = useApp();
   const { mode, view, setView, loading, topsheet, shootDays, setShootDays, setPalette, online, presence, leaveBudget } = s;
+  const nflxActive = view.startsWith("nflx_");
+  const [nflxOpen, setNflxOpen] = useState(false);
+  const showNflx = nflxOpen || nflxActive;
 
   useEffect(() => {
     s.init();
@@ -47,6 +54,10 @@ export default function App() {
   const heads: Record<string, { title: string; sub: string }> = {
     topsheet: { title: t("topsheet"), sub: t("topsheet_sub") },
     national: { title: t("nat_title"), sub: t("nat_sub") },
+    nflx_budget: { title: t("nflx_budget"), sub: t("nflx_budget_sub") },
+    nflx_cost: { title: t("nflx_cost"), sub: t("nflx_cost_sub") },
+    nflx_cash: { title: t("nflx_cash"), sub: t("nflx_cash_sub") },
+    nflx_trial: { title: t("nflx_trial"), sub: t("nflx_trial_sub") },
     details: { title: t("details"), sub: t("details_sub") },
     tools: { title: t("tools"), sub: t("tools_sub") },
     report: { title: t("nav_report"), sub: t("report_sub") },
@@ -101,6 +112,23 @@ export default function App() {
         <div className="section">{t("nav_views")}</div>
         <NavButton id="topsheet" label={t("nav_topsheet")} />
         <NavButton id="national" label={t("nav_national")} />
+
+        <button
+          className={`nav-parent ${nflxActive ? "active" : ""}`}
+          onClick={() => setNflxOpen((o) => !o)}
+        >
+          <span className={`caret ${showNflx ? "open" : ""}`}>▸</span>
+          {t("nav_netflix")}
+        </button>
+        {showNflx && (
+          <div className="nav-sub">
+            <NavButton id="nflx_budget" label={t("nav_nflx_budget")} />
+            <NavButton id="nflx_cost" label={t("nav_nflx_cost")} />
+            <NavButton id="nflx_cash" label={t("nav_nflx_cash")} />
+            <NavButton id="nflx_trial" label={t("nav_nflx_trial")} />
+          </div>
+        )}
+
         <NavButton id="details" label={t("nav_details")} />
         <NavButton id="tools" label={t("nav_tools")} />
         <NavButton id="report" label={t("nav_report")} />
@@ -142,6 +170,14 @@ export default function App() {
           <Topsheet />
         ) : view === "national" ? (
           <NationalSheetPanel />
+        ) : view === "nflx_budget" ? (
+          <NetflixBudget />
+        ) : view === "nflx_cost" ? (
+          <NetflixCostReport />
+        ) : view === "nflx_cash" ? (
+          <NetflixCashFlow />
+        ) : view === "nflx_trial" ? (
+          <NetflixTrialBalance />
         ) : view === "details" ? (
           <AccountDetails />
         ) : view === "tools" ? (
