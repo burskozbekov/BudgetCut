@@ -3,7 +3,7 @@
 // hands back the .dmg download URL if newer. (A fully-silent auto-installer
 // would need tauri-plugin-updater + a signed release feed + notarization.)
 
-export const APP_VERSION = "0.1.0";
+export const APP_VERSION = "0.1.1";
 
 // GitHub repo the "Güncelle" button checks for newer releases. The release.yml
 // CI attaches the .dmg to each published Release; the button downloads it when
