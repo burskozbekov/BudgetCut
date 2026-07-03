@@ -79,15 +79,17 @@ export default function App() {
           <Logo />
           {t("app")}
         </div>
-        <TopActions />
       </div>
 
       <div className="topbar">
-        <div className="title">
-          {online && (
-            <button className="back" onClick={leaveBudget} title={t("back_to_budgets")}>←</button>
-          )}
-          {topsheet?.budget_name ?? "…"}
+        <div className="topbar-left">
+          <div className="title">
+            {online && (
+              <button className="back" onClick={leaveBudget} title={t("back_to_budgets")}>←</button>
+            )}
+            <span className="title-name">{topsheet?.budget_name ?? "…"}</span>
+          </div>
+          <TopActions />
         </div>
         <div className="meta">
           <TopRates />

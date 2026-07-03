@@ -194,7 +194,7 @@ const resources = {
       upd_download: "İndir",
       upd_unconfigured: "Güncelle (depo ayarlı değil)",
       upd_error: "Kontrol edilemedi",
-      load_sample: "Örnek bütçe (BOŞ BÜTÇE)",
+      load_sample: "Örnek bütçe",
       load_sample_confirm:
         "Mevcut bütçe silinip gerçek örnek (BOŞ BÜTÇE — ₺32,5M) yüklenecek. Emin misiniz?",
       dash_template: "Şablon",
@@ -541,7 +541,7 @@ const resources = {
       upd_download: "Download",
       upd_unconfigured: "Update (repo not set)",
       upd_error: "Check failed",
-      load_sample: "Sample budget (BOŞ BÜTÇE)",
+      load_sample: "Sample budget",
       load_sample_confirm:
         "This replaces the current budget with the real sample (BOŞ BÜTÇE — ₺32.5M). Continue?",
       dash_template: "Template",
