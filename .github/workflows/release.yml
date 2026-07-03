@@ -12,6 +12,10 @@ on:
 jobs:
   bundle:
     runs-on: macos-latest
+    # tauri-action creates the GitHub Release and uploads/replaces the DMG asset,
+    # which needs write access to repo contents (the default token is read-only).
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
